@@ -1,0 +1,107 @@
+name: homelab
+
+networks:
+  homelab_net:
+    name: homelab_net
+    driver: bridge
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 3001:3001
+    volumes:
+      - uptime-kuma:/app/data
+
+  tududi:
+    image: chrisvel/tududi:1.0.0
+    container_name: tududi
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 3002:3002
+    environment:
+      - TUDUDI_USER_EMAIL=you@example.com
+      - TUDUDI_USER_PASSWORD=yourpassword
+      - TUDUDI_SESSION_SECRET=homelab_local_secret
+    volumes:
+      - tududi_db:/app/db
+
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:2.9.2
+    container_name: stirling-pdf
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 8080:8080
+    volumes:
+      - stirling_data:/configs
+
+  pihole:
+    image: pihole/pihole:2026.04.0
+    container_name: pihole
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 8053:80/tcp
+      - 8443:443/tcp
+    environment:
+      - TZ=Asia/Kolkata
+      - FTLCONF_webserver_api_password=yourpassword
+      - FTLCONF_dns_listeningMode=ALL
+    volumes:
+      - pihole_data:/etc/pihole
+    cap_add:
+      - NET_ADMIN
+      - SYS_TIME
+      - SYS_NICE
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:2.14.0
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    environment:
+      - TZ=Asia/Kolkata
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+
+  dozzle:
+    image: amir20/dozzle:v10
+    container_name: dozzle
+    restart: unless-stopped
+    networks:
+      - homelab_net
+    ports:
+      - 9999:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  uptime-kuma:
+    name: uptime-kuma
+  tududi_db:
+    name: tududi_db
+  stirling_data:
+    name: stirling_data
+  pihole_data:
+    name: pihole_data
+  npm_data:
+    name: npm_data
+  npm_letsencrypt:
+    name: npm_letsencrypt
