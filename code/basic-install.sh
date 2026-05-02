@@ -25,8 +25,24 @@ pip install transformers accelerate huggingface_hub jupyter ipywidgets
 # python -c "import jupyter; print('jupyter ok')"
 
 
+pip install sentencepiece protobuf
+pip install jupyter ipykernel
+
+# 4. Register the venv as a named Jupyter kernel
+python -m ipykernel install --user --name llm-env --display-name "Python (llm-env)"
+
+# 5. Verify everything imports cleanly
+python -c "import torch, transformers, sentencepiece, accelerate; print('torch', torch.__version__); print('transformers', transformers.__version__); print('cuda', torch.cuda.is_available())"
 
 
+free -h
+df -h /
+
+hf auth login
+hf auth whoami
+
+hf auth list
+hf auth token
 
 
 
