@@ -1,0 +1,18 @@
+name: linux-perms-lab
+
+networks:
+  lab-net:
+    name: linux-perms-lab-net
+    driver: bridge
+
+services:
+  ubuntu:
+    image: ubuntu:24.04
+    container_name: ubuntu-perms-lab
+    command: [ "sleep", "infinity" ]
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    working_dir: /root
+    networks:
+      - lab-net
