@@ -36,7 +36,7 @@ python -c "import torch, transformers, sentencepiece, accelerate; print('torch',
 
 
 free -h
-df -h /
+df -kh
 
 hf auth login
 hf auth whoami
