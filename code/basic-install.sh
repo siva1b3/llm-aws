@@ -32,11 +32,7 @@ python -c "import torch, transformers, sentencepiece, accelerate; print('torch',
 
 
 free -h
-<<<<<<< HEAD
-df -h 
-=======
 df -kh
->>>>>>> 3405f48761b0910654339a918a2f149fd29a2821
 
 hf auth login
 hf auth whoami
