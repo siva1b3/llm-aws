@@ -156,9 +156,7 @@ assert ...
 - Without scrolling: <recall exercise>
 - What would break if this phase were skipped? (one paragraph, written from memory)
 ```
-
----
-
+```
 ## Section 6 — Instructions for future authors
 
 This section governs how new phases are written. Read it after reading at least Phases 1–5, so the rules have concrete examples to point to. Each rule is followed by *what it rejects* — the failure mode it exists to prevent.
