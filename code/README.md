@@ -267,4 +267,4 @@ Update this section per working session. Examples:
 
 - `Phase 1 / Level 00 — complete. Opaque box runs, output verified.`
 - `Phase 1 / Level 01 — complete. LLM call split from decode step.`
-- `Phase 1 / Level XX — in progress.`
+- `Phase 1 / Level 02 — complete. Tokenize split from the model; {vocab} now visible on both ends (tokenize + decode), LLM core still opaque.`
