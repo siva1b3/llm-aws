@@ -268,3 +268,4 @@ Update this section per working session. Examples:
 - `Phase 1 / Level 00 — complete. Opaque box runs, output verified.`
 - `Phase 1 / Level 01 — complete. LLM call split from decode step.`
 - `Phase 1 / Level 02 — complete. Tokenize split from the model; {vocab} now visible on both ends (tokenize + decode), LLM core still opaque.`
+- `Phase 1 / Level 03 — complete. Embed split from the LLM core; token IDs → vectors [N_tok × d] is now a visible step. {E} matrix named but still opaque (opens in Level 04). Core no longer bundles the embedding.`
