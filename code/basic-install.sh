@@ -23,7 +23,7 @@ pip install transformers accelerate huggingface_hub jupyter ipywidgets
 
 pip install sentencepiece protobuf
 pip install jupyter ipykernel
-
+pip install pandas matplotlib psutil
 
 python -m ipykernel install --user --name llm-env --display-name "Python (llm-env)"
 
