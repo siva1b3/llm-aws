@@ -269,3 +269,4 @@ Update this section per working session. Examples:
 - `Phase 1 / Level 01 — complete. LLM call split from decode step.`
 - `Phase 1 / Level 02 — complete. Tokenize split from the model; {vocab} now visible on both ends (tokenize + decode), LLM core still opaque.`
 - `Phase 1 / Level 03 — complete. Embed split from the LLM core; token IDs → vectors [N_tok × d] is now a visible step. {E} matrix named but still opaque (opens in Level 04). Core no longer bundles the embedding.`
+- `Phase 1 / Level 04 — complete. {E : vocab_size × d} exposed as the embedding matrix; row lookup written explicitly as E[token_ids] and verified equal to the module's output. Embed step is now fully transparent — operation is indexing, not matmul.`
