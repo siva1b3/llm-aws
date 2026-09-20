@@ -1,0 +1,10 @@
+.env
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.pem
+*.key
+keys/
+*.ppk

@@ -1,0 +1,10 @@
+name: learn_terraform
+
+services:
+  terraform:
+    image: hashicorp/terraform:1.15.9
+    working_dir: /workspace
+    env_file:
+      - .env
+    volumes:
+      - .:/workspace

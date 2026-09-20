@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and change a flag to true to enable that group.
+create_key_pair   = false
+new_key_pair_name = "terraform-generated-key"
+# Only the original single instance is enabled by default.
+enable_small_instance  = false
+enable_three_instances = false
+enable_single_instances = false
