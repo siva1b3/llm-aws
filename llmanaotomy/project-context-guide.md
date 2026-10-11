@@ -118,6 +118,60 @@ Use the README for navigation. Do not copy the documents into it.
 
 ## 5. Keep context together
 
+### High-level and low-level design
+
+High-level design (HLD) describes components, responsibilities, boundaries, and overall flow.
+Low-level design (LLD) describes interfaces, implementation details, data contracts, and checks.
+Design information can have a stable contract, current state, and accumulated evidence.
+Classify each part by its purpose, as with other project information.
+
+For a project that tracks HLD and LLD separately, use this arrangement:
+
+| Category | HLD file | LLD file | Contains |
+| --- | --- | --- | --- |
+| Stable contract | `project-rules/hld.md` | `project-rules/lld.md` | Agreed structure, interfaces, constraints, and governing design decisions |
+| Current state | `project-status/hld.md` | `project-status/lld.md` | Design progress, unresolved choices, discrepancies, and next actions |
+| Accumulated evidence | `project-evidence/hld.md` | `project-evidence/lld.md` | Observations supporting or correcting each design |
+
+Keep HLD and LLD in separate files when the project adopts this arrangement.
+Define both abbreviations in each file where readers first need them.
+The category determines the file's role. Do not copy the same design into all three categories.
+Link to the agreed design from its status and evidence records.
+
+Start with the smallest design that supports the current work.
+An HLD can begin with one diagram and a component responsibility table.
+An LLD can begin with the current operation's input, behavior, output, assumptions, and verification criteria.
+Label intended behavior as planned until actual work verifies it.
+Do not invent internal details to complete a design document.
+
+For progressive learning, reveal internal design only when the current lesson requires it.
+Keep unexplored operations hidden and follow the project's advancement agreements.
+Creating a design document does not prove execution or learner understanding.
+
+Evidence files must contain actual observations, not empty placeholders for future tests.
+A source review can support a design if it records inputs, method, observations, interpretation, and limitations.
+Label source-review evidence clearly. It does not establish runtime behavior.
+If no supporting observations exist, record that gap in status until evidence becomes available.
+
+Maintain design information in this sequence:
+
+1. Read current design status and applicable design agreements.
+2. Record unresolved proposals in status.
+3. Inspect or execute the smallest relevant operation.
+4. Retain observations and their limitations in evidence.
+5. Update status with actual results and one next action.
+6. Use the project's decision process for changes to agreed design.
+7. Update affected design rules after agreement.
+8. Correct affected status and evidence, identifying superseded conclusions when necessary.
+
+Keep goals, model choices, and shared implementation standards in their existing owning documents.
+Link to those owners from design files instead of repeating their contents.
+Add the design reading order and ownership routes to `AGENTS.md` and the folder READMEs.
+Expand or divide design records only when the work gives them a distinct reading purpose.
+Design does not require a fourth category.
+
+### General context rules
+
 - Keep sections together when readers need them together to understand or act.
 - Use headings and a table of contents before you create another file.
 - Split only when a part has its own reading purpose and enough context to stand alone.

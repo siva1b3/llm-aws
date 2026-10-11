@@ -1,6 +1,6 @@
 # Context review
 
-Review date: 11 October 2026, Asia/Calcutta.
+Initial review date: 11 October 2026, Asia/Calcutta.
 This record documents source assessment and the context revision. It does not document model execution.
 
 ## Question and conditions
@@ -8,7 +8,7 @@ This record documents source assessment and the context revision. It does not do
 Can the seven source documents become navigable project rules, current status, and supporting evidence without changing their meaning?
 
 Inputs are the seven Markdown files in `sources/` and the two root guidance files.
-The user requires all new output inside `revised_context/` and leaves existing inputs unchanged.
+For the initial revision, the user required all new output inside `revised_context/` and left existing inputs unchanged.
 No inference setup, download, execution, or lesson advancement forms part of this revision.
 
 ## Method
@@ -53,7 +53,7 @@ It preserves the expected block count, hidden size, and vocabulary size with the
 It preserves the distinction between one forward pass and application-side token selection and decoding.
 It preserves explicit learner confirmation as a separate advancement condition.
 
-## Revision checks
+## Initial revision checks
 
 - Structure check: 10 Markdown files across three category folders, with `AGENTS.md` at the revised root.
 - Local link check: all 77 relative Markdown links resolve to existing files.
@@ -71,6 +71,39 @@ It preserves explicit learner confirmation as a separate advancement condition.
 The checks used local Node.js filesystem inspection, heading resolution, SHA-256 comparison, and manual source review.
 The external check used a read-only page open.
 These are documentation checks, not inference tests.
+
+## HLD and LLD extension
+
+Extension date: 11 October 2026, Asia/Calcutta.
+The user authorized six separate design files, navigation updates, and an update to the root project context guide.
+The source files and `asd-ste100.md` remain protected.
+
+| Category | HLD owner | LLD owner |
+| --- | --- | --- |
+| Agreed design | [HLD rules](../project-rules/hld.md) | [LLD rules](../project-rules/lld.md) |
+| Current design state | [HLD status](../project-status/hld.md) | [LLD status](../project-status/lld.md) |
+| Supporting observations | [HLD evidence](hld.md) | [LLD evidence](lld.md) |
+
+The initial design evidence consists of source reviews with explicit limitations.
+No planned interface, numerical value, or architecture expectation became a verified runtime finding.
+The overall inference checkpoint and its next action remain unchanged.
+
+Extension validation results:
+
+- Structure: 16 Markdown files now exist inside `revised_context`, including the six separate design files.
+- Local links: all 142 relative links resolve across the revised package and root project context guide.
+- Heading links: all 26 fragments resolve to existing headings.
+- Writing: the checked prose has no sentence above 25 words.
+- Preservation: SHA-256 comparisons match for all seven source files and `asd-ste100.md`.
+- Meaning: the one-pass scope, all-block execution, representative-block teaching, and learner confirmation gates remain intact.
+- Status: the design is planned, with no new inference execution or runtime verification claimed.
+- External links: the Hugging Face model page opened successfully.
+- External limitation: the guide's two existing official ASD links returned HTTP 403 to the browsing check.
+
+The external limitation prevents confirmation of those two pages' accessibility.
+Their original URLs remain unchanged. No broken local link was found.
+Validation used Node.js file and heading checks, SHA-256 comparisons, source review, and read-only web access.
+These checks do not establish official STE compliance or model behavior.
 
 ## Limitations
 

@@ -12,6 +12,9 @@ This package reorganizes the original documentation. It does not report new infe
 5. Read [technical reference](project-rules/technical-reference.md) before environment, model, or dependency work.
 6. Read [evidence navigation](project-evidence/README.md) before using earlier findings.
 
+For design work, read the applicable HLD or LLD status first.
+Then read its agreed design and supporting evidence using the table below.
+
 For short follow-ups, read current progress and the applicable document only.
 Inspect available code and terminal state before assuming a planned action occurred.
 Resume at the last learner-confirmed boundary.
@@ -26,6 +29,23 @@ Resume at the last learner-confirmed boundary.
 
 Choose one owning document for each rule or fact. Link to that owner elsewhere.
 Keep READMEs for navigation. Update this file when routing or ownership changes.
+
+## HLD and LLD ownership
+
+HLD means high-level design: components, responsibilities, boundaries, and overall flow.
+LLD means low-level design: interfaces, implementation details, and checks for the current operation.
+
+| Design | Agreed contract | Current state | Supporting evidence |
+| --- | --- | --- | --- |
+| HLD | [Rules](project-rules/hld.md) | [Status](project-status/hld.md) | [Evidence](project-evidence/hld.md) |
+| LLD | [Rules](project-rules/lld.md) | [Status](project-status/lld.md) | [Evidence](project-evidence/lld.md) |
+
+Update design rules after an agreed decision changes boundaries or interfaces.
+Update design status when work, unresolved choices, or verification states change.
+Add evidence only after inspection or execution produces observations.
+The initial evidence files contain source reviews, not inference results.
+Keep the overall checkpoint in [current progress](project-status/current-progress.md).
+Link design-specific details instead of copying them into that checkpoint.
 
 ## Ownership and decisions
 
@@ -46,8 +66,10 @@ Follow the confirmation gate in [learning method](project-rules/learning-method.
 ## Package boundaries and writing
 
 The original [sources](../sources/AGENTS.md) remain unchanged.
-The user limits this revision's output to `revised_context/`.
-Do not edit original source files or the two root guidance files for this revision.
+Keep this project's new output inside `revised_context/`.
+The user also authorized updating the root [project context guide](../project-context-guide.md) for HLD/LLD organization.
+Preserve the original source files and root `asd-ste100.md`.
+This guide update is the sole authorized exception outside `revised_context/` for the design extension.
 
 Use [project-context-guide.md](../project-context-guide.md) for organization.
 Use [asd-ste100.md](../asd-ste100.md) for direct sentences and consistent terms.
