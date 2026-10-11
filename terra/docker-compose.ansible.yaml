@@ -1,0 +1,9 @@
+name: learn_ansible
+
+services:
+  ansible:
+    image: python:3.12.14
+    working_dir: /ansible
+    volumes:
+      - ./:/ansible
+    command: sh -c "pip install --no-cache-dir ansible && tail -f /dev/null"
