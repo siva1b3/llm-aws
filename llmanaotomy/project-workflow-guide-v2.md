@@ -28,6 +28,8 @@ It replaces the reference guide's reset procedure and permission for simultaneou
 
 This document describes the proposed project structure.
 Reading it does not create folders, create instructions, or approve project actions.
+This guide owns the record structure, file responsibilities, and workflow rules.
+Other procedures must apply these rules without silently changing them.
 
 ### Reading routes
 
@@ -51,6 +53,7 @@ It must preserve the approval rules and evidence needed for the goal.
 | Completion criterion | An observable condition that the project must satisfy. |
 | Pass | One agreed unit of work with an outcome, a plan, checks, and a closing decision. |
 | Active pass | The single open pass, including a pass that waits for approval or remains paused. |
+| Reserved pass folder | A prepared folder with empty records. It does not represent an active pass or an approved plan. |
 | Plan revision | An identified version of the actions and checks proposed for a pass. |
 | Checkpoint | A saved description of the current position and next action. |
 | Verification | A comparison between an expected result and an observed result. |
@@ -124,7 +127,7 @@ project/
 │   │   ├── findings.md        # Optional detailed observations and unknowns
 │   │   ├── evidence.md        # Optional index of supporting evidence
 │   │   └── ...                # Supporting files directly inside the pass
-│   └── pass-002/
+│   └── pass-002/              # Example of a later pass
 │       ├── plan.md
 │       └── verification.md
 │
@@ -132,16 +135,16 @@ project/
     └── final-report.md        # Outcome, verification, limitations
 ```
 
-Create each pass folder only when the human approves its start and planning.
+Activate a pass only when the human approves its start and planning.
 Put all pass files directly inside that folder.
 Do not create folders inside an individual pass folder.
 
 Use identifiers in sequence: `pass-001`, `pass-002`, and `pass-003`.
 Do not reuse an identifier for different work.
-The second pass folder in the example does not imply a second active pass.
+The second pass folder illustrates later growth. It is not required in the starting structure.
 
-Create `findings.md` and `evidence.md` only when their conditions apply.
-Create `reports/final-report.md` when the project closes successfully or ends early.
+Populate `findings.md` and `evidence.md` only when their conditions apply.
+Populate `reports/final-report.md` when the project closes successfully or ends early.
 Keep actual project outputs in their agreed project locations.
 Code, documents, and other deliverables have their own structure.
 
@@ -150,13 +153,43 @@ The root `AGENTS.md` contains the rules for AI work.
 The `passes/README.md` explains pass naming, contents, and lifecycle.
 Additional README files are not required for this structure.
 
+### Prepare records before work
+
+A human request to prepare project records authorizes the limited preparation described here.
+Use a root folder with a name relevant to the project.
+Create the fixed folders and files shown above, including the report file.
+Reserve `pass-001` with its four Markdown files.
+Create additional reserved pass folders only when the human requests them.
+Do not create the illustration marker or speculative supporting files.
+
+Create the new files empty first.
+Then populate each record with relevant supplied information and the rules assigned to that record.
+Keep unsupported details as questions rather than invented requirements.
+Preserve existing content when preparing records in an existing project.
+
+Leave a record empty when no justified content belongs there yet.
+An empty file contains zero bytes.
+Leave the pass records empty until the required approval and activity supply their contents.
+Leave the final report empty until project closure.
+Optional findings and evidence can therefore have existing empty files.
+
+Record the prepared structure and pending human review in `current-state.md`.
+Set the active pass and last closed pass to `none` for a new project.
+Identify reserved folders separately from active passes.
+Do not reset pass history when records already contain project work.
+
+File existence does not establish approval, performed work, evidence, or completion.
+Record preparation does not authorize pass planning, investigation, implementation, or external actions.
+The separate planning and execution approvals still apply.
+At a later workflow stage, use a prepared record instead of creating a duplicate or erasing its contents.
+
 ### Adopt the structure
 
 The normal workflow starts with the fixed records available.
 The example in Section 13 uses that starting point.
 
-For a new project, obtain approval to draft a setup plan if those records do not exist.
-Use the first pass to establish the agreed records and initial definitions.
+If setup needs work beyond preparing records from supplied information, obtain approval to draft a setup plan.
+Use a setup pass for that additional work.
 Record initial approval in the conversation until the pass record exists.
 Transfer that approval with its reference into `plan.md`.
 Present the setup plan before executing it.
@@ -184,7 +217,7 @@ Use these rules in the project's root `AGENTS.md` when adopting this workflow.
 7. Apply approval only to its agreed scope. Do not treat silence as approval.
 8. Record approvals and their scope in the pass records. Record pending approvals and the next action in `status/current-state.md`.
 9. Record performed actions separately from verified outcomes. A completed action can have a failed or pending check.
-10. Preserve observations and supporting evidence with the relevant pass. Create optional files only when needed.
+10. Preserve observations and supporting evidence with the relevant pass. Populate optional records only when needed.
 11. Close the current pass before starting another pass. Obtain human confirmation before starting the next pass.
 12. Preserve closed pass records. Keep `status/current-state.md` current. Link to supporting details.
 13. Declare completion only when the goal criteria and required human reviews are satisfied.
@@ -239,14 +272,15 @@ This request identifies the proposed work without drafting its action sequence.
 
 Record the request in `status/current-state.md` while approval is pending.
 Keep the active pass as `none` if no pass is open.
-Do not create a new pass folder while another pass remains open.
+Do not activate another pass while a pass remains open.
 
 Read existing project records to prepare the approval request.
 Use supplied facts to state the proposed outcome.
 Do not perform an investigation merely to avoid requesting a discovery pass.
 Previously approved inspections can continue within their recorded scope.
 
-After approval, create the pass folder and its two required records.
+After approval, use the reserved pass folder or create it if needed.
+Create any missing required records without replacing existing content.
 Record the planning approval in that pass's `plan.md`.
 Set the new pass as active in `status/current-state.md`.
 
@@ -344,6 +378,7 @@ Do not add repeated approval points without a reason tied to the agreed process.
 
 Each fact has one main record.
 Other files can contain short summaries and links.
+Required contents apply when the relevant workflow stage occurs. A prepared record can remain empty before that stage.
 
 | File | Required contents | Update condition |
 | --- | --- | --- |
@@ -410,6 +445,7 @@ Include these fields in `status/current-state.md`:
 - Goal reference.
 - Active pass identifier, or `none`.
 - Last closed pass identifier, or `none`.
+- Reserved pass folders, if any. Their existence does not make them active.
 - Workflow stage.
 - Position: `active`, `waiting for approval`, `waiting for review`, `blocked`, `paused`, `complete`, or `cancelled`.
 - Existing outputs and performed actions.
@@ -571,8 +607,8 @@ Record that change before assessing the revised goal.
 1. Read the current state and applicable agreements.
 2. Confirm that no other pass remains open.
 3. Obtain human confirmation for the proposed pass and its plan drafting.
-4. Create the new pass folder.
-5. Create `plan.md` and `verification.md`.
+4. Use the reserved pass folder or create the new folder if needed.
+5. Create any missing `plan.md` and `verification.md` files without replacing existing content.
 6. Record the planning approval in `plan.md`.
 7. Set the active pass in `status/current-state.md`.
 8. Draft the plan and expected checks.
@@ -581,7 +617,8 @@ Record that change before assessing the revised goal.
 11. Perform the approved work and checks.
 12. Update records after each workflow step.
 
-Do not create an empty future pass while the current pass remains open.
+Do not activate another pass while the current pass remains open.
+Previously authorized folders can remain reserved with empty records.
 Keep future work as remaining work in current state until the human approves its planning.
 
 ### Close a pass
@@ -605,7 +642,7 @@ Add a dated correction if a later finding changes an earlier claim.
 Identify the superseded claim and its replacement.
 Do not silently rewrite the earlier result.
 
-For project completion, create `reports/final-report.md`.
+For project completion, populate `reports/final-report.md`.
 Link its conclusions to the final checks.
 Do not create a next pass when no work remains.
 
@@ -617,6 +654,7 @@ Do not use a final report's existence as proof of successful completion.
 
 | State | Active pass | Permitted next activity |
 | --- | --- | --- |
+| Records prepared, pass folder reserved | None. | Review the supplied requirements. Request approval before drafting the pass plan. |
 | Proposed, awaiting planning approval | None, unless an earlier pass remains open. | Read existing records and clarify the proposed outcome. |
 | Planning approved | This pass. | Draft its plan and checks. |
 | Awaiting execution approval | This pass. | Discuss or revise the draft within planning authority. |
@@ -643,8 +681,9 @@ A newer timestamp alone does not establish the correct result.
 ### Evidence placement
 
 Use written results in `verification.md` for simple checks.
-Create `findings.md` for a detailed investigation or several related unknowns.
-Create `evidence.md` when supporting files need an index and context.
+Use `findings.md` for a detailed investigation or several related unknowns.
+Use `evidence.md` when supporting files need an index and context.
+Create either record if it is missing when needed.
 
 Store supporting files directly beside the pass records.
 Use descriptive names, such as `V1-directory-check.txt` or `V2-output.png`.
@@ -961,6 +1000,7 @@ Its commands, observations, and human approvals are hypothetical.
 It does not report actual execution.
 
 Assume the fixed project records already exist.
+Where this example creates a record, populate its prepared file if one already exists.
 The goal has two criteria:
 
 - **G1:** The agreed output location contains directories `alpha` and `beta`.
@@ -992,7 +1032,7 @@ The simulated results identify Ubuntu and Bash.
 | --- | --- |
 | Current state | No output folders or files exist. Ubuntu and Bash are confirmed. Active pass: none. Next: request Pass 2 planning approval. |
 | Evidence | Pass 1 verification contains the command, error, directory check, and environment observations. |
-| New records | `passes/pass-001/plan.md` and `passes/pass-001/verification.md`. |
+| New or updated records | `passes/pass-001/plan.md` and `passes/pass-001/verification.md`. |
 
 The failure returns the reasoning to Understand.
 The approved diagnostic checks fit within Pass 1.
@@ -1014,7 +1054,7 @@ No separate findings or evidence file is needed for these short observations.
 | --- | --- |
 | Current state | Both directories exist. G1 passed. G2 remains incomplete. Active pass: none. Next: request Pass 3 planning approval. |
 | Evidence | Pass 2 verification contains the directory checks. Pass 1 retains the earlier failure and environment findings. |
-| New records | `passes/pass-002/plan.md` and `passes/pass-002/verification.md`. |
+| New or updated records | `passes/pass-002/plan.md` and `passes/pass-002/verification.md`. |
 | New project outputs | The directories `alpha` and `beta`. |
 
 ### Pass 3: create the files
@@ -1032,7 +1072,7 @@ No separate findings or evidence file is needed for these short observations.
 | --- | --- |
 | Current state | G1 and G2 passed. Required review is complete. Active pass: none. Next action: none. |
 | Evidence | Pass 3 verification contains the final directory and file checks. Earlier pass records remain available. |
-| New records | The two Pass 3 records and `reports/final-report.md`. |
+| New or updated records | The two Pass 3 records and `reports/final-report.md`. |
 | New project outputs | `alpha/note.txt` and `beta/note.txt`. |
 
 The goal requires file existence. It does not require file content.
@@ -1043,6 +1083,8 @@ The routine pass decisions stay in each verification record.
 The significant decision log needs no entry for this command correction.
 
 ### Resulting records
+
+This tree lists populated pass records. Prepared optional records can also remain present as empty files.
 
 ```text
 project/
@@ -1246,6 +1288,7 @@ Use actual dates, responses, results, and references when filling them.
 - Goal: <path>
 - Active pass: <identifier or none>
 - Last closed pass: <identifier or none>
+- Reserved pass folders: <identifiers or none>
 - Stage: <workflow stage>
 - Position: <active, waiting for approval, waiting for review, blocked, paused, complete, or cancelled>
 - Approved plan: <path, revision, approval reference, or none>
@@ -1429,6 +1472,8 @@ Use these cases to review whether the process remains consistent:
 
 | Case | Expected behavior |
 | --- | --- |
+| Empty pass records exist before approval. | Keep the pass inactive. Obtain approval before drafting its plan. |
+| The report file exists but contains no results. | Treat it as a placeholder. Do not infer completion. |
 | A one-action task | One short pass can cover the outcome, checks, and decision. Both approval stages still apply. |
 | A discovery task with no definite answer | Report the evidence and remaining uncertainty. Assess the discovery outcome separately from implementation readiness. |
 | A command fails after partial success | Record actual partial effects. Use approved recovery or obtain a revised plan approval. |
