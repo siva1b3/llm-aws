@@ -57,6 +57,23 @@ Capture applicable quality requirements with a verification method:
 Do not invent numerical targets. Record missing targets for human review.
 Use discovery when evidence is insufficient to choose a defensible design.
 
+### Turn quality goals into design scenarios
+
+For each material quality goal, specify the stimulus, operating condition, affected component, expected response, and measurement.
+Use agreed targets or mark them pending. Do not replace unknown targets with convenient example values.
+
+| Scenario | Design questions |
+| --- | --- |
+| Traffic burst | Which work is admitted, queued, delayed, or rejected? How is user impact measured? |
+| Dependency outage | Which journeys remain usable, and which fail with an explicit outcome? |
+| Concurrent updates | Which invariant must hold, and how are conflicts observed and resolved? |
+| Access revocation | When do sessions, caches, indexes, and ongoing work stop exposing protected data? |
+| Model uncertainty | When does the system abstain, request review, or use a bounded fallback? |
+| Recovery | Which data position and service functions must be restored, and how are they checked? |
+
+Link scenarios to goal criteria and proposed verification.
+Use them to compare alternatives and expose conflicts between latency, consistency, cost, and availability.
+
 ## 5. HLD contents
 
 An HLD should answer the applicable questions below.
@@ -83,6 +100,19 @@ Explain important behavior in text. A diagram alone is not a complete design.
 Prefer the least complex architecture that satisfies the actual requirements.
 Do not assume microservices are superior to a modular monolith.
 Account for operational cost and team capability when introducing distribution.
+
+### Evaluate boundaries and alternatives
+
+Assign a clear owner to each business rule, authoritative data set, and externally visible contract.
+Define allowed dependency directions and identify cycles or shared state that make components difficult to change independently.
+Keep volatile provider or infrastructure details behind useful boundaries when replacement is a realistic need.
+Avoid adding interfaces solely to create hypothetical flexibility.
+
+For significant choices, compare the simplest viable option with credible alternatives using the same requirements.
+Include delivery effort, operating effort, failure modes, portability, recurring cost, and exit cost where material.
+For external products or services, consider support, data export, version changes, and service withdrawal.
+Separate measured evidence from estimates and unresolved assumptions.
+Identify expensive-to-reverse decisions and validate their critical assumptions before committing dependent work.
 
 ## 6. LLD contents
 
@@ -120,6 +150,19 @@ Map important contracts and failure paths to proposed checks.
 Identify controllable boundaries for dependencies, time, randomness, and external state.
 Avoid test-only abstractions that complicate production behavior without a clear benefit.
 
+### Cache and configuration contracts
+
+For each material cache, define the authoritative source, key, scope, lifetime, and invalidation mechanism.
+Include user or tenant identity in cache isolation when protected results depend on that identity.
+Specify acceptable staleness, concurrent refresh behavior, and behavior when the cache is unavailable.
+Account for synchronized expiration or refresh causing sudden load on the authoritative store.
+Do not assume a cache is harmless because its contents can be rebuilt.
+
+Define configuration precedence, defaults, validation, and whether changes require restart or support live reload.
+Specify behavior for missing, malformed, or incompatible configuration.
+For feature flags, identify the owner, safe default, supported combinations, and removal condition.
+Design disable behavior explicitly when a flag controls writes, migrations, background jobs, or model actions.
+
 ## 7. Domain-specific design attention
 
 Use only the rows applicable to the project.
@@ -136,6 +179,42 @@ Use only the rows applicable to the project.
 Do not claim end-to-end exactly-once behavior without defining its scope and supporting mechanism.
 Make retry limits and idempotency explicit for operations with external effects.
 Account for version skew during rolling releases and asynchronous processing.
+
+### Failure containment and recovery
+
+Trace a critical journey across its dependencies, including identity, name resolution, storage, and external providers where relevant.
+Identify shared dependencies that can fail several supposedly redundant components together.
+For each material failure, describe detection, user-visible behavior, containment, recovery, and residual effects.
+Specify behavior when recovery itself fails or a fallback becomes overloaded.
+
+Allocate end-to-end deadlines across dependency calls, queueing, retries, and cleanup.
+Bound concurrent work and admission before resources are exhausted.
+Define the scope of a failure: one request, user, tenant, worker, node, or larger deployment.
+Use bulkheads or other isolation mechanisms only when they provide a required containment boundary.
+Specify whether degraded operation preserves correctness, becomes read-only, or rejects work.
+Do not silently weaken authorization or data-integrity guarantees during degradation.
+
+### Capacity and service measurement
+
+Estimate request rates, concurrency, payload sizes, data growth, and retention from stated workload assumptions.
+Include peak demand, background work, deployment overlap, and loss of capacity during failure where relevant.
+Account for quotas, connection pools, storage throughput, and other limits outside the main compute tier.
+Identify the first expected bottleneck and the observation that would justify scaling or redesign.
+
+For operated services, define a service level indicator (SLI) for a meaningful user outcome.
+Define its service level objective (SLO), measurement window, included population, and exclusions when agreed.
+Use distributions or relevant percentiles when averages would hide poor experiences.
+Specify how operators detect failure and distinguish application, dependency, and capacity problems.
+See [Google SRE: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/) for measurement terminology and tradeoffs.
+
+### Threat and abuse modeling
+
+Identify protected assets, actors, entry points, trust boundaries, and privileged operations.
+Consider misuse of legitimate features as well as malformed requests.
+Trace how an attacker or mistaken user could cross a boundary or exceed intended authority.
+For material threats, link the mitigation, verifying check, and residual risk to the design.
+Revisit this analysis when data exposure, privilege, integrations, or execution capabilities change.
+Use [OWASP threat modeling](https://community.owasp.org/Threat_Modeling) for a structured threat-modeling approach.
 
 ## 8. ML, DL, and LLM design
 
@@ -220,6 +299,15 @@ At handover, link the implemented architecture, important decisions, interface c
 Record known differences between the approved design and the delivered system.
 Resolve or explicitly accept those differences through the core workflow.
 
+### Evolution and retirement
+
+Identify consumers and retained artifacts affected by contract, schema, model, or configuration changes.
+Define supported version overlap, deprecation conditions, and evidence needed before removing an old path.
+Check that queued work, exported data, and saved client state remain interpretable where required.
+Plan replacement or export paths for dependencies whose removal would otherwise trap required data or behavior.
+For retirement, identify remaining consumers, retained data, credentials, infrastructure, and operating obligations.
+Treat retention and deletion requirements as inputs to retirement design, not as assumptions about immediate deletion.
+
 ## 12. Compact design outline
 
 Use this outline when useful. Omit irrelevant sections with a reason where the omission affects review.
@@ -233,11 +321,14 @@ Do not populate reserved pass records with this outline before planning approval
 - Scope and exclusions:
 - Existing behavior and affected components:
 - Requirements and quality targets:
+- Quality scenarios, workload assumptions, and capacity limits:
 - HLD: boundaries, components, flows, deployment, and trust
 - LLD: interfaces, schemas, state, algorithms, and errors
 - Security, failure, concurrency, and resource behavior:
+- Threats, mitigations, failure containment, and residual risks:
 - AI and GPU considerations, if applicable:
 - Compatibility, migration, rollout, and recovery:
+- Observability, operating ownership, deprecation, and retirement:
 - Alternatives and decision references:
 - Verification approach:
 - Assumptions, unresolved questions, and required reviewers:

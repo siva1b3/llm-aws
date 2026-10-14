@@ -39,7 +39,7 @@ Define preprocessing and feature computation consistently between training and i
 
 Choose splits appropriate to the data and deployment question.
 Account for entities, time, groups, and duplicates where they can leak information across splits.
-Keep independent evaluation data separate from training and tuning decisions.
+Use validation data for tuning. Reserve held-out test data for independent evaluation.
 Do not repeatedly optimize against a held-out test set while continuing to call it independent.
 Record known coverage gaps and label uncertainty.
 

@@ -23,7 +23,8 @@ Identify conflicts before dependent work. Ask the human to resolve material conf
 This is a specialized successor candidate to `project-workflow-guide-v2.md`.
 It does not modify or automatically replace that guide in existing projects.
 Adopt one core workflow explicitly. Do not maintain two competing authorities.
-The existing generator remains unchanged. Future generator adoption must use the selected core guide as its source.
+The original `project-records-generator.md` remains available for its existing workflow.
+Use the [software and AI project records generator](software-ai-project-records-generator.md) when preparing records under this core guide.
 
 ## 2. Responsibilities and terms
 
@@ -66,6 +67,40 @@ Record why an area applies or does not apply when that affects a decision.
 Do not select microservices, Kubernetes, cloud services, GPUs, or model training merely because this guide mentions them.
 Do not turn preferences into mandatory requirements.
 Use explicit, measurable expectations instead of an unsupported claim of "industry best practices."
+
+### Make requirements traceable
+
+Give each completion criterion a stable identifier, such as `G-001`.
+Describe the user or operator, triggering condition, expected outcome, and material failure behavior.
+Include quality requirements alongside features when they affect acceptance.
+Distinguish a required outcome from a proposed implementation choice.
+
+Maintain a compact mapping in existing plans and verification records:
+
+| Link | What to record |
+| --- | --- |
+| Requirement | Criterion ID and authoritative goal reference. |
+| Design | Component, contract, or decision that addresses it. |
+| Work | Planned action and identified output. |
+| Evidence | Check ID, actual result, and remaining limitation. |
+
+One check may support several criteria. One criterion may need several checks.
+Review the mapping for missing criteria and work with no agreed purpose.
+When a criterion changes, preserve its earlier meaning and reassess affected design, plans, and evidence.
+Do not silently renumber criteria already referenced by completed work.
+
+### Prioritize uncertainty and risk
+
+Assess affected users, data sensitivity, reversibility, failure impact, and the ability to detect a defect.
+Include dependency, capacity, model-quality, and operating uncertainties where relevant.
+Do not confuse low implementation effort with low risk.
+
+Record material risks in the active plan or findings, with short links from current state.
+Identify the triggering condition, consequence, mitigation, owner, and unresolved decision.
+Label estimates and confidence honestly instead of inventing numerical risk scores.
+Resolve assumptions that could invalidate the approach before costly dependent work.
+Use bounded discovery for uncertain interfaces, feasibility, performance, or recovery behavior.
+Keep residual risk visible to the person accepting the outcome.
 
 ## 4. Project records
 
@@ -238,6 +273,26 @@ Do not invent a stack, cloud provider, model, hardware capacity, numerical targe
 Record missing decisions. Use a discovery pass when uncertainty prevents reliable planning.
 An action marked `done` means it occurred. It does not mean its checks passed.
 
+### Establish the starting baseline
+
+Within approved inspection scope, identify the current behavior and the smallest reliable way to observe it.
+Read setup instructions and inspect the build, test, configuration, and dependency mechanisms.
+Record existing failures and relevant environment differences before attributing failures to new work.
+When a baseline cannot run, record the missing prerequisite and the resulting confidence limit.
+Do not repair unrelated baseline failures without scope to do so.
+
+### Define readiness and completion for the pass
+
+Before execution, confirm that the outcome, affected boundaries, checks, and required authority are clear.
+Resolve blocking decisions or identify an approved discovery branch that can resolve them.
+Choose increments that produce inspectable results and expose integration problems early.
+Include dependency order and a recovery point for actions with material side effects.
+
+Define what successful pass completion requires before starting implementation.
+Include affected documentation, configuration, migrations, reviews, and operating instructions where applicable.
+Distinguish implementation completion from readiness to release and from actual release.
+These readiness checks summarize existing records; they do not require another template or approval ceremony.
+
 ## 8. Repository and execution practices
 
 Confirm the repository, branch or worktree, operating system, shell, target, and relevant tools within approved scope.
@@ -257,6 +312,19 @@ Avoid unrelated refactoring unless approved scope includes it.
 Before retrying a failed action, identify partial effects and running operations.
 Inspect actual state before repeating an action that could duplicate data or external effects.
 Use approved recovery and retry limits. Request revised authority when the next action exceeds them.
+
+### Diagnose failures systematically
+
+1. Record the expected behavior, actual behavior, triggering inputs, and affected version.
+2. Reproduce the failure in an authorized environment, or preserve the available evidence when reproduction is unsafe.
+3. Identify competing explanations and the smallest observation that distinguishes them.
+4. Test one material hypothesis at a time when practical.
+5. Correct the supported cause within approved scope and check the original failure and affected neighboring behavior.
+6. Record remaining uncertainty and follow-up work when the cause is not established.
+
+Distinguish a mitigation that restores service from a correction that addresses the cause.
+Do not make speculative changes repeatedly without updating the diagnosis.
+Record cleanup of temporary diagnostics, test data, and resources created during the investigation.
 
 ## 9. Verification and evidence
 
@@ -302,6 +370,16 @@ For GPU systems, include relevant compatibility, device allocation, memory, util
 A local build, container start, or Kubernetes object creation alone does not establish service readiness.
 Use the quality guide to define the evidence required for this project's release.
 
+### Plan ownership beyond deployment
+
+Identify who receives operational alerts, handles incidents, maintains dependencies, and reviews model-quality changes where applicable.
+Agree on the observation period or evidence needed to assess a release after initial startup.
+Keep release follow-up within the authorized pass, or assign it explicitly before closure.
+Record how operators access runbooks, recovery artifacts, dashboards, and approved administrative procedures.
+Confirm that temporary environments, jobs, credentials, and paid resources have cleanup owners and conditions.
+For an authorized retirement, plan consumer migration, data disposition, access revocation, and resource removal.
+Successful creation of a system does not establish that its ongoing ownership has been accepted.
+
 ## 11. Changes, interruptions, and closure
 
 Stop affected work when the goal changes, approval is withdrawn, or assumptions invalidate the plan.
@@ -331,6 +409,15 @@ Check the final system as a whole when integration is part of the goal.
 Record deliverables, evidence, acceptance, limitations, and operating ownership in the final report.
 For early closure, distinguish delivered, accepted, unfinished, and unverified work.
 Human acceptance cannot turn an unperformed check into a passed check.
+
+### Leave a usable handover
+
+Record setup and verification commands in the agreed deliverable documentation, including required configuration names without secret values.
+Link known defects, support limits, and pending decisions to their owners and follow-up triggers.
+Identify long-running work, its status, and how an authorized operator can inspect or stop it.
+Check that evidence and artifact references remain accessible to the intended recipient.
+Record useful lessons from failures as specific improvements to checks, design, or operating procedures.
+Do not claim completion based solely on a successful demonstration when agreed operational or integration criteria remain unmet.
 
 ## 12. Writing and document maintenance
 

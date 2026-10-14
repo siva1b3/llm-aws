@@ -29,6 +29,15 @@ Plan expectations before implementation where possible.
 Do not design tests solely to match the implementation after seeing its behavior.
 Use existing repository tools and conventions unless an approved change has a clear reason.
 
+### Choose checks by consequence
+
+Use the core workflow's criterion mapping and risk assessment to select checks.
+Prioritize data integrity, access boundaries, irreversible effects, critical user journeys, and difficult-to-detect failures.
+Include negative cases and recovery behavior, not only successful requests.
+Identify who evaluates subjective or specialist criteria before relying on those checks for acceptance.
+For each excluded material check, explain the confidence gap and any compensating evidence.
+Keep an unperformed required check pending rather than treating a waiver as a passing result.
+
 ## 3. Clean code and maintainability
 
 Review these properties in changed code:
@@ -73,6 +82,12 @@ For affected behavior, consider:
 Protect important data invariants at the authoritative layer.
 Avoid silent error suppression and success responses after incomplete critical operations.
 
+Check that success is reported only after the contract's promised work has reached its required completion state.
+For asynchronous work, distinguish accepted, running, completed, failed, and unknown outcomes where applicable.
+Verify cleanup of files, handles, connections, locks, subscriptions, and temporary state after failures.
+Check that permission changes affect caches and ongoing work according to the agreed access contract.
+Exercise configuration validation, safe defaults, and relevant feature-flag combinations when they change behavior.
+
 ## 5. Test selection
 
 Select tests according to the claim and risk. Record justified exclusions where they affect confidence.
@@ -106,6 +121,37 @@ Record justified quarantines with an owner, consequence, and follow-up condition
 Run affected checks first. Run broader checks when integration risk or repository requirements justify them.
 Do not repeat unchanged checks without a reason.
 
+### Test design and test data
+
+Derive expected results from requirements, contracts, known examples, or an independent reference where available.
+Check that a regression test exposes the original defect when practical.
+Use boundary values, equivalence classes, and state-transition cases to cover meaningful behaviors without redundant examples.
+Use property-based testing for invariants across varied inputs when fixed examples leave important gaps.
+Use fuzzing for parsers or other exposed input handlers when malformed input is a material risk.
+Use mutation testing selectively when uncertainty concerns whether assertions detect meaningful changes.
+No single technique is mandatory for every change.
+
+Version or reconstruct important fixtures and evaluation inputs.
+Prevent tests from depending on execution order or shared mutable state unless that interaction is the behavior under test.
+Test realistic data shapes, sizes, encodings, and permission scopes.
+Keep test credentials and test tenants separate from production access.
+Ensure cleanup cannot delete unrelated data, including after partial test failure.
+
+### Continuous integration and environment confidence
+
+Keep the project's agreed fast checks runnable locally and in continuous integration (CI).
+Record the commands, required services, configuration, and supported environment needed to reproduce failures.
+Select broader suites according to affected boundaries and delivery risk.
+Inspect test discovery and skipped-test counts when a surprisingly fast or empty run appears successful.
+Distinguish command failure, test failure, timeout, unavailable infrastructure, and missing results.
+
+Check the resulting combined change after merges or conflict resolution when earlier results no longer identify the delivered work.
+Do not reuse stale results solely because the branch name is unchanged.
+Compare important local, CI, staging, and production differences before generalizing a result.
+Include operating system, runtime, database, feature flags, permissions, and architecture where they affect behavior.
+Use clean-environment setup checks when hidden local state could explain success.
+Treat generated code and configuration as deliverables requiring appropriate checks.
+
 ## 6. Security and privacy
 
 Identify trust boundaries, sensitive data, and actors before selecting security checks.
@@ -130,6 +176,12 @@ Check current advisories and vendor guidance during approved version-specific se
 Do not preserve a static claim that a dependency or configuration is permanently secure.
 Track unresolved material findings and their disposition. Do not mark a scan pass as proof of complete security.
 
+Translate the architecture's material threats into negative tests and review questions.
+Test unauthorized roles, cross-tenant identifiers, expired or revoked access, and privilege changes where applicable.
+Check that rejected requests cannot trigger protected side effects before the rejection occurs.
+Verify that logs, exports, caches, and error responses respect the same data boundaries as normal responses.
+Provide a responsible owner and remediation path for vulnerabilities discovered after release.
+
 ## 7. Dependencies and builds
 
 Use the ecosystem's agreed dependency declaration and reproducibility mechanism.
@@ -145,6 +197,20 @@ Check that generated artifacts do not contain unintended secrets or local-only a
 For GPU workloads, check the relevant driver, runtime, framework, extension, and hardware combination.
 Use applicable vendor sources for current compatibility claims.
 Record the actual tested combination instead of assuming compatibility from version names.
+
+### Software supply chain
+
+Verify package identity and origin before adopting an unfamiliar dependency or generated installation command.
+Review relevant transitive dependencies and installation scripts, not only direct package declarations.
+Use the project's supported pinning, lockfiles, integrity checks, and artifact verification mechanisms.
+Restrict build identities and protect release credentials from untrusted code execution.
+Track required dependency inventories or software bills of materials when the delivery context requires them.
+Define ownership for updates, security advisories, unsupported components, and license obligations.
+Confirm that a dependency update preserves required runtime and application behavior.
+
+Use [NIST's Secure Software Development Framework](https://csrc.nist.gov/Projects/ssdf) as supporting lifecycle guidance when applicable.
+Identify the adopted publication version before mapping project practices to its requirements.
+Referencing the framework does not establish compliance.
 
 ## 8. Domain quality checks
 
@@ -193,6 +259,14 @@ Reevaluate affected claims when any of them changes.
 Automated model-based judging needs its own validation and stated limitations when used as evidence.
 Use human review for cases where the agreed evaluation requires it.
 
+Version evaluation sets and scoring rules alongside the behavior being assessed.
+Protect held-out cases from prompt tuning, example selection, and repeated candidate selection when independence is required.
+Compare candidates on equivalent tasks and record meaningful regressions even when the overall score improves.
+Evaluate abstention, escalation, and fallback behavior as well as successful answers.
+Test tool-loop limits, repeated actions, interrupted streams, and failures after partial action completion where applicable.
+Include relevant language, user, and task slices when average results could hide important failures.
+Check judge disagreement against reviewed examples before treating a model judge as reliable evidence.
+
 ## 10. GPU quality and performance
 
 Verify that the workload uses the intended device and execution path.
@@ -235,6 +309,11 @@ Give findings a location, triggering condition, consequence, and recommended dir
 Review AI-generated code and tests with the same standards as other contributions.
 An AI's confidence is not evidence that its code works.
 
+Verify that referenced packages, APIs, configuration options, and commands actually exist in the selected versions.
+Review generated tests for shared assumptions with the generated implementation.
+Resolve material review comments against the updated output and rerun affected checks.
+Record reviewer identity and scope. Distinguish author self-review from an independent review when independence is required.
+
 ## 12. Release readiness
 
 Before a release within approved scope, confirm applicable items:
@@ -253,6 +332,36 @@ Before a release within approved scope, confirm applicable items:
 After release, verify the actual destination, version, and relevant user behavior.
 Do not call a deployment successful solely because the deployment command exited successfully.
 Keep checks safe for the target environment and within approved authority.
+
+### Performance, resilience, and operational checks
+
+Choose the workload and expected result before interpreting performance measurements.
+Record request mix, arrival rate, concurrency, input size, data volume, cache state, and test duration where relevant.
+Report latency distributions, throughput, errors, resource saturation, and cost together when they affect acceptance.
+Check that the load generator or test environment is not the limiting factor.
+
+| Check | Question it addresses |
+| --- | --- |
+| Expected-load test | Does the system meet agreed behavior at representative demand? |
+| Burst or overload test | Does admission control keep resource use and degradation within agreed bounds? |
+| Sustained-load test | Do memory, connections, queues, or storage grow unexpectedly over time? |
+| Dependency-failure test | Are deadlines, retry limits, fallbacks, and recovery effective? |
+| Recovery rehearsal | Can operators restore the required service and data state using available instructions and access? |
+
+Select only relevant checks and bound their environmental effects.
+Check recovery after load or faults are removed, not only behavior during the disturbance.
+Verify alarms with representative signals and confirm that they reach the responsible destination within authorized scope.
+Check that logs and traces explain failures without exposing secrets or overwhelming storage.
+Exercise kill switches or feature-disable paths when the release relies on them for containment.
+Verify retained rollback artifacts and their compatibility with the current data state.
+
+### Documentation and usability checks
+
+Verify setup, configuration, migration, and recovery instructions against the identified version when they support a delivery claim.
+Check example commands, links, prerequisites, and expected outputs.
+Review important user journeys for understandable errors, recoverability, and clear completion feedback.
+Include keyboard, assistive-technology, localization, or time-zone checks according to the actual supported audience.
+Ensure operators can identify the running version and locate its runbook and known limitations.
 
 ## 13. Defects, exceptions, and technical debt
 
@@ -280,7 +389,8 @@ Keep expected results separate from observations.
 Identify the tested version, conditions, evidence, and limitations.
 Retain enough information to explain significant claims and decisions.
 
-Before pass closure, confirm that the outcome meets its agreed criteria and required reviews.
+Before marking a pass successful, confirm that the outcome meets its agreed criteria and required reviews.
+For unsuccessful, deferred, or cancelled passes, record unmet criteria, unresolved reviews, and the closing decision under the core workflow.
 Before project completion, assess the integrated result and any required delivery or operating checks.
 Do not declare completion while required tests, model evaluations, restoration checks, or human reviews remain pending.
 
