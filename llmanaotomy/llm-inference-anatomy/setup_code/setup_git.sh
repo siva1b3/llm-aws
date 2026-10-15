@@ -22,3 +22,6 @@ git config --global user.email "$author_email"
 
 gh auth status
 printf '\nGit setup complete.\n'
+
+cd "$HOME"
+git clone https://github.com/siva1b3/llm-aws.git

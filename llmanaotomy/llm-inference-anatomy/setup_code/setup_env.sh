@@ -4,8 +4,7 @@ set -euo pipefail
 sudo apt-get update
 sudo apt-get install -y python3-venv
 
-mkdir -p "$HOME/llm-inference-anatomy"
-cd "$HOME/llm-inference-anatomy"
+cd "$HOME/llm-aws"
 
 python3 -m venv .venv
 source .venv/bin/activate
