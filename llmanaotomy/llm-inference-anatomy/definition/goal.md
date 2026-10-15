@@ -1,6 +1,6 @@
 # Project goal
 
-Extracted requirements await human review. Criteria IDs below identify existing outcomes; they do not add scope.
+The human learner accepted these requirements on 2026-10-15. Criteria IDs below identify existing outcomes; they do not add scope. Acceptance of the requirements does not establish that the completion criteria have been met or authorize execution.
 
 ## 1. Goal
 

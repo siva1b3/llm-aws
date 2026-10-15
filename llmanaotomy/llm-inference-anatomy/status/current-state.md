@@ -1,8 +1,8 @@
 # Current state
 
-- Updated: 2026-10-15 22:58 IST (Asia/Calcutta, UTC+05:30).
+- Updated: 2026-10-15 (Asia/Calcutta); goal and constraints acceptance checkpoint. Previous preparation checkpoint: 2026-10-15 22:58 IST.
 - Goal: [Phase 1 criteria G1–G6](../definition/goal.md).
-- Position: waiting for review.
+- Position: waiting for approval.
 - Active pass: none.
 - Last closed pass: none.
 - Reserved pass: pass-001; all four records empty.
@@ -11,10 +11,10 @@
 - Preparation authority: human designated the sources, generator, and workflow, then said “do it.”
 - Existing new outputs: seven populated management records and five intentionally empty records.
 - Last significant decision: D5 in the [decision log](../decisions/decision-log.md).
-- Pending review owner: human learner.
+- Goal and constraints review: accepted by the human learner on 2026-10-15; actual response: “done the goal and constraints are accepted”. This accepts the definitions, not completed criteria, a pass plan, or execution.
 - Running project operations or partial runtime effects: none initiated by preparation; remote environment state is unknown.
 - Remaining project criteria: all G1–G6.
-- Preparation blocker: none. Document checks completed; human review pending.
+- Preparation blocker: none. Document checks completed; goal and constraints accepted. First pass plan remains to be discussed and approved.
 
 ## Reported prior state, not newly verified runtime facts
 
@@ -49,7 +49,7 @@ A later baseline must use one forward call and stop for learner confirmation bef
 
 ## Remaining questions and limits
 
-Review extracted criteria and [constraints](../definition/constraints.md).
+The extracted criteria and [constraints](../definition/constraints.md) are accepted. No pass plan or execution scope is approved.
 Environment existence, access, existing files, resource ownership, and cost limits need resolution before applicable later work.
 Runtime claims remain unverified. Document checks do not establish EC2, model, or inference correctness.
 No designs, experiments, application checks, provisioning, or deployment occurred during preparation.
@@ -81,9 +81,9 @@ Preparation tooling note: an initial command-construction attempt failed before 
 It changed no files; the corrected construction populated the already verified empty records.
 No project runtime failure or pass history is implied.
 
-All preparation checks passed. Records remain waiting for human review.
+All preparation checks passed. The human learner subsequently accepted the goal and constraints on 2026-10-15. The preparation observations above retain their original review limitations; this later acceptance does not verify runtime outcomes.
 
 ## One next action
 
-Human learner: review the generated goal and constraints and identify corrections or acceptance of the prepared records.
-Preparation checks are complete. This review does not approve a project plan or execution.
+Assistant and human learner: discuss the first pass plan for establishing the actual environment and existing files, with small actions and separate checks. Keep the draft in conversation until approved.
+Goal and constraints acceptance is recorded. Plan approval and execution approval remain pending. The reserved pass stays inactive and empty.

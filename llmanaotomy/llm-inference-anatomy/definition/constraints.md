@@ -468,7 +468,7 @@ Production monitoring, rollout, alerts, and service SLOs remain excluded unless 
 ## Unresolved constraints
 
 Preparation has no unresolved essential input or substantive policy conflict.
-Extracted criteria and transferred constraints await human review.
+The human learner accepted the extracted criteria and transferred constraints on 2026-10-15. This acceptance does not approve a pass plan or execution.
 Before later environment work, establish whether EC2 exists, is reachable, and contains code or assets.
 Account/instance identity, access route, resource operator, spending limits, and cleanup authority remain unspecified.
 Actual OS, Python, package versions, model revision, cache paths, dtype, cache behavior, and baseline command remain unobserved.
