@@ -1,12 +1,12 @@
 # Current state
 
-Updated: 2026-10-15 09:15:22 Asia/Calcutta (UTC+05:30).
+Updated: 2026-10-15 19:55:27 Asia/Calcutta (UTC+05:30).
 
 | Field | Actual state |
 | --- | --- |
 | Goal | [Extracted goal and G-001 through G-008](../definition/goal.md) |
-| Workflow stage | Define: record preparation complete, human review pending |
-| Position | waiting for review |
+| Workflow stage | Define: goal and constraints confirmed; planning authority pending |
+| Position | waiting for approval |
 | Active pass | none |
 | Last closed pass | none |
 | Reserved folder | pass-001; inactive, four zero-byte records |
@@ -18,14 +18,24 @@ Updated: 2026-10-15 09:15:22 Asia/Calcutta (UTC+05:30).
 | Running operations | None started by this preparation; remote state not inspected |
 | Partial effects | Only the new local record package was created |
 | Resource limits | No paid resources used; future limits unresolved in constraints |
-| Last human direction | Create a new folder and its folders/files based on project_records_generator |
+| Last human direction | Clarification that goal and constraints are confirmed; exact wording preserved below |
 | Authority reference | User message in this chat on 2026-10-15; text preserved below |
-| Next action | Human reviews extracted scope, criteria, constraints, guide applicability, and ownership |
-| Prerequisites for later work | Resolve review decisions, then obtain applicable planning authority |
+| Next action | Obtain authority to start pass-001 and draft its plan; resolve approval/review ownership at that boundary |
+| Prerequisites for later work | Planning authority, then separate execution approval; resolve resource and access details before environment work |
 
 Preparation request: "ok create a new folder and then create the folders and files in it, based the project_records_generator".
 This authorizes preparation only. No pass or future action sequence was drafted.
 The original handoff reports no verified baseline or inspected model assets; that is source-reported context, not a new runtime check.
+
+## Goal and constraints confirmation
+
+Recorded: 2026-10-15 19:55:27 Asia/Calcutta (UTC+05:30).
+Type: goal and constraints confirmation; no planning or execution approval.
+Response and recoverable reference: user message in this chat, "i thought goal and constraints are confirmed".
+Scope/revision: existing goal, G-001 through G-008, and constraints as read immediately before this update; no scope changes.
+Owner: learner in this chat. Named formal approval/review roles remain unresolved.
+This records the user's clarification now; it does not invent a date or reference for earlier confirmation.
+Earlier awaiting-review labels are superseded. Preparation checks below retain their original historical context.
 
 ## Performed preparation
 
@@ -54,7 +64,7 @@ Context: new package at preparation time; governing source commit is recorded in
 
 ## Unknowns and handover
 
-The inferred goal source and derived criteria await review.
+The goal and derived criteria are confirmed; technical and learning criteria remain unverified.
 Planning/execution approval owner, formal acceptance owner, and required reviewers are not named in supplied materials.
 Environment access, resource ownership, spending boundaries, and shutdown responsibility require resolution before dependent environment work.
 Guide links require this repository's sibling layout; preserve it or provide accessible replacement locations.

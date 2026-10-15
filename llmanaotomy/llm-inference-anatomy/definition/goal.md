@@ -1,7 +1,7 @@
 # Goal
 
-Status: extracted from the original project overview; awaiting human review.
-Criteria below are derived wording, not newly approved acceptance requirements.
+Status: goal and criteria confirmed by the learner; see the confirmation record in [current state](../status/current-state.md).
+Criteria below were derived from the original project overview. Confirmation does not establish completion.
 
 ## Purpose, users, and deliverables
 

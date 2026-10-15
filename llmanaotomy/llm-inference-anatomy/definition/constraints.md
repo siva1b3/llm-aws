@@ -1,6 +1,7 @@
 # Constraints
 
-Status: extracted, awaiting human review. Based on the original methodology, implementation rules, and technical configuration.
+Status: constraints confirmed by the learner; see the confirmation record in [current state](../status/current-state.md).
+Based on the original methodology, implementation rules, and technical configuration. Listed unresolved details remain unresolved.
 
 ## Supplied configuration
 
@@ -98,6 +99,6 @@ Revisit applicability if the human changes scope.
 
 ## Review questions
 
-Before planning, confirm the extracted goal and criteria, guide applicability, workflow adoption, and approval/review ownership.
+Goal and constraints are confirmed. Resolve approval/review ownership and obtain planning authority before drafting a pass plan.
 Before environment work, resolve actual environment access, resource authority, spending boundaries, and shutdown responsibility.
 Exact runtime versions, downloaded asset details, and comparison tolerances can wait for their authorized investigation stage.
