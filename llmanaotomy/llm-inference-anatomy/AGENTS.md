@@ -1,7 +1,7 @@
 # Operating instructions
 
-The [core workflow](../software_ai_guides/core/software-ai-development-workflow.md) governs this new package.
-Read its full applicable rules before pass work. Do not combine it with another project lifecycle.
+Use the rules below to manage this project.
+Agree on the goal, understand the current state, plan, do approved work, check results, and decide what comes next.
 
 ## Required rules
 
@@ -29,9 +29,11 @@ Keep deliverables in agreed project locations and link them from the pass.
 
 ## Supporting requirements
 
-Apply [architecture](../software_ai_guides/core/architecture-and-design-guide.md) and [quality](../software_ai_guides/core/engineering-quality-guide.md) guidance proportionately.
-Use relevant sections of the [LLM](../software_ai_guides/domains/llm-engineering-guide.md) and [infrastructure](../software_ai_guides/domains/infrastructure-deployment-operations-guide.md) guides.
-Applicability and project-specific requirements belong in constraints, not additional policy copies.
+Keep the design small. Explain each part, its inputs, outputs, and possible failures.
+Check changed behavior with real evidence. Record failures and limits.
+Record the actual model, tokenizer, versions, inputs, and outputs. Keep examples separate from observed results.
+Before cloud work, confirm access, costs, resource limits, and who will stop or remove resources.
+Keep project-specific requirements in [constraints](definition/constraints.md).
 
 The assistant writes minimal code and teaches; the learner confirms understanding before each new internal operation.
 Keep one operation visible at a time. Re-explain the current operation when understanding is uncertain.

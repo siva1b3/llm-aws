@@ -82,20 +82,20 @@ The learner owns conceptual confirmation. Named planning/execution approval owne
 Formal acceptance owner and any release or operating owner also remain unresolved; no deployment is in current scope.
 No deadline, performance target, numerical comparison tolerance, or new technology has been invented.
 
-## Applicable guides
+## Working guidance
 
-| Guide | Status and reason |
+| Area | Guidance and scope |
 | --- | --- |
-| Core workflow | Applicable: selected lifecycle and project records |
-| Architecture and quality | Applicable: proportionate design, correctness, provenance, and inspection checks |
-| LLM engineering | Applicable: model/tokenizer/configuration identity, input/output interpretation, and bounded inference evidence |
-| Infrastructure and operations | Applicable: selected EC2 environment, access, configuration, costs, and cleanup |
+| Workflow | Agree on scope, approve planning, approve execution, record results, and review before closing. |
+| Design and quality | Keep the design small. Check correctness and record evidence, sources, failures, and limits. |
+| LLM inference | Record the actual model, tokenizer, configuration, inputs, and outputs. Inspect only useful amounts of data. |
+| Infrastructure | Confirm EC2 access, configuration, costs, resource limits, and cleanup responsibility before use. |
 | ML/deep learning | Not applicable as a separate lifecycle: training, adaptation, datasets, and comparative model-quality evaluation are excluded |
 | GPU infrastructure | Not applicable: CPU-only scope |
 | Frontend/backend/database/distributed systems | Not applicable: no service, UI, persistent application database, or distributed execution |
 
-Guide locations are linked in the [overview](../README.md). Apply relevant sections only; service evaluation suites are not automatic requirements.
-Revisit applicability if the human changes scope.
+Use the local [operating instructions](../AGENTS.md) and [pass instructions](../passes/README.md).
+Apply only checks needed for this project. Review this guidance if the user changes scope.
 
 ## Review questions
 

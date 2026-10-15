@@ -37,7 +37,7 @@ No pass is active. No application or design was created.
 
 The user requested a new folder and records based on the project records generator on 2026-10-15.
 The goal was extracted from the original project notes; that extraction awaits review.
-The selected [core workflow](../software_ai_guides/core/software-ai-development-workflow.md) governs this new record package.
+Follow the local [operating instructions](AGENTS.md): agree on scope, approve a plan, do the work, check results, and review the outcome.
 The original notes are no longer available in this workspace.
 Original routing and status instructions remain historical context; new work uses this package's records.
 The source learning and implementation requirements are preserved in the goal and constraints.
@@ -55,10 +55,9 @@ The working tree was clean before preparation; source files had no uncommitted d
 | Original investigation notes | No verified runtime findings |
 | Original progress notes | Supplied initial handoff |
 | [Generator](../project_records_generator/software-ai-project-records-generator.md) | Preparation procedure |
-| [Architecture](../software_ai_guides/core/architecture-and-design-guide.md) | Proportionate future design |
-| [Quality](../software_ai_guides/core/engineering-quality-guide.md) | Future engineering checks |
-| [LLM](../software_ai_guides/domains/llm-engineering-guide.md) | Applicable inference and provenance guidance |
-| [Infrastructure](../software_ai_guides/domains/infrastructure-deployment-operations-guide.md) | Applicable EC2 environment and resource guidance |
+| Design | Keep parts small and explain their inputs, outputs, and failures. |
+| Quality | Check changed behavior and record actual results and limits. |
+| LLM | Record the model, tokenizer, versions, and observed inputs and outputs. |
+| Infrastructure | Confirm access, costs, resource limits, and cleanup responsibility before cloud work. |
 
-The linked generator and guides depend on sibling folders in this repository. This folder alone is not a portable policy package.
-Preserve sibling locations or resolve accessible guide locations before handover.
+The generator link records the preparation source. Ongoing work follows this folder's operating instructions, constraints, and pass instructions.

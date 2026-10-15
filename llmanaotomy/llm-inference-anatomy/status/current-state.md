@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-10-15 19:55:27 Asia/Calcutta (UTC+05:30).
+Updated: 2026-10-15 20:02:44 Asia/Calcutta (UTC+05:30).
 
 | Field | Actual state |
 | --- | --- |
@@ -62,12 +62,23 @@ Context: new package at preparation time; governing source commit is recorded in
 | P-006 | Compare extracted records with sources in both directions; preserve scope, conditions, and uncertainty. | Passed self-review: scope in goal; pedagogy, inspections, selections, and exclusions in constraints; supplied decisions and pending state retained. | Human review of extraction and acceptance wording remains pending. |
 | P-007 | Check core-required operating instructions and criterion IDs. | Passed self-review: all 14 rules retained; eight unique criteria, G-001 through G-008. | No planning, execution, acceptance, or release inferred. |
 
+## Guide reference cleanup
+
+Recorded: 2026-10-15 20:02:44 Asia/Calcutta (UTC+05:30).
+Type: direct documentation-edit authority; revision 1.
+Response and recoverable reference: user message in this chat, "we can replace the link with simple guided text , small , simple english etc".
+Scope: replace external software guide links and related dependency wording with short local guidance.
+Updated AGENTS, overview, constraints, pass instructions, and this status record. Existing approval and learning rules remain in place.
+Checks: no relative software guide links remain; reserved pass records and final report remain zero bytes.
+Historical preparation checks remain unchanged. The guide was readable in this checkout during cleanup; future work no longer depends on it.
+This edit does not authorize pass planning, execution, or cloud work. The learning boundary and next action above remain unchanged.
+
 ## Unknowns and handover
 
 The goal and derived criteria are confirmed; technical and learning criteria remain unverified.
 Planning/execution approval owner, formal acceptance owner, and required reviewers are not named in supplied materials.
 Environment access, resource ownership, spending boundaries, and shutdown responsibility require resolution before dependent environment work.
-Guide links require this repository's sibling layout; preserve it or provide accessible replacement locations.
+Ongoing work uses local operating instructions, constraints, and pass instructions; external guide files are no longer required.
 The original source notes are no longer available. Their descriptions remain as historical context.
 Record subsequent technical findings in authorized pass records and maintain the current learning boundary here.
 

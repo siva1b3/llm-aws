@@ -1,6 +1,6 @@
 # Pass records
 
-Follow the [core workflow](../../software_ai_guides/core/software-ai-development-workflow.md) and [operating instructions](../AGENTS.md).
+Follow the local [operating instructions](../AGENTS.md). Each pass has one clear outcome, an approved plan, recorded checks, and a closing decision.
 The reserved `pass-001` is inactive. Its four records intentionally remain at zero bytes.
 
 Propose a bounded outcome before drafting actions. Record planning authority before activating the reserved pass.
