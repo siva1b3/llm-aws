@@ -57,8 +57,8 @@ Context: new package at preparation time; governing source commit is recorded in
 The inferred goal source and derived criteria await review.
 Planning/execution approval owner, formal acceptance owner, and required reviewers are not named in supplied materials.
 Environment access, resource ownership, spending boundaries, and shutdown responsibility require resolution before dependent environment work.
-Source and guide links require this repository's sibling layout; preserve it or provide accessible replacement locations.
-The source package remains unchanged and is provenance, not a competing current-state record for this new package.
+Guide links require this repository's sibling layout; preserve it or provide accessible replacement locations.
+The original source notes are no longer available. Their descriptions remain as historical context.
 Record subsequent technical findings in authorized pass records and maintain the current learning boundary here.
 
 Record preparation is complete. Project completion, learner acceptance, and runtime success remain pending.

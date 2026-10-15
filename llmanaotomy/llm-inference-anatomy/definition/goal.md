@@ -1,6 +1,6 @@
 # Goal
 
-Status: extracted from [source overview](../../sources/01_PROJECT_OVERVIEW.md); awaiting human review.
+Status: extracted from the original project overview; awaiting human review.
 Criteria below are derived wording, not newly approved acceptance requirements.
 
 ## Purpose, users, and deliverables

@@ -1,6 +1,6 @@
 # Constraints
 
-Status: extracted, awaiting human review. Sources: [methodology](../../sources/02_LEARNING_METHODOLOGY.md), [implementation](../../sources/03_IMPLEMENTATION_RULES.md), and [configuration](../../sources/04_TECHNICAL_CONFIGURATION.md).
+Status: extracted, awaiting human review. Based on the original methodology, implementation rules, and technical configuration.
 
 ## Supplied configuration
 
