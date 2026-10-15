@@ -7,6 +7,42 @@ It owns communication semantics, coordination, consistency, and partial-failure 
 Follow the [core workflow](../core/software-ai-development-workflow.md), [architecture guide](../core/architecture-and-design-guide.md), and [quality guide](../core/engineering-quality-guide.md).
 Distribution is an architectural choice, not a default requirement.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide investigation, contract changes, migrations, deployments, and recovery into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses deployment, migration, fault-injection, or human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and the exact next action at checkpoints.
+Explain recovery and obtain new execution approval unless the approved scope explicitly covers that recovery branch and check.
+
+These rules govern project engineering actions; application retries and coordination follow the agreed system design.
+Durable business state, message processing, and operational telemetry are independent of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including topology, contract, configuration, instruction, incident, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied service boundaries, data owners, invariants, delivery semantics, dependencies, recovery needs, and review obligations.
+Keep selected topology distinct from observed topology, and reported incidents or deployments distinct from newly verified facts.
+Record unresolved guarantees or ownership as focused questions; do not invent services, platforms, targets, or owners.
+
+Preparation does not authorize service probing, new designs or migration plans, fault injection, replay, provisioning, or deployment.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 - [Backend and APIs](backend-api-development-guide.md): service contracts and domain operations.
@@ -17,6 +53,7 @@ Distribution is an architectural choice, not a default requirement.
 
 A modular monolith may satisfy the project with less complexity.
 Record the benefit and operating cost before introducing independent services.
+Keep proposed tradeoffs in conversation until the relevant agreement is saved at a core checkpoint.
 
 ## 3. HLD and ownership
 
@@ -94,6 +131,9 @@ Avoid high-cardinality or sensitive telemetry without an assessed need.
 Define operational ownership for stuck workflows and inconsistent data.
 Document safe replay and repair procedures.
 Do not replay messages or jobs without checking duplicate effects and applicable authority.
+Name the affected environment, records or messages, expected effect, separate check, limits, and stopping point before requesting execution approval.
+Stop dependent engineering work and save a failure checkpoint when an action or check fails.
+Do not infer that a failed command restored the previous distributed state.
 
 ## 9. Verification
 
@@ -111,15 +151,24 @@ Select representative failure scenarios:
 | Partial workflow success | Observable state and an actionable recovery path. |
 
 Run fault injection only in authorized environments with bounded effects.
-Record the topology, versions, workload, injected fault, observations, and limitations.
+Explain the fault action, separate observation method, expected result, recovery scope, and stopping point before execution approval.
+Keep fault procedures and verification procedures separate when executable artifacts are used.
+Record expected checks as `not run` at the agreed plan checkpoint.
+Save topology, versions, workload, injected fault, observations, and limitations at the applicable checkpoint.
+Save failures and partial effects promptly; do not wait for a later successful retry.
 Unit tests alone do not establish distributed failure behavior.
+Technical checks do not satisfy pending human acceptance or required learner confirmation.
 
 ## 10. Release and evolution
 
 Use the infrastructure guide for rollout and destination verification.
 Coordinate API, event, and schema changes with dependent consumers.
 Specify deployment order where compatibility requires it.
+Propose each rollout or migration action with its own separate check and execution scope.
+Check its result and obtain approval before the next action, even when the overall plan is approved.
 Preserve replay compatibility for retained messages when required.
 Verify recovery before removing old consumers or data representations.
-Update diagrams, contracts, decision records, and operational procedures as the system evolves.
+Update diagrams, contracts, and operational deliverables within their approved action scope.
+Save significant decisions, accumulated approvals, results, and remaining work at core checkpoints.
+Resolve or explicitly transfer control of running deployments, migrations, replays, and repair jobs before pass closure.
 Close work using the core workflow and retain unresolved guarantees explicitly.

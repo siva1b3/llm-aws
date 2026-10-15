@@ -7,6 +7,42 @@ It owns data modeling, integrity, query behavior, migrations, retention, backup,
 Follow the [core workflow](../core/software-ai-development-workflow.md), [architecture guide](../core/architecture-and-design-guide.md), and [quality guide](../core/engineering-quality-guide.md).
 This guide does not select a database or authorize access to production data.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide schema investigation, migration preparation, data changes, restoration, and verification into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses action approval or required human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and one next action at checkpoints.
+Check unknown outcomes within applicable authority before retries that could duplicate effects.
+Obtain new approval for recovery unless the approved scope explicitly covers that recovery branch and its check.
+
+Transactions, recovery logs, and backfill progress follow data-system requirements independently of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including schema descriptions, migration history, configuration notes, recovery reports, instruction files, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied authoritative stores, data owners, integrity constraints, access limits, compatibility needs, recovery targets, and review obligations.
+Keep selected configuration distinct from observed configuration, and source-reported results distinct from newly verified facts.
+Record unresolved choices as focused questions; do not invent storage engines, schemas, retention periods, recovery targets, or owners.
+
+Preparation does not authorize database queries, new migration plans, backfills, backups, restoration, deletion, or provisioning.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 - [Backend and APIs](backend-api-development-guide.md): application operations and data access contracts.
@@ -84,6 +120,10 @@ For a material migration, identify:
 Use staged changes when incompatible consumers cannot change simultaneously.
 Separate expanding a schema from removing old structures when compatibility requires it.
 Bound and checkpoint large backfills where needed.
+Backfill checkpoints preserve resumable data-processing progress; they are independent of core project Markdown checkpoints.
+Name each migration or backfill action, target, data scope, separate check, limits, and stopping point before requesting execution approval.
+Keep migration and verification procedures separate, including executable artifacts when applicable.
+Report the checked result and obtain execution approval before the next dependent stage.
 Do not claim rollback is safe when a transformation loses information.
 Obtain the applicable execution authority before destructive or production-changing actions.
 
@@ -96,6 +136,8 @@ Identify whether the required recovery needs a consistent snapshot, transaction 
 Verify restoration in an authorized environment when recovery claims require it.
 Check restored application behavior and data integrity, not only successful file extraction.
 Record achieved recovery time and data position against the agreed targets.
+Keep routine observations in conversation and save recovery evidence at the applicable core checkpoint.
+Save failed restoration attempts and partial effects promptly; do not overwrite them with later successful results.
 A successful backup job does not establish successful restoration.
 Do not treat replication alone as protection from accidental deletion or corruption.
 
@@ -119,5 +161,9 @@ Record exact database versions and relevant configuration for compatibility-sens
 Consult current vendor documentation for engine-specific guarantees and migration behavior.
 
 Preserve migration history and evidence of significant changes.
-Update application contracts and operating instructions when data behavior changes.
+Keep expected checks and actual observations separate; actual results remain `not run` until evidence exists.
+Save accumulated approvals, tested schema and database versions, results, and limitations at core checkpoints.
+Update application contracts and operating instructions within their approved action scope.
+Technical checks do not satisfy pending human acceptance or required learner confirmation.
+Resolve or explicitly transfer control of running migrations, backfills, and recovery operations before pass closure.
 Report unresolved integrity or recovery gaps before acceptance through the core workflow.

@@ -3,6 +3,38 @@
 These guides add technical detail to the [shared foundation](../core/README.md).
 Select them from actual project requirements; reading one does not require every related guide.
 They do not grant execution authority or define another project record structure.
+All eight domain guides apply the version 3 [core workflow](../core/software-ai-development-workflow.md).
+
+## Apply the version 3 process
+
+Discuss and revise plans in conversation; keep unapproved drafts out of Markdown.
+Obtain plan approval, explain the next action and separate check, then obtain final execution approval.
+Save the agreed plan checkpoint before execution and obtain execution approval before each next action.
+Keep routine results and subsequent approvals in conversation until the core's defined checkpoints.
+Save failures, blockers, partial effects, and substantive handovers promptly under those rules.
+Preserve valid approvals and stricter project-specific learning or review gates.
+
+Domain instructions to record observations follow core checkpoint timing for management records.
+Edit deliverables within their approved action scope.
+Runtime logs, business state, training checkpoints, and backfill progress follow their technical requirements independently of Markdown checkpoint timing.
+The core remains the authority for the complete operating rules and precise checkpoint conditions.
+
+## Prepare self-contained records
+
+Read every designated project source and each selected guide before transferring applicable requirements.
+Preserve selected settings, working methods, review obligations, reported prior state, and uncertainty in their generated owners.
+Keep requirements distinct from examples and reported outcomes distinct from newly verified results.
+Do not perform project investigation, design, implementation, experiments, or deployment during preparation.
+
+Derive paths and content permissions from the actual core workflow.
+Create and verify empty records before populating supported contents.
+Keep reserved pass records at zero bytes and the final report empty until the core permits their contents.
+Record preparation checks in current state and stop for human review.
+
+Transfer necessary guidance into generated definitions and operating instructions using internal relative links.
+Generated projects must work without this library, the original source package, the generator, or previous conversation.
+A list of selected guides cannot replace their necessary contents.
+Keep preparation provenance in one historical note and verify independence before claiming self-contained output.
 
 ## Choose the applicable guides
 

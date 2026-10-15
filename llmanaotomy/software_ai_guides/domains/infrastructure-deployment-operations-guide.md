@@ -7,6 +7,42 @@ It owns environment provisioning, artifact delivery, runtime configuration, obse
 Follow the [core workflow](../core/software-ai-development-workflow.md), [architecture guide](../core/architecture-and-design-guide.md), and [quality guide](../core/engineering-quality-guide.md).
 It does not authorize deployment, paid resources, external communication, or destructive recovery.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide environment inspection, build preparation, provisioning, deployment, recovery, and retirement into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses action approval or required human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and one next action at checkpoints.
+Check unknown outcomes within applicable authority before retries that could duplicate effects.
+Obtain new approval for recovery unless the approved scope explicitly covers that recovery branch and its check.
+
+Runtime health checks, telemetry, and deployment-controller state follow operating requirements independently of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including environment inventories, configuration notes, release reports, operating procedures, instruction files, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied target identities, selected platforms, resource limits, release responsibilities, recovery requirements, access boundaries, and review obligations.
+Keep selected configuration distinct from observed configuration, and source-reported results distinct from newly verified facts.
+Record unresolved choices as focused questions; do not invent accounts, regions, platforms, spending limits, recovery targets, or operators.
+
+Preparation does not authorize environment probing, new rollout plans, builds, provisioning, publishing, deployment, or recovery.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 - [Frontend](frontend-development-guide.md) and [backend](backend-api-development-guide.md): application behavior and runtime contracts.
@@ -103,6 +139,12 @@ Use staged exposure where the risk and platform justify it.
 Coordinate data changes with the database guide.
 Application rollback may not reverse data migrations or external side effects.
 Check the actual destination before repeating a release with an unknown outcome.
+Discuss the rollout in conversation before plan approval; keep unapproved revisions out of project Markdown.
+For each action, name the target, intended effect, separate check, resource limits, and stopping point.
+Save the agreed plan and first execution approval before execution under the core workflow.
+Keep provisioning, promotion, migration, and recovery procedures separate from their verification procedures.
+Do not create a pipeline that bypasses the agreed action approvals or required human review gates.
+Report each result and obtain execution approval before the next action, including later rollout stages.
 
 ## 9. Observability and service ownership
 
@@ -127,15 +169,21 @@ During incidents, operate within existing response authority and stop conditions
 Do not treat urgency as unlimited permission to delete, restore, publish, or spend.
 Preserve evidence needed to explain the incident without exposing private information.
 After recovery, distinguish restored service from unresolved root causes.
-Record corrective work through the core workflow.
+Save a failure checkpoint promptly with actual effects, running operations, evidence, and the proposed next action.
+Use only recovery branches explicitly covered by existing execution approval, or obtain new approval for recovery and its check.
+Discuss material plan changes in conversation and save the approved revision before changed execution.
+Keep corrective work and unresolved causes visible at core checkpoints.
 
 ## 11. Verification and handover
 
 Verify actual artifact identity, network paths, access controls, health, and important user operations after deployment.
 Check capacity and failure recovery where required by the goal.
-Record environment, versions, inputs, results, and limitations.
+Keep expected results distinct from observations; actual results remain `not run` until evidence exists.
+Save environment, versions, inputs, results, approvals, and limitations at the applicable core checkpoint.
 Do not claim production behavior from local-only checks.
+Technical checks do not satisfy pending human acceptance or required learner confirmation.
 
 At handover, identify operators, deployed versions, configuration sources, runbooks, monitoring, and recovery evidence.
 Document known limitations and unfinished work.
+Resolve or explicitly transfer control of running releases, recovery operations, and temporary resources before pass closure.
 Close the release pass only when required checks and reviews are complete or its unresolved outcome is explicitly recorded.

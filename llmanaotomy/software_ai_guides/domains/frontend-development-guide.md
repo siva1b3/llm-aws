@@ -10,6 +10,42 @@ Use [architecture and design](../core/architecture-and-design-guide.md) for HLD 
 Use [engineering quality](../core/engineering-quality-guide.md) for shared coding, security, testing, and review requirements.
 This guide adds technical detail. It does not authorize work or create additional mandatory project files.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide journey investigation, design, component implementation, integration, verification, and release into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses action approval or required human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and one next action at checkpoints.
+Check unknown outcomes within applicable authority before retries that could duplicate effects.
+Obtain new approval for recovery unless the approved scope explicitly covers that recovery branch and its check.
+
+Interface state, autosave, event handling, and product confirmation flows follow product requirements independently of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including design references, content requirements, browser-support notes, review reports, instruction files, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied user journeys, branding, selected components, API contracts, supported browsers, accessibility requirements, and review obligations.
+Keep selected configuration distinct from observed configuration, and source-reported results distinct from newly verified facts.
+Record unresolved choices as focused questions; do not invent frameworks, design systems, devices, performance targets, or reviewers.
+
+Preparation does not authorize browser investigation, new mockups or design plans, application implementation, builds, or publication.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 | Guide | Use when |
@@ -102,7 +138,10 @@ Avoid optimization that makes the code harder to maintain without measured benef
 
 ## 9. Verification
 
-Select applicable checks from the quality guide and record expected results before running them.
+Select applicable checks from the quality guide and discuss expected results in conversation during planning.
+Save agreed expectations as `not run` at the core's plan checkpoint before execution.
+Explain the affected journey, separate check, browser conditions, limits, and stopping point when requesting execution approval.
+Keep implementation and checking procedures distinct, including executable artifacts when applicable.
 
 | Area | Evidence to consider |
 | --- | --- |
@@ -116,6 +155,9 @@ Select applicable checks from the quality guide and record expected results befo
 
 Screenshots support appearance claims. They do not establish correct application behavior.
 Record untested browser or accessibility conditions as limitations.
+Save tested output versions, browser conditions, observations, evidence, and limitations at the applicable core checkpoint.
+Keep routine results in conversation between checkpoints and save failures promptly.
+Passing technical checks does not establish design acceptance or completion of required human accessibility or learner review.
 
 ## 10. Release and maintenance
 
@@ -123,5 +165,7 @@ Use the infrastructure guide for builds, hosting, configuration, rollout, and re
 Check deployed routes, asset paths, cache behavior, and relevant backend connectivity.
 Verify that old cached clients remain compatible where releases can overlap.
 Provide source maps and diagnostics only through the project's agreed exposure policy.
-Update affected component documentation, contracts, tests, and design notes with behavior changes.
+Update affected component documentation, contracts, tests, and design notes within their approved action scope.
+Report each action and check result, then obtain execution approval before the next action.
+Resolve or explicitly transfer control of running builds and publishing operations before pass closure.
 Close work under the core workflow after applicable checks and required reviews.

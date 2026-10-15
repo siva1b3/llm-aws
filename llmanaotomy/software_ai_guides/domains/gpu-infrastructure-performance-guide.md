@@ -7,6 +7,42 @@ It owns hardware and software compatibility, device allocation, resource behavio
 Follow the [core workflow](../core/software-ai-development-workflow.md), [architecture guide](../core/architecture-and-design-guide.md), and [quality guide](../core/engineering-quality-guide.md).
 It does not authorize hardware purchases, paid compute, driver changes, or cluster administration.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide device inspection, compatibility checks, workload preparation, benchmarking, optimization, and release into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses action approval or required human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and one next action at checkpoints.
+Check unknown outcomes within applicable authority before retries that could duplicate effects.
+Obtain new approval for recovery unless the approved scope explicitly covers that recovery branch and its check.
+
+Device telemetry, scheduler state, and workload checkpoints follow execution requirements independently of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including hardware inventories, workload configurations, benchmark reports, instruction files, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied selected hardware and software, device allocation, workload shapes, precision, resource limits, quality requirements, and review obligations.
+Keep selected configuration distinct from observed configuration, and source-reported results distinct from newly verified facts.
+Record unresolved choices as focused questions; do not invent GPU models, device counts, runtime versions, performance targets, or budgets.
+
+Preparation does not authorize device probing, new benchmark plans, driver changes, compute allocation, workload execution, or provisioning.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 - [ML and deep learning](ml-deep-learning-guide.md): training correctness, experiments, and model evaluation.
@@ -76,6 +112,9 @@ Record hardware, software, power or sharing conditions where relevant, and workl
 Separate warm-up, compilation, loading, and steady-state measurements.
 Use timing methods appropriate to asynchronous device execution.
 Include enough repetitions or samples to support the comparison.
+Describe the bounded benchmark action, separate result check, resource use, limits, and stopping point before execution approval.
+Keep workload execution and result-verification procedures separate, including executable artifacts when applicable.
+An approved measurement action can include its stated repetitions; changed workloads require applicable approval for their own action and check.
 
 Measure user-relevant behavior, not only kernel speed.
 For inference, distinguish time to first output, generation rate, end-to-end latency, and throughput when relevant.
@@ -100,6 +139,8 @@ For each material optimization, record:
 
 Retain the simpler approach when complexity has no demonstrated benefit for the project.
 Do not trade away required quality solely to improve a throughput number.
+Discuss proposed changes in conversation and save the agreed revision at the core's plan checkpoint before changed execution.
+Report measured effects and obtain execution approval before the next optimization action.
 
 ## 9. Multi-GPU and multi-node work
 
@@ -109,6 +150,7 @@ Measure scaling efficiency rather than assuming linear gains from additional dev
 Identify collective-operation timeouts and worker-failure behavior where applicable.
 
 Coordinate checkpoint consistency and restart semantics with the ML guide.
+Workload checkpoints preserve computational state independently of core project Markdown checkpoints.
 Test whether a partial worker failure leaves recoverable work or requires a complete restart.
 Do not present resumed training as equivalent to uninterrupted training without supporting evidence.
 Bound retries and preserve failure diagnostics.
@@ -134,5 +176,9 @@ Identify untested devices or configurations as limitations.
 Do not claim that high utilization alone means efficient or correct operation.
 
 Report achieved results against the project's actual targets.
-Keep benchmarks, environment references, and design decisions recoverable through the core records.
+Keep expected checks distinct from observations; actual results remain `not run` until evidence exists.
+Save workload versions, device and environment details, benchmark evidence, decisions, and limitations at core checkpoints.
+Preserve failed runs and partial effects promptly without retaining only favorable measurements.
+Technical checks do not satisfy pending human acceptance or required learner confirmation.
+Resolve or explicitly transfer control of running jobs, allocations, and environment changes before pass closure.
 Close work under the core workflow after applicable checks and required reviews.

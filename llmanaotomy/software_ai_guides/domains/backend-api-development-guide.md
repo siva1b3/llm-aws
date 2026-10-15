@@ -8,6 +8,42 @@ Follow the [core workflow](../core/software-ai-development-workflow.md) for appr
 Use [architecture and design](../core/architecture-and-design-guide.md) and [engineering quality](../core/engineering-quality-guide.md) as the shared foundation.
 This guide does not authorize execution or require a particular language, framework, or deployment model.
 
+### Apply the version 3 workflow
+
+Use the core's conversation, approval, action, check, and checkpoint sequence for engineering work.
+Draft and revise plans in conversation without changing Markdown during discussion.
+Obtain plan approval, then explain the next action, its separate check, limits, and stopping point.
+Obtain final execution approval for that action and check before acting.
+Save the agreed plan and first execution approval at the core's plan checkpoint before execution.
+Keep reserved pass records empty and inactive until that checkpoint.
+
+Divide service investigation, contract changes, implementation, integration checks, and release into small actions with inspectable results.
+Keep action and verification procedures distinct, including separate executable artifacts when applicable.
+Report each result and obtain execution approval before dependent work or the next action.
+Do not create an unattended procedure that crosses action approval or required human review boundaries.
+Retain valid approvals for unchanged scope and preserve stricter project-specific learning or review gates.
+
+Save management records at the core's defined checkpoints, including failures, blockers, withdrawal, and substantive session handovers.
+Keep routine results and subsequent approvals in conversation between checkpoints.
+Preserve partial effects, running operations, unknown outcomes, accumulated approvals, and one next action at checkpoints.
+Check unknown outcomes within applicable authority before retries that could duplicate effects.
+Obtain new approval for recovery unless the approved scope explicitly covers that recovery branch and its check.
+
+Request handling, background job state, retries, and audit events follow product requirements independently of project Markdown checkpoint timing.
+
+### Transfer guidance during record preparation
+
+Read all designated sources, including API contracts, configuration notes, integration reports, instruction files, and status records.
+Transfer applicable requirements into generated definitions and operating instructions under the core's ownership rules.
+Preserve supplied consumers, operation contracts, authorization boundaries, data ownership, compatibility needs, resource limits, and review obligations.
+Keep selected configuration distinct from observed configuration, and source-reported results distinct from newly verified facts.
+Record unresolved choices as focused questions; do not invent frameworks, endpoints, service targets, environments, or owners.
+
+Preparation does not authorize service probing, new designs or test plans, API calls, background jobs, resource creation, or deployment.
+Keep preparation checks in current state, reserved pass records at zero bytes, and the final report empty until closure.
+Transfer necessary guidance into internal owners so future operation requires neither this guide nor other preparation inputs.
+Use internal relative links; keep preparation provenance in the overview's historical note.
+
 ## 2. Related guides
 
 | Guide | Use when |
@@ -105,8 +141,14 @@ Test API compatibility and real integrations where mocks would hide relevant beh
 Include concurrency, duplicate submission, cancellation, and partial-failure checks when they affect correctness.
 Check deployment configuration and secret handling through the infrastructure guide.
 Verify database compatibility during mixed-version releases.
+Name the target environment, affected operations, test data, expected effects, limits, and stopping point before requesting execution approval.
+Keep implementation and verification procedures separate, including their executable artifacts when applicable.
+Keep expected and actual results distinct; actual results remain `not run` until observations exist.
 
-Record the tested service version, dependency conditions, inputs, results, and limitations.
+Save the tested service version, dependency conditions, inputs, results, and limitations at the applicable core checkpoint.
 After an approved release, check actual critical operations at the destination.
-Update consumer contracts, design notes, tests, and operating instructions when behavior changes.
+Report the action and check results, then obtain execution approval before the next action.
+Update consumer contracts, design notes, tests, and operating instructions within their approved action scope.
+Technical checks do not satisfy pending human acceptance or required learner confirmation.
+Resolve or explicitly transfer control of running jobs and release operations before pass closure.
 Keep unresolved defects visible and close the pass through the core workflow.
