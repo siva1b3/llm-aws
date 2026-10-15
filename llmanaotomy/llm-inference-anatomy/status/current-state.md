@@ -1,20 +1,20 @@
 # Current state
 
-- Updated: 2026-10-15 (Asia/Calcutta); goal and constraints acceptance checkpoint. Previous preparation checkpoint: 2026-10-15 22:58 IST.
+- Updated: 2026-10-15 (Asia/Calcutta); session handover with pass-001 r01 approved and execution deferred. Previous preparation checkpoint: 2026-10-15 22:58 IST.
 - Goal: [Phase 1 criteria G1–G6](../definition/goal.md).
 - Position: waiting for approval.
 - Active pass: none.
 - Last closed pass: none.
-- Reserved pass: pass-001; all four records empty.
-- Agreed plan revision: none.
+- Reserved pass: pass-001; inactive. Plan saved by explicit human request; three other records remain empty.
+- Agreed plan revision: [pass-001 r01](../passes/pass-001/plan.md).
 - Approved project execution scope: none.
 - Preparation authority: human designated the sources, generator, and workflow, then said “do it.”
-- Existing new outputs: seven populated management records and five intentionally empty records.
+- Existing outputs: eight populated records and four intentionally empty records, including the final report.
 - Last significant decision: D5 in the [decision log](../decisions/decision-log.md).
 - Goal and constraints review: accepted by the human learner on 2026-10-15; actual response: “done the goal and constraints are accepted”. This accepts the definitions, not completed criteria, a pass plan, or execution.
 - Running project operations or partial runtime effects: none initiated by preparation; remote environment state is unknown.
 - Remaining project criteria: all G1–G6.
-- Preparation blocker: none. Document checks completed; goal and constraints accepted. First pass plan remains to be discussed and approved.
+- Preparation blocker: none. Document checks completed; goal, constraints, and first pass plan accepted. Execution remains deferred and unapproved.
 
 ## Reported prior state, not newly verified runtime facts
 
@@ -43,13 +43,13 @@ Input text → [CURRENT: entire single-forward-pass model] → next-token scores
 
 Previously verified and learner-confirmed internal components: none.
 Every internal operation remains hidden until the baseline runs, is checked, explained, and learner-confirmed.
-The prior intended first technical step was to establish the actual environment and existing files.
-That intention is background, not an approved action or new pass plan.
+The approved pass-001 r01 starts by establishing environment access information, then inspecting the environment and existing files under separate execution approval.
+Neither action has execution approval or has run.
 A later baseline must use one forward call and stop for learner confirmation before another box is opened.
 
 ## Remaining questions and limits
 
-The extracted criteria and [constraints](../definition/constraints.md) are accepted. No pass plan or execution scope is approved.
+The extracted criteria and [constraints](../definition/constraints.md) are accepted. Pass-001 r01 is approved; no project execution scope is approved.
 Environment existence, access, existing files, resource ownership, and cost limits need resolution before applicable later work.
 Runtime claims remain unverified. Document checks do not establish EC2, model, or inference correctness.
 No designs, experiments, application checks, provisioning, or deployment occurred during preparation.
@@ -73,7 +73,7 @@ All results below concern record preparation, not application or infrastructure 
 
 Coverage disposition: source routing and maintenance directions became internal ownership and checkpoint rules.
 The initial investigation's empty registers became explicit current-state statements; its future entry fields became constraints.
-The old intended environment/baseline sequence remains background, not an agreed pass plan.
+At preparation, the old intended environment/baseline sequence was background, not an agreed pass plan. The later approved pass-001 r01 covers environment readiness only.
 Applicable architecture, quality, LLM, experiment, and EC2 guidance is embedded in constraints and operating instructions.
 Training, production services, GPU, database, distributed systems, and frontend guidance adds no scope.
 
@@ -85,5 +85,6 @@ All preparation checks passed. The human learner subsequently accepted the goal 
 
 ## One next action
 
-Assistant and human learner: discuss the first pass plan for establishing the actual environment and existing files, with small actions and separate checks. Keep the draft in conversation until approved.
-Goal and constraints acceptance is recorded. Plan approval and execution approval remain pending. The reserved pass stays inactive and empty.
+At the next session, explain A1 (ask about existing EC2 and access) and V1 (check whether the information supports a specific connection step), then request their execution approval. Stop after reporting V1 before any next action.
+
+Plan r01 approval and the human's explicit request to save it for later execution are retained in [pass-001 plan and handover](../passes/pass-001/plan.md). Do not request unchanged plan approval again. Execution approval remains pending. The reserved pass stays inactive; its plan was saved early at the human's explicit request. No environment inspection, installation, download, or inference occurred in this session. No project processes were started; remote state remains unknown. The learning boundary is unchanged.
