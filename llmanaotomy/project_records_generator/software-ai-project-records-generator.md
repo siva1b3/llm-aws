@@ -1,325 +1,404 @@
-# Software and AI project records generator
+# Software and AI project records generator — version 3
 
-## 1. Purpose
+Use these instructions to prepare self-contained project records from a source package and a supplied workflow guide.
+The source package may contain one file or many files.
 
-Prepare project records from a human's goal and the software and AI guide library.
-The method is **Read sources → Select applicable guidance → Derive structure → Create empty records → Fill supported contents → Verify → Stop**.
+**Read every input → map the information → create empty records → fill supported contents → verify independence → deliver and stop.**
 
-This generator uses the sibling [software and AI guide library](../software_ai_guides/README.md).
-The guide library can be used independently of this generator.
-The original `project-records-generator.md` remains available for its existing workflow.
-Do not run both generators as competing authorities for one project.
+This generator applies the supplied guide. It does not define a competing structure or workflow.
+This specializes `project-records-generator-v3.md` for the [software and AI core workflow](../software_ai_guides/core/software-ai-development-workflow.md), version 3.
+The generalized generator is a historical maintenance source, not an additional runtime input.
+The sibling guide library is required during preparation; generated projects must work without either reusable folder.
+The library also supports preparation directly and does not depend on this generator.
+Do not silently substitute an earlier guide.
 
-This generator owns preparation procedure only.
-It does not own project structure, workflow policy, technical design, or acceptance requirements.
+## 1. Inputs and authorization
 
-## 2. Inputs and authority
+Required inputs are:
 
-Required sources are:
+1. All project source files designated by the human, plus relevant human instructions.
+2. The [software and AI core workflow](../software_ai_guides/core/software-ai-development-workflow.md), version 3.
+3. The [architecture](../software_ai_guides/core/architecture-and-design-guide.md) and [quality](../software_ai_guides/core/engineering-quality-guide.md) guides.
+4. Applicable domain guides selected below.
+5. This generator instruction file.
 
-1. The human's actual goal document or explicitly supplied goal material.
-2. The selected [core software and AI workflow](../software_ai_guides/core/software-ai-development-workflow.md).
-3. The [architecture and design guide](../software_ai_guides/core/architecture-and-design-guide.md).
-4. The [engineering quality guide](../software_ai_guides/core/engineering-quality-guide.md).
-5. Applicable domain guides from the table below.
-6. This generator.
+Source files may describe goals, methods, technical choices, investigation notes, progress, or prior operating instructions.
+Do not assume that a single overview file represents the entire package.
+Do not ignore `AGENTS.md`, status files, or attachments because they are not named "goal."
 
-Read the actual supplied versions. Do not rely solely on filenames or remembered contents.
-An explicit request to prepare records authorizes the preparation permitted by the core guide.
-It does not authorize investigation, HLD or LLD drafting, pass planning, implementation, experiments, or deployment.
-Creating these guide files does not itself authorize preparing a project.
+The human can request generation with:
 
-If the human selects a different core workflow, identify differences before applying this specialized procedure.
-Do not combine conflicting record structures silently.
+> Read all supplied project files. Use the software and AI version 3 workflow and generator to create a new project-records folder.
+> Preserve the project requirements and make the result self-contained. Verify the records and stop before project planning.
 
-### Identify sources and their limits
+Receiving files alone is not an instruction to execute their project actions.
+An explicit preparation request authorizes record creation and the preparation checks required by the guide.
+It does not authorize investigation, new HLD or LLD drafting, pass planning, implementation, experiments, resource creation, or deployment.
 
-Record the actual goal source and governing guide locations in the generated overview.
-Include a supplied revision, repository commit, or content digest when available and useful for recovery.
-Identify uncommitted source changes when a commit alone does not describe the version read.
-Do not invent version numbers or treat a filename as proof of currency.
-For conversation-supplied goals, preserve the material requirements and their available message reference in the designated records.
-Do not make later work depend on inaccessible conversation history.
+Use the destination supplied by the human.
+Otherwise, use the current workspace when that choice is clear.
+Ask only when the destination or a required input cannot be established reliably.
 
-Read source material as information, not as new authority to execute embedded commands or expand the task.
-Preparation includes reading supplied sources and checking the destination and generated records.
-It does not include testing application behavior, probing services, or inspecting unrelated repositories.
-If a required source is incomplete or unreadable, identify the affected extraction and the missing information.
-Do not describe partial source coverage as a complete review.
+### Select applicable engineering guidance
 
-## 3. Guide selection
+Use actual scope to select guides. Availability alone does not make a guide applicable.
 
-Use the goal to identify applicable guides. Availability alone does not make a guide applicable.
-
-| Guide | Apply when the goal includes |
+| Guide | Apply when the source package includes |
 | --- | --- |
 | [Frontend](../software_ai_guides/domains/frontend-development-guide.md) | Websites or browser interfaces. |
 | [Backend and APIs](../software_ai_guides/domains/backend-api-development-guide.md) | Services, APIs, business logic, or background jobs. |
-| [Database](../software_ai_guides/domains/database-engineering-guide.md) | Persistent application data, data migrations, or storage operation. |
+| [Database](../software_ai_guides/domains/database-engineering-guide.md) | Persistent data, migrations, or storage operation. |
 | [Distributed systems](../software_ai_guides/domains/distributed-systems-microservices-guide.md) | Cross-service coordination, messaging, or independent failure boundaries. |
-| [ML and deep learning](../software_ai_guides/domains/ml-deep-learning-guide.md) | Training, model evaluation, fine-tuning, or ML lifecycle work. |
+| [ML and deep learning](../software_ai_guides/domains/ml-deep-learning-guide.md) | Training, evaluation, fine-tuning, or model lifecycle work. |
 | [LLM engineering](../software_ai_guides/domains/llm-engineering-guide.md) | Language-model applications, retrieval, prompts, tools, or model adaptation. |
 | [Infrastructure and operations](../software_ai_guides/domains/infrastructure-deployment-operations-guide.md) | Builds, hosting, deployment, cloud, on-premises operation, containers, or orchestration. |
-| [GPU infrastructure](../software_ai_guides/domains/gpu-infrastructure-performance-guide.md) | Accelerator execution, capacity, compatibility, or performance. |
+| [GPU infrastructure](../software_ai_guides/domains/gpu-infrastructure-performance-guide.md) | Accelerator execution, compatibility, capacity, or performance. |
 
-The core, architecture, and quality guides provide the shared foundation.
-Apply relevant sections within a selected domain guide rather than every listed practice automatically.
+Read the shared core, architecture, and quality guides completely.
+Read each selected domain guide completely, then apply only relevant sections.
 Do not recursively include every linked guide without a project reason.
+Record applicability and its reasons in constraints; do not create a separate mandatory selection file.
+Use `applicable`, `not applicable`, or `pending clarification` when the distinction affects later work.
+Transfer applicable rules and technical requirements into generated owners, rather than requiring access to these guides later.
+If another core workflow is explicitly selected, resolve compatibility before dependent preparation.
 
-Record selection and reasons in existing core-defined records, such as constraints and operating instructions.
-Use `applicable`, `not applicable`, or `pending clarification` where that distinction matters.
-Do not create a separate mandatory guide-selection file.
-Revisit selection later when approved project scope changes.
+## 2. Authority and source roles
 
-## 4. Preserve source responsibilities
-
-| Source | Owns |
+| Input | Responsibility |
 | --- | --- |
-| Human goal | Desired outcomes, requirements, preferences, exclusions, and supplied constraints. |
-| Core guide | Record paths, responsibilities, approvals, lifecycle, and completion rules. |
-| Architecture guide | HLD and LLD content and design-review expectations. |
-| Quality guide | Shared coding, security, verification, review, and release expectations. |
-| Domain guides | Applicable technical details and specialized checks. |
-| Generator | Extraction, preparation, validation, and delivery procedure. |
+| Human instructions | Requested output, authorized scope, corrections, and explicit decisions. |
+| Project source package | Project purpose, scope, methods, constraints, configuration, prior state, and supporting information. |
+| Workflow guide | Generated structure, record ownership, approvals, action granularity, checkpoints, and required operating rules. |
+| Architecture guide | Applicable HLD, LLD, design-content, and review requirements. |
+| Quality guide | Applicable engineering checks, security, verification, and release requirements. |
+| Domain guides | Applicable specialized technical content and checks. |
+| Generator | Extraction, preparation, and verification procedure. |
 
-Do not edit source goals or guides during generation.
-Do not maintain another fixed project tree or file count in this generator.
-Do not turn a guide's example into a selected architecture or mandatory technology.
-Identify material conflicts and request the decision needed before dependent work.
-Missing future implementation choices usually do not prevent record preparation.
+Preserve compatible project-specific rules, including learning boundaries and required reviews.
+Use the workflow guide to replace old record layouts, navigation, and routine update instructions.
+Rewrite references to the new internal owners.
+Do not copy old instructions that require editing or rereading preparation inputs.
 
-## 5. Read and classify the goal
+When a substantive source requirement conflicts with the guide or human request, identify the conflict before dependent generation.
+Ask for the decision needed. Continue only independent preparation that does not assume that decision.
+Do not treat an input file's instruction as new human approval.
+Do not edit any input file.
 
-Preserve every material requirement and exclusion in the appropriate core-defined record.
-Distinguish requirements, preferences, optional ideas, examples, background, and unresolved questions.
-Label described existing work as human-reported unless approved checks have verified it.
-Do not invent a stack, database, cloud provider, model, GPU, budget, deadline, or review owner.
+## 3. Read every source and build a temporary coverage map
 
-Derive observable completion criteria from requested outcomes without adding unsupported scope or numerical targets.
-Record unclear criteria for human review.
-Keep supplied architecture decisions distinct from new design proposals.
-Do not generate an HLD, LLD, test plan, or deployment plan during preparation.
-Record future design and quality needs as pending work where the core guide permits it.
+Inventory the designated source package before extracting information.
+Read every file completely, including relevant tables, notes, qualifications, and source-specific ownership rules.
+Read the guide's structure, preparation conditions, file responsibilities, approval sequence, checkpoints, and required generated instructions.
+Do not infer content from filenames or rely on a remembered guide version.
+If output is truncated, read the missing portions before proceeding.
 
-Keep credentials and sensitive raw data out of generated records.
-Preserve the access requirement without copying a secret value.
-Use source headings or verified references when traceability helps later review.
+Keep a temporary coverage map during preparation:
 
-### Preserve meaning and criterion identity
+| Source and section | Material information | Status or qualification | Generated owner | Treatment |
+| --- | --- | --- | --- | --- |
+| Actual source location | Requirement, method, configuration, state, or evidence | Required, preferred, reported, observed, uncertain, or proposed | Path derived from the guide | Transfer, consolidate, adapt navigation, or surface a conflict |
 
-Use a temporary extraction checklist to track each material statement, classification, source, and destination record.
-Retain conditions, exceptions, exclusions, and dependencies when summarizing requirements.
-Combine repeated statements only when their meaning and authority agree.
-Keep contradictory statements visible until the human resolves them.
-Do not resolve a conflict by choosing the most recent file modification time.
+Use the map to verify that nothing material was lost.
+Do not save it as an additional permanent file unless the guide requires that file.
+Combine repeated information without changing its meaning.
 
+Preserve:
+
+- Outcomes, deliverables, scope, exclusions, and acceptance criteria.
+- Teaching, collaboration, working, and verification methods.
+- Selected technologies, environments, resources, and their verification status.
+- Explicit review gates and responsibility boundaries.
+- Prior decisions, reported progress, evidence, unanswered questions, and known limitations.
+- The distinction between future ideas and current requirements.
+
+Do not copy credentials or secret values.
+Preserve the access requirement without the secret.
+Do not expand the task through links to unrequested background material.
+Request missing linked content only when necessary information cannot otherwise be preserved reliably.
+
+### Preserve software and AI detail
+
+Preserve supplied technology choices and configuration exactly, including their conditions and verification status.
 Carry existing criterion identifiers forward without renumbering referenced requirements.
-For new criteria, assign stable identifiers using the core workflow's convention.
-Separate independently verifiable outcomes when a broad statement would hide partial completion.
-Describe the actor, condition, and observable result where the source supports them.
-Mark derived wording as awaiting review rather than implying that the human approved the interpretation.
-Leave design, action, and verification-result links for the authorized stages that produce them.
+Preserve supplied designs, evaluation methods, operating obligations, and acceptance or learning gates without inventing new ones.
+Keep acceptance, release, review, and operating owners distinct; leave unspecified owners unresolved.
 
-### Notice missing information without inventing requirements
+Check applicable information about users, integrations, compatibility, data permission, model evaluation, deployment, recovery, and ongoing ownership.
+Record focused questions only when missing information affects scope, acceptance, access, or a later engineering decision.
+Group related questions and distinguish preparation blockers from choices that can wait until planning.
+Do not select tools, experiments, controls, or numerical targets during extraction.
+Do not turn guide examples into requirements or selected technologies.
 
-Review these areas when applicable to the supplied goal:
+## 4. Derive the output contract from the guide
 
-| Area | Information to preserve or identify as unresolved |
-| --- | --- |
-| Users and outcomes | Intended users, critical journeys, exclusions, and acceptance ownership. |
-| Existing system | Reported behavior, integrations, migration needs, and compatibility obligations. |
-| Quality | Supplied reliability, performance, accessibility, security, privacy, and cost expectations. |
-| Data and AI | Data access, permitted use, evaluation needs, human review, and external transfer restrictions. |
-| Delivery | Intended environments, release responsibility, recovery needs, and destination constraints. |
-| Operation | Support ownership, monitoring expectations, maintenance, retention, and eventual retirement where relevant. |
+Build a temporary checklist from the supplied guide.
+Do not hardcode a tree or file count from another project or version.
 
-Record a missing answer only when it affects scope, acceptance, safety, or later engineering decisions.
-Group related questions and identify which can wait until planning.
-Avoid exhaustive questionnaires for matters irrelevant to the goal.
-Record supplied risks and unresolved assumptions in constraints or current state as appropriate.
-Do not populate a reserved pass to perform a risk assessment during preparation.
-Identify future baseline, threat-modeling, capacity, or recovery work as pending only when the goal makes it relevant.
-Do not select controls, measurements, experiments, or numerical targets during extraction.
+For each required path, identify:
 
-## 6. Derive the starting structure
+1. Its main information responsibility.
+2. Whether it belongs in the starting structure.
+3. The conditions that permit content.
+4. The supported content available now.
+5. Required fields and internal links.
+6. Whether it must remain zero bytes.
+7. Its later lifecycle and checkpoint rules.
 
-Read the core guide's structure together with preparation rules, file responsibilities, and lifecycle conditions.
-Build a temporary checklist of required paths, responsibilities, content conditions, and links.
-Distinguish required starting paths from examples of later growth.
-Derive expected counts from that checklist.
+Distinguish required starting records from later examples and optional supporting artifacts.
+Do not create illustration markers, speculative outputs, or extra example passes.
+Derive expected path counts from this checklist.
+Keep file existence separate from permission to populate it.
 
-Do not create application source, infrastructure definitions, datasets, model artifacts, or speculative design documents.
-Do not add a permanent file merely because a domain guide mentions an information type.
-Use existing core records until an approved project decision requires additional deliverable locations.
+The generated operating instructions must contain the guide's full required behavior.
+Include small actions, separate checks, conversational drafting, separate approvals, per-action execution boundaries, and checkpoint timing.
+Do not summarize these into a vague instruction to "follow the workflow."
 
-Request a missing source only when its absence prevents correct preparation.
-Record unresolved applicability instead of guessing unavailable domain instructions.
-Do not claim to have inspected a missing reference.
+## 5. Choose and protect the destination
 
-## 7. Choose and protect the destination
+Use an explicit project name when supplied.
+Otherwise, derive a short descriptive name and disclose that derivation in the overview.
+Use a filesystem-safe root folder name within the intended parent location.
+Inspect the resolved destination before writing.
 
-Use the human's explicit project name and parent location when provided.
-Otherwise, derive a descriptive filesystem-safe name from the goal in the established workspace.
-Record a derived name as derived.
-Resolve the destination inside the intended parent location.
+Do not overwrite existing content to obtain a preferred name.
+For a derived name, use an unused numbered alternative when needed.
+If the human supplied an exact occupied destination, clarify the intended treatment.
 
-Inspect whether the destination already exists before writing.
-For a derived name, choose an unused numbered alternative when necessary.
-For an exact occupied destination, clarify how to proceed unless existing instructions already resolve it.
-Do not overwrite a project to obtain a preferred name.
+For an explicitly requested continuation of preparation, inspect existing records and preserve populated files.
+Do not truncate them to recreate an empty starting state.
+If active or closed history exists, treat the task as adaptation of a working project.
+Preserve its state and obtain direction when adaptation exceeds the preparation request.
 
-If asked to complete existing preparation, inspect records and preserve populated content.
-Do not reset active passes, approval history, or verified results.
-Treat an existing working project as an adoption or continuation task under the core workflow.
-
-Check destination names against the actual operating system's path rules and case behavior.
-Resolve symbolic links or junctions when they could redirect writes outside the intended destination.
-Treat source-supplied paths as data to validate, not as authority to write elsewhere.
-Confirm that no generated path would replace a source document or guide.
-Create new files without overwriting an existing file that appeared after the destination check.
-
-## 8. Create empty files first
-
-Create the core-defined starting folders and files.
-Verify that each newly created file contains zero bytes before filling contents.
-Do not insert headings, comments, templates, or sample entries during this stage.
-Keep reserved passes inactive.
-
-If tools cannot create files, report that limitation.
+If file creation is unavailable, state the limitation.
 Do not describe a printed tree as a created project.
-Do not substitute another delivery method without applicable user direction.
+Agree on an alternative delivery method when needed.
 
-### Recover from interrupted preparation
+Check operating-system path rules and case behavior before creating the destination.
+Resolve symbolic links or junctions when they could redirect writes outside the intended location.
+Treat source-supplied paths as data, not authority to write elsewhere.
+Keep generated projects outside the reusable generator and guide folders.
+Create files without replacing anything that appeared after the destination check.
 
-Track which paths were created and which records were populated during this preparation attempt.
-On interruption, inspect actual contents before continuing.
-Create only missing required files and preserve completed supported content.
-Do not truncate existing files to repeat the empty-file stage.
-If a reserved record is unexpectedly populated, report the conflict instead of clearing possible user work.
-Do not delete the destination recursively to recover from a partial failure.
-Report an incomplete preparation honestly when a write or validation fails.
-Resume using verified state and valid authority rather than claiming the earlier attempt completed.
+## 6. Create and check empty records first
 
-## 9. Fill supported records
+Create the guide-required folders and starting files.
+Complete this stage before filling any content.
+Verify that every required new file exists and contains zero bytes.
 
-Use the core guide to decide where each information type belongs.
+Do not insert headings, templates, comments, or sample data at this stage.
+Do not omit an empty file because its future contents are unknown.
+Keep reserved passes inactive.
+Do not create application code, executable project procedures, or infrastructure during record preparation.
+
+The generation procedure itself may use suitable file-creation tools.
+That does not authorize generating a large combined procedure for later project execution.
+
+### Resume interrupted preparation
+
+Track created paths and populated records during the preparation attempt.
+Inspect actual contents after an interruption; create only missing files and preserve supported populated content.
+Do not truncate records to repeat the empty-file stage or delete a destination to recover from failure.
+Report unexpectedly populated reserved records before changing possible user work.
+Report incomplete preparation honestly when creation or validation fails.
+
+## 7. Populate supported content in its assigned owner
 
 ### Overview and navigation
 
-Describe the purpose, actual folder name, generated structure, and required reading route.
-Identify source versions with verified references where available.
-Link generated records with working relative links.
-Use a filename without a link when the source location cannot be verified.
-Explain intentionally empty records without populating them.
+Describe the project purpose, actual root name, generated folder map, and reading route.
+Link to the generated current state and definitions.
+Explain which records remain empty and why.
 
-Resolve relative links from each generated file's directory, not from the generator's working directory.
-Distinguish project-local links from external guide locations that recipients may not be able to access.
-Record inaccessible sources as a handover limitation and identify the access or location decision needed.
-Do not claim a portable project when its governing references exist only on the preparer's machine.
+Include a short provenance note with source filenames and the guide's declared version as plain text.
+Label these as historical preparation inputs that are unnecessary for future operation.
+Do not link back to preparation files or instruct readers to open them.
+Do not invent version identifiers, paths, authors, dates, or approval history.
 
 ### Operating instructions
 
-Carry the core guide's required operating rules into the generated AGENTS file.
-Reference applicable architecture, quality, and domain guidance.
-Preserve planning and execution approval boundaries.
-Keep project requirements in their designated records rather than copying arbitrary goal text into instructions.
-Ensure a later session can identify the governing sources without depending on this conversation.
-Do not silently copy the entire guide library into the project or create competing policy copies.
+Write the guide-required operating rules into the generated instruction file.
+Include enough detail to perform the workflow without access to the guide or conversation.
+Check every required rule individually against the guide.
+
+Make these behaviors explicit:
+
+- Draft and revise plans in conversation without intermediate Markdown changes.
+- Obtain plan approval, then explain the next action and check in simple terms.
+- Obtain final execution approval before performing that action and check.
+- Save the agreed plan checkpoint after final execution approval and before execution.
+- Divide any kind of work into small actions with separate verification.
+- Report each result and obtain execution approval before the next action.
+- Preserve stricter project-specific human review or learning gates.
+- Keep routine observations and subsequent approvals in conversation between checkpoints.
+- Save records at the precise session, plan, pass, failure, and other checkpoint conditions defined by the guide.
+- Preserve valid approvals and history without inferring new permission.
+
+Use internal links to the records containing project-specific responsibilities and constraints.
+Do not place arbitrary source text here merely because it originally appeared in `AGENTS.md`.
+Include the core's additional software and AI operating rules and the exact checkpoint conditions.
+Transfer applicable architecture, quality, and domain guidance into internal owners.
+A list of selected guides or external links cannot substitute for their necessary contents.
 
 ### Goal and constraints
 
-Populate required fields with supported outcomes, scope, deliverables, criteria, constraints, and responsibilities.
-Mark extracted contents as awaiting human review when review has not occurred.
-Record applicable guides and material unresolved choices.
-Keep technology preferences distinct from approved decisions.
-Keep proposed quality targets distinct from confirmed requirements.
+Transfer all material project requirements, exclusions, preferences, methods, selected configuration, and review obligations.
+Organize them under the guide's required fields.
+Retain sufficient detail for later action and verification.
+Do not reduce a precise requirement to a broad label.
 
-Keep each requirement authoritative in one record and link to it from summaries.
-Preserve supplied acceptance, release, review, and operating owners as distinct responsibilities.
-Mark unspecified owners as unresolved rather than assigning them to the requester automatically.
-Record supplied recovery and cleanup obligations without drafting their execution procedures.
+Derive numbered completion criteria from actual requested outcomes.
+Use observable wording without adding unsupported targets or scope.
+Keep optional ideas distinct from requirements.
+Label extracted interpretations as awaiting review when the human has not reviewed them.
+Record unresolved details as focused questions in the appropriate existing record.
+
+Keep selected settings distinct from observed settings.
+Keep source-reported work distinct from verification performed during generation.
+Do not invent owners, resources, dates, technologies, or budgets.
 
 ### Current state
 
-Describe actual preparation actions and checks.
-For a new project, record no active pass and no last closed pass.
-Identify reserved folders separately.
-Record pending review, relevant unknowns, and the next human action.
-Use the actual update time and time zone when available.
-Do not report application, model, infrastructure, or deployment verification from structure checks.
+Describe the actual records created and preparation checks performed.
+Use the guide's initial state for a new project.
+Identify reserved folders separately from active work.
+Do not infer new pass history or execution approval from earlier source descriptions.
 
-### Decisions and future work
+Preserve useful prior state, learning boundaries, and unresolved questions as source-reported information.
+Transfer necessary evidence and qualifications into generated records rather than referencing removable inputs.
+Identify the next human review action and any blocker.
+Use the actual date, time, and time zone when available.
 
-Preserve supplied historical decisions only when their source and scope are clear.
-Do not invent approvals or decision entries to fill a record.
-Leave reserved pass records empty until the core guide permits their contents.
-Leave the final report empty until closure.
-Keep intentionally empty files at zero bytes after preparation.
+### Decisions, pass records, and final report
 
-## 10. Verify preparation
+Preserve significant reported decisions when their scope and source are clear.
+Keep missing authority or dates explicit rather than inventing them.
+Do not turn every named technology into a new decision made during generation.
 
-Check structure against the temporary checklist derived from the actual core guide.
-Check names, paths, folder depth, required files, and absence of unrequested example passes.
-Check empty-file sizes and required supported contents.
-Check generated links and source references.
-Confirm that goals, guides, and existing project content remain unchanged.
+Leave reserved pass records empty until the guide permits their population.
+Do not put preparation checks or copied source background into an inactive pass.
+Leave the final report empty until project closure.
+Do not activate a pass, draft its plan, or invent evidence during preparation.
 
-For authorized completion of existing preparation, verify only intended updates occurred and preserve unrelated content and history.
-The unchanged-content check does not prohibit updates explicitly requested for that existing preparation.
+## 8. Remove dependencies on preparation inputs
 
-### Check semantic coverage as well as file structure
+The generated folder must work when the original source files, workflow guide, and generator are unavailable.
+Treat this as a required output property.
 
-Compare the temporary extraction checklist with the generated records in both directions.
-Every material source requirement must have a destination or an explicit unresolved disposition.
-Every generated requirement or asserted decision must have supporting source material.
-Check that summaries preserve negation, optionality, units, conditions, and scope boundaries.
-Check that criterion identifiers are unique and that repeated references point to the same criterion.
-Do not require execution-stage design or evidence mappings before those stages are authorized.
+For every external input reference, determine whether its content is needed to continue the project.
+Transfer needed content into the correct generated record.
+Replace old paths and section references with internal relative links where appropriate.
 
-Check that operating instructions retain every core-required rule without contradicting the goal or constraints.
-Check Markdown structure and link targets, including heading anchors when used.
-Verify exact zero-byte size for intentionally empty files; whitespace and headings are not empty contents.
-Check for accidentally copied credentials, unsupported placeholders, and example values presented as real requirements.
+Do not leave statements such as:
 
-Check that:
+- "Read the workflow guide for approvals."
+- "Use the teaching method from source file 02."
+- "See the original configuration file for selected settings."
+- "Update the source progress file after each action."
 
-- Material requirements and exclusions are represented.
-- Preferences, examples, and optional ideas retain their meaning.
-- Applicable guide choices have supported reasons.
-- Unknowns and conflicts remain visible.
-- No architecture, technology, metric, budget, or deadline was invented.
-- No inactive pass was populated with preparation logs or speculative plans.
-- No approval, test result, model result, release, or completion claim was invented.
-- Current state matches actual preparation work.
+Instead, include the applicable rules, methods, configuration, and checkpoint instructions in their generated owners.
+Check for semantic dependencies as well as broken links.
+A plain-text instruction to consult a removed input is still a dependency.
 
-Record preparation checks where the core guide permits them.
-Do not create an extra evidence file outside its structure for convenience.
-Correct preparation mistakes within authorized scope before delivery.
-Report incomplete checks and unresolved decisions honestly.
+Do not satisfy independence merely by copying all source files into an extra folder.
+Integrate necessary information into the guide-defined records with one main owner per fact.
+Do not create competing copies of live instructions or current state.
 
-For preparation checks, record the method, expected condition, actual observation, status, and limitation in current state.
-Separate missing information from a failed structural check.
-State whether preparation is complete and awaiting review, or incomplete because a specific prerequisite remains unresolved.
-Do not use project position `complete` merely because record preparation succeeded.
+Preserve genuine external project resources when required by the project.
+For example, a selected model repository may remain a resource reference.
+It must not substitute for the selected configuration and project rules that belong in the generated records.
 
-## 11. Deliver and stop
+Perform an isolation review without moving or deleting the original files.
+Review only the generated records for the questions below:
 
-Report the actual project location, governing core guide, selected supporting guides, populated records, and empty records.
-Summarize preparation checks, limitations, unanswered questions, and next required human review.
-Show an actual generated tree when it helps review.
+1. Can a new AI identify the goal, exclusions, deliverables, and completion criteria?
+2. Can it recover all necessary methods, configuration, review requirements, and current state?
+3. Can it explain the approval sequence and exact record-update timing?
+4. Can it identify the next action and what permission remains pending?
+5. Can it follow every operating instruction without reading a preparation input?
 
-Distinguish generator completion from human review and project completion.
-Identify the few decisions that block the next authorized stage, with later questions listed separately where useful.
-Report missing or inaccessible source references and any partially populated records.
-State what the human should review: extracted scope, criteria, constraints, guide applicability, and ownership.
+Correct missing content before delivery.
+Report any unresolved essential dependency and do not claim that independence passed.
+
+## 9. Verify structure, coverage, and behavior
+
+Use the derived checklist and temporary coverage map.
+
+### Structural checks
+
+1. Confirm the actual root is inside the intended parent location.
+2. Confirm every required starting path exists.
+3. Confirm naming, pass identifiers, and folder depth match the guide.
+4. Confirm no unrequested example passes or supporting artifacts were created.
+5. Confirm all required empty records contain zero bytes.
+6. Confirm populated records contain their required fields and supported information.
+7. Resolve internal links and confirm their intended targets exist.
+8. Confirm the input files and pre-existing content remain unchanged.
+
+### Coverage and independence checks
+
+Account for every supplied file and every material requirement in the temporary map.
+Check exclusions, methods, review gates, configuration, prior state, and uncertainty explicitly.
+Check coverage in both directions: each material source statement needs a disposition; each generated requirement needs support.
+Check criterion identity, optionality, negation, units, conditions, and supported reasons for guide applicability.
+Confirm no stack, model, GPU, numerical target, deadline, or review owner was invented.
+Ensure preferences did not become mandatory requirements.
+Ensure reported progress did not become a newly verified result.
+Ensure copied navigation now points to generated owners.
+Check that no instruction requires an original source, guide, generator, or previous conversation.
+Confirm the isolation review passed.
+
+### Workflow behavior checks
+
+Review the generated instructions against these scenarios:
+
+| Scenario | Required behavior |
+| --- | --- |
+| Human requests a draft | Draft in conversation without Markdown updates. |
+| Human requests draft changes | Revise in conversation without saving an unapproved plan. |
+| Human approves the plan | Explain the next action and check. Request final execution approval. |
+| Human approves the first execution scope | Save one agreed plan checkpoint, then perform only that action and check. |
+| An action finishes successfully | Report the check result. Wait for the next action's execution approval. |
+| Work spans several dependent stages | Keep actions and checks distinct. Do not provide one unattended operation for the entire sequence. |
+| Routine discussion or checks occur | Keep them in conversation until a defined checkpoint. |
+| Failure or handover occurs | Save the relevant approvals, observations, partial effects, and next action. |
+| Technical checks pass but required human review is pending | Keep acceptance pending. |
+| Preparation inputs are unavailable | Continue using the generated instructions and project information. |
+
+These are document consistency checks. Do not execute project work to simulate them.
+Record actual preparation results in the guide-designated current-state record.
+For each preparation check, include its method, expected condition, actual observation, status, and limitation.
+Distinguish missing source information from a failed structural check.
+Do not claim application, model, infrastructure, or deployment verification from document checks.
+Use `waiting for review` after successful new-project preparation; preparation success is not project completion.
+Do not populate an inactive pass's verification record or add a permanent generator log.
+Fix preparation errors within the authorized scope before delivering.
+Never mark an incomplete check as passed.
+
+## 10. Deliver and stop
+
+Report:
+
+- The actual created folder location.
+- The guide version used.
+- The populated records and intentionally empty records.
+- Preparation, coverage, and independence check results.
+- Important unresolved questions or limitations.
+- The next human review action.
+
+Show the actual tree when useful, deriving it from the created files.
+State that the original preparation inputs are unnecessary only when the independence checks support that claim.
+Do not delete those inputs. Their removal is not part of preparation.
 
 Stop after preparation and verification.
-Do not continue into discovery, design, pass planning, implementation, model training, or deployment.
-Use the core workflow when the human later authorizes the next stage.
+Do not begin project planning or execution automatically.
+Future work follows the operating instructions inside the generated folder.
 
-## 12. Maintenance
+## 11. Maintenance
 
-Apply the core guide's plain-language writing rules.
-Keep process changes in the core, design changes in architecture guidance, and technical details in their responsible domain guides.
-Update this generator only for preparation procedure and source selection.
-When the core structure changes, derive the new output from that version rather than preserving an obsolete copied tree.
+Keep this generator reusable across software and AI projects and source-package sizes.
+Maintain alignment with the generalized version 3 procedure and the specialized core workflow.
+Keep design and quality content in their responsible guides; the generator owns extraction, preparation, and verification.
+Keep structure and workflow policy in the workflow guide.
+Change this file only to improve how that policy and the source information become verified records.
+Use the guide's writing rules without introducing an external writing dependency.
+Preserve older input versions unless the human explicitly requests their modification.

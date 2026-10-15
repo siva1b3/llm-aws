@@ -14,6 +14,24 @@ Avoid requiring every tool, test type, or document for every project.
 Convert "best practices" into explicit checks with an owner, expectation, and evidence.
 Do not claim compliance with a named standard without the required assessment.
 
+### Apply version 3 boundaries
+
+During preparation, transfer applicable quality requirements and review obligations into generated definitions and operating instructions.
+Preserve supplied evaluation methods, selected configuration, and evidence status without creating new test plans or running technical checks.
+Generated projects must retain necessary quality guidance without requiring this library later.
+
+Propose each action with a separate check, expected result, limits, and stopping point.
+Obtain plan approval before the next action's final execution approval under the core workflow.
+Save agreed expectations as `not run` at the plan checkpoint before execution.
+Keep the action procedure and checking procedure distinct; use separate executable artifacts when applicable.
+Do not create an unattended sequence that crosses an action approval or human review boundary.
+After the action and check, report actual results and obtain execution approval before the next action.
+
+Keep routine results in conversation until a defined checkpoint.
+Save failures, blockers, material unexpected results, and partial effects promptly under the core's failure rules.
+Save accumulated quality evidence and approvals at plan, pass, session, and other required checkpoints.
+Human acceptance and required learner confirmation remain separate from passing technical checks.
+
 ## 2. Quality throughout the workflow
 
 | Stage | Quality responsibility |
@@ -26,6 +44,8 @@ Do not claim compliance with a named standard without the required assessment.
 | Decide | Assess evidence and unresolved defects before acceptance or release. |
 
 Plan expectations before implementation where possible.
+These stages describe engineering responsibilities within the core's conversation, approval, action, check, and checkpoint sequence.
+Draft expectations in conversation; persist agreed plans only when the core permits the plan checkpoint.
 Do not design tests solely to match the implementation after seeing its behavior.
 Use existing repository tools and conventions unless an approved change has a clear reason.
 
@@ -311,7 +331,8 @@ An AI's confidence is not evidence that its code works.
 
 Verify that referenced packages, APIs, configuration options, and commands actually exist in the selected versions.
 Review generated tests for shared assumptions with the generated implementation.
-Resolve material review comments against the updated output and rerun affected checks.
+Propose corrections for material review comments and identify affected checks.
+Perform corrections and reruns only within applicable execution approval; obtain revised authority when their scope changes.
 Record reviewer identity and scope. Distinguish author self-review from an independent review when independence is required.
 
 ## 12. Release readiness

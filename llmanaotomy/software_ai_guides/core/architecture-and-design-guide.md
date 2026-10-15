@@ -10,6 +10,22 @@ This guide owns design content and review expectations. It does not authorize wo
 Apply relevant sections throughout development, deployment, and maintenance.
 Do not produce large design documents solely to satisfy a template.
 
+### Apply version 3 boundaries
+
+During preparation, transfer applicable design obligations and supplied design facts into the generated definitions.
+Do not draft new HLDs, LLDs, or design passes during record preparation.
+Generated projects must retain necessary design guidance without requiring this library later.
+
+Discuss proposed plan revisions and proportionate design explanations in conversation until the core's plan checkpoint.
+Producing a design artifact or investigating an uncertain design is an action with its own approval and separate check.
+Identify the design output, review method, expected result, limits, and stopping point before execution.
+Keep design creation and verification distinct, including their executable artifacts when applicable.
+Report the result and obtain execution approval before dependent implementation or the next design action.
+Required human design review remains pending until the reviewer actually completes it.
+
+Save management records at the core's checkpoints; keep routine observations in conversation between checkpoints.
+Update design deliverables within their approved action scope and identify the reviewed version.
+
 ## 2. HLD and LLD
 
 | Design level | Main question | Typical contents |
@@ -18,7 +34,7 @@ Do not produce large design documents solely to satisfy a template.
 | LLD | How will the affected components behave and interact? | Interfaces, data structures, schemas, algorithms, state transitions, errors, concurrency, and testable contracts. |
 
 HLD and LLD are connected views, not mandatory separate files for every change.
-A small change can use a design section in its pass plan.
+A small change can use a design section saved with its agreed plan at the plan checkpoint.
 Substantial designs should use agreed repository documentation locations, linked from the plan.
 Preserve decisions that affect later work in the core workflow's decision log.
 
@@ -291,8 +307,10 @@ The core workflow determines whether unresolved items block execution or permit 
 ## 11. Keep design current
 
 Check design impact when requirements, code, data, interfaces, models, or infrastructure change.
-Update affected design descriptions before later work relies on them.
-Obtain revised execution approval when design changes alter approved actions or checks.
+Stop dependent work when a design change invalidates the agreed plan.
+Discuss a revised plan, obtain plan approval, and obtain execution approval for its next action and separate check.
+Save the approved revision at a plan checkpoint before changed execution.
+Update affected design deliverables within that scope before later work relies on them.
 Do not rewrite design history to hide a failed assumption.
 
 At handover, link the implemented architecture, important decisions, interface contracts, and operational limitations.
@@ -311,7 +329,8 @@ Treat retention and deletion requirements as inputs to retirement design, not as
 ## 12. Compact design outline
 
 Use this outline when useful. Omit irrelevant sections with a reason where the omission affects review.
-Do not populate reserved pass records with this outline before planning approval.
+Keep reserved pass records empty until plan approval and final execution approval permit the core's plan checkpoint.
+Keep unapproved outlines in conversation; creating a separate design deliverable requires its named action's execution approval.
 
 ```markdown
 # Design: <change or system>
