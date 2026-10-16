@@ -4,7 +4,7 @@ Updated: 2026-10-16. Direction confirmed by the learner. This is the full workfl
 
 ## Checkpoint — 2026-10-16
 
-Step 1 is complete: pass-001 closed after environment verification. Pass-002 is reserved for step 2; its plan and execution approval remain pending. See [current state](../status/current-state.md) for the live position.
+Steps 1 and 2 are complete: pass-001 and pass-002 closed successfully after their separate checks. Step 3 (model assets) has a reserved [pass-003 r01 plan](pass-003/plan.md), prepared at the learner's request; plan agreement and execution approval remain pending. See [current state](../status/current-state.md) for the live position.
 
 ## Starting point and destination
 
@@ -28,11 +28,11 @@ Step 1 is complete: pass-001 closed after environment verification. Pass-002 is 
 
 ## How we move through it
 
-- Work in order. Each step may require several small actions or passes; pass-001 is closed and pass-002 is reserved for step 2.
+- Work in order. Each step may require several small actions or passes; pass-001 and pass-002 are closed; step 3 is next for planning.
 - Agree on the immediate pass plan, then approve each action and its separate check. Report the result before the next action. Close the current pass before opening another.
 - During learning: observe → explain → inspect deeper if needed → verify → learner confirms. Code success alone never permits opening the next operation.
 - Discover the detailed operation sequence from the real model when step 6 is reached; this roadmap does not preteach its architecture.
 - Preserve the working baseline. Keep observations distinct from examples and expectations. Record actual versions and evidence as work occurs.
 - CPU execution, one full forward pass per baseline invocation, and one decoded token remain the scope. Repeated generation, training, and production serving are deferred.
 
-Selected settings, display contracts, and teaching rules remain in [constraints](../definition/constraints.md). Live progress belongs only in [current state](../status/current-state.md); immediate work belongs in the [pass plan](pass-001/plan.md).
+Selected settings, display contracts, and teaching rules remain in [constraints](../definition/constraints.md). Live progress belongs only in [current state](../status/current-state.md); immediate work belongs in the [latest closed pass plan](pass-002/plan.md).
