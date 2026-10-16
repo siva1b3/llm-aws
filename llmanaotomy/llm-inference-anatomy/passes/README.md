@@ -1,7 +1,7 @@
 # Pass records and lifecycle
 
 Read [operating instructions](../AGENTS.md) and [current state](../status/current-state.md).
-Pass-001 and pass-002 are closed successfully. No pass is active. Pass-003 is reserved for model assets. Its proposed [r02 plan](pass-003/plan.md), saved at the learner's request, makes teacher/learner roles explicit. The [r01 proposal](pass-003/plan-r01.md) is preserved; the three supporting placeholders remain empty. No execution is approved. See [pass-002 closure](pass-002/plan.md) and [current state](../status/current-state.md). Reservation is not activation.
+Pass-001 and pass-002 are closed successfully. No pass is active. Pass-003 is reserved for model assets. Its proposed [plan](pass-003/plan.md), saved at the learner's request, organizes the work around learning questions using the roadmap table columns. Only the current plan is retained; the three supporting placeholders remain empty. No execution is approved. See [pass-002 closure](pass-002/plan.md) and [current state](../status/current-state.md). Reservation is not activation.
 The plan may be saved before execution when explicitly requested by the learner. Other reserved records stay empty until needed at an approved checkpoint.
 Use [planned roadmap](planned_roadmap.md) for the overall sequence; keep each pass plan limited to its own work.
 Keep one pass open, including while blocked or paused. Close or defer it by agreement before opening another.
