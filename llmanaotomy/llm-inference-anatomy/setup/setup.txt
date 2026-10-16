@@ -1,0 +1,12 @@
+
+
+nano setup.sh
+
+chmod +x setup.sh
+./setup.sh
+
+
+
+ssh -i "C:\Users\siva1\Downloads\main.pem" ubuntu@3.87.254.96
+
+
