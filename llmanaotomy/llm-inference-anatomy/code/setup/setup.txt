@@ -4,3 +4,9 @@ nano setup.sh
 
 chmod +x setup.sh
 ./setup.sh
+
+
+
+ssh -i "C:\Users\siva1\Downloads\main.pem" ubuntu@54.145.247.140
+
+
