@@ -15,3 +15,17 @@ Assistant owns execution and checks. Explain exact commands and obtain approval 
 No dependency installation, system changes, downloads, inference, or external resource changes are included. If prerequisites are missing, stop and agree on recovery.
 
 Overall workflow: [roadmap](../planned_roadmap.md).
+
+## 2026-10-16 — r04 scope and failure checkpoint
+
+The learner narrowed inspection to Python version, reported environment support and no existing environment, and explicitly skipped repository-change inspection. Python 3.12.3 was observed using `python3 --version`.
+
+The learner then instructed: “we have a code folder use it to create the env , care ful we have git so we need proper gitignore files”. This authorized creation under code with Git exclusions. The assistant announced code/.venv, creation, and separate Git/Python/pip checks before execution. No separate r04 plan-approval exchange or pre-execution checkpoint occurred; this is a process deviation, not a claim that those gates were completed.
+
+Pass is now open and blocked. Creation was attempted with `python3 -m venv code/.venv` and failed because ensurepip is unavailable. code/.gitignore was created; code/.venv is partial. No installation or recovery is authorized or performed. Preserve r03 above as history.
+
+Next proposed action: obtain authority to install the missing system venv support, with a separate availability check, before any retry. System package installation and environment retry require separately described approval.
+
+## Later recovery attempt — 2026-10-16
+
+Learner requested numbered scripts for later execution, then authorized running both: “now run them”. Installation script ran but apt aborted at its confirmation prompt in the noninteractive invocation. The separate check was not run. Stop before retry; proposed recovery is an interactive invocation of the unchanged installation script, answering apt's confirmation, followed by the separate check if installation succeeds. apt also proposes upgrading five related Python packages; disclose this effect in the recovery request.
