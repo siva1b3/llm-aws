@@ -2,7 +2,8 @@
 
 Read [operating instructions](../AGENTS.md) and [current state](../status/current-state.md).
 Only pass-001 is reserved. Reservation is not activation.
-All four reserved records stay zero bytes until the first approved execution checkpoint.
+The plan may be saved before execution when explicitly requested by the learner. Other reserved records stay empty until needed at an approved checkpoint.
+Use [planned roadmap](planned_roadmap.md) for the overall sequence; keep each pass plan limited to its own work.
 Keep one pass open, including while blocked or paused. Close or defer it by agreement before opening another.
 Use sequential identifiers and never reuse one for different work.
 Keep records and optional supporting artifacts directly inside each pass; no nested folders.

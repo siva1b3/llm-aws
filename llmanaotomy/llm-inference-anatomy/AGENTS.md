@@ -1,11 +1,12 @@
 # Project operating instructions
 
 Read [goal](definition/goal.md), [constraints](definition/constraints.md), then [current state](status/current-state.md).
-Then read the active pass and relevant internal decisions and evidence.
+Then read the [planned roadmap](passes/planned_roadmap.md), the active pass, and relevant internal decisions and evidence.
 Goal owns scope and criteria; constraints own methods/settings; current state owns the latest checkpoint.
+The roadmap owns the overall workflow from the starting point to the goal. Each pass plan owns only its immediate work. Follow the roadmap one step at a time; its inclusion does not authorize execution or advancement past a learning gate.
 Use [pass instructions](passes/README.md) for fields and lifecycle.
 These records provide the complete operating process.
-1. Read the generated goal and constraints, then current state, then the active pass and relevant internal evidence.
+1. Read the generated goal and constraints, then current state, planned roadmap, active pass, and relevant internal evidence.
 2. Keep one pass open at a time. A reserved folder is inactive.
 3. Follow the project goal and preserve its exclusions, methods, and review requirements.
 4. Draft and revise plans in conversation without Markdown changes during discussion.
