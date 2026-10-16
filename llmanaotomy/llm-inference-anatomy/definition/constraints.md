@@ -3,25 +3,26 @@
 ## Current responsibility and authority
 
 The human in this chat is learner, review owner, plan/execution approval owner, and final acceptance owner.
-Codex is records preparer/verifier now; later authorized roles include teacher, technical guide, implementer, and checker.
-The human operates remote commands when Codex lacks access and supplies actual output; the learner need not write code manually.
-The available Windows PowerShell workspace is C:\main\llm-aws\llmanaotomy, operated by Codex tools for local record preparation and checks.
-The human controls access. Local access establishes no EC2 access, model installation, or inference capability.
-The selected AWS system is a future execution requirement, not an active participant or verified resource.
-Before remote work, establish its actual identity, operator, access boundary, and expected outcome.
-
-Current authorization covers creating and verifying these records and the requested reference roadmap. Project execution remains unapproved.
-Review goal, constraints, roles, and starting position before project planning.
+Codex is teacher first, supported by technical guide, implementer, verifier, and record keeper roles.
+Every action has an explicit learning outcome. Technical success does not replace learner understanding confirmation.
+Implementation requires the named action's execution approval.
+The human operates commands when Codex lacks access and supplies actual output.
+Current workspace: `/home/ubuntu/llm-aws/llmanaotomy/llm-inference-anatomy`, operated through Codex CLI tools.
+The human identifies this accessible environment as EC2. Ubuntu and Python are observed; AWS identity and specifications remain unverified.
+The former Windows workspace reference is superseded for current work.
+Pass-002 r02 is agreed and recorded at the human's request. All action execution approvals remain pending.
+No new installation or inference is authorized.
+Starting agreement was confirmed by the human as A1 done. The one-forward-pass scope remains unchanged.
 Plan approval, execution approval, technical verification, acceptance, and permission to advance are separate.
 Explicit learner understanding confirmation is required before opening the next box.
 No deadline, monetary budget, additional contributor, or remote-access identity has been established.
 
 ## Focused review questions
 
-- Do the objective, selected configuration, and one-pass boundary match the learner's intent?
-- Are the human and agent responsibilities correct?
-- Before execution: does EC2 exist, is it reachable, who operates it, and does code already exist?
-- Runtime versions, model revision, asset paths, dtype, cache flags, and baseline command remain unobserved.
+- Starting agreement confirmed; revisit only if the human changes scope.
+- Current roles are defined above; new execution roles require action-specific agreement.
+- EC2 is human-identified and CLI access works; AWS instance specifications and any existing application code remain unverified.
+- Virtual environment packages, model revision, asset paths, dtype, cache flags, and baseline command still need verification.
 - FP32 is a preference; expected model dimensions require verification.
 
 ## 1. Primary role: teacher, not merely coder
@@ -348,14 +349,15 @@ This is an **overview of resource categories**, not a claim to know every intern
 
 | Field | Current value |
 | --- | --- |
-| EC2 created / reachable | **Not verified** |
-| Ubuntu release (`/etc/os-release`) | Not inspected |
-| Python executable/version | Not inspected |
-| Installed PyTorch version | Not installed/verified in current runtime records |
-| Installed Transformers version | Not installed/verified in current runtime records |
+| EC2 created / reachable | Human identifies current accessible CLI as EC2; AWS metadata not checked |
+| Ubuntu release (`/etc/os-release`) | Observed Ubuntu 24.04.4 LTS |
+| Python executable/version | Observed .venv/bin/python, Python 3.12.3; system /usr/bin/python3 also 3.12.3 |
+| Installed PyTorch version | Absent from system Python at inspection; .venv not checked |
+| Installed Transformers version | Absent from system Python at inspection; .venv not checked |
 | Model revision/commit | Not downloaded/verified |
 | Model/tokenizer local cache path | Not observed |
 | Real parameter dtype/device | Not observed |
+| Virtual environment / pip | Project .venv verified isolated; pip 24.0 works |
 | First baseline command | Not created |
 | First baseline result | Not run |
 

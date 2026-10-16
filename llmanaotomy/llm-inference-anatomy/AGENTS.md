@@ -16,15 +16,20 @@ Requirements belong in [goal](definition/goal.md) and [constraints](definition/c
 | decisions/decision-log.md | Qualified significant prior choices; populated, historical. |
 | history/project-history.md | Reported prior state and record checks; populated, historical. |
 | passes/project_flow.md | Human-requested reference roadmap: small steps, parties, outcomes, and learning gates; populated. |
-| passes/pass-001/plan.md | Reserved; zero bytes until first approved execution checkpoint. |
-| passes/pass-001/verification.md | Reserved; zero bytes until activation permits expected checks. |
-| passes/pass-001/findings.md | Reserved; zero bytes until supported findings exist in an active pass. |
-| passes/pass-001/evidence.md | Reserved; zero bytes until an active pass needs an index. |
-| passes/pass-001/history.md | Reserved; zero bytes until supported pass history exists. |
+| passes/pass-001/plan.md | Closed successful venv setup pass; final narrowed scope and authority. |
+| passes/pass-001/verification.md | Completed checks, limitations, acceptance, and closure. |
+| passes/pass-001/findings.md | Empty; no additional findings needed. |
+| passes/pass-001/evidence.md | Empty; evidence fits verification.md. |
+| passes/pass-002/plan.md | Agreed r02 teaching plan; all action execution approvals pending. |
+| passes/pass-002/verification.md | Expected checks, all not run; learner confirmations pending. |
+| passes/pass-002/history.md | Plan-recording checkpoint at human request. |
+| passes/pass-002/findings.md, evidence.md | Empty until observations or an evidence index are needed. |
+| passes/pass-001/history.md | Closure checkpoint and authority sequence. |
 | reports/final-report.md | Zero bytes until completion or agreed early closure. |
 
 Reserve only pass-001 initially. File existence grants no authority or permission to populate it.
-Active pass and last closed pass are initially none. Human review precedes planning and execution.
+Current routing: active pass pass-002, r02, waiting for A1 execution approval; last closed pass pass-001.
+Pass-002 records were saved before execution at explicit human request. Human approval precedes each execution.
 
 ## Reading routes
 
@@ -33,7 +38,7 @@ Active pass and last closed pass are initially none. Human review precedes plann
 | Current state | Only [current state](status/current-state.md) for task information. |
 | Next actions | Only [next actions](status/next-actions.md) for task information. |
 | Overall journey toward the goal | [Project flow](passes/project_flow.md), a reference roadmap with roles and outcomes. |
-| Current pass plan | Active pass plan identified by current routing; none initially. |
+| Current pass plan | [Pass-002 r02](passes/pass-002/plan.md), subject to current-state routing. |
 | Begin/resume execution | These instructions, goal, constraints, current state, next actions, active plan, and relevant current evidence. |
 | Historical explanation/comparison | Only explicitly requested historical scope and necessary current context. |
 

@@ -1,21 +1,18 @@
 # Next actions
 
-Updated: 2026-10-16 16:57:05 Asia/Calcutta (UTC+05:30)
-Pass / revision: none / none; pass-001 reserved and inactive.
-Intended outcome: reviewed goal, constraints, roles, and starting position for the one-forward-pass learning project.
+Updated: 2026-10-16 17:41:42 Asia/Calcutta (UTC+05:30)
+Pass / revision: pass-002 / r02; open, waiting for A1 execution approval.
+Intended outcome: understand virtual-environment isolation and identify which Python/pip belong to this project.
 
 Role legend:
-- H: human in this chat, learner and review/approval/acceptance owner; confirms or corrects intent and learning boundaries.
-- C: Codex, record preparer/verifier; explains and updates records within preparation scope, without project execution authority.
-- W: local Windows PowerShell workspace C:\main\llm-aws\llmanaotomy, operated by C through tools under human-controlled access; stores records and supports checks; no established EC2 access.
+- H: human in this chat, learner and approval/acceptance owner; inspects evidence and explicitly confirms understanding.
+- C: Codex, teacher first, technical guide, implementer, verifier, and record keeper; teaches one concept at a time within approved execution scope.
+- E: current Ubuntu CLI workspace `/home/ubuntu/llm-aws/llmanaotomy/llm-inference-anatomy`, identified by H as EC2; operated through C tools; hosts runtime and records. AWS specifications remain unverified.
 
-| Order / action | Outcome and brief work | Party-to-role assignments | Check and expected result | Prerequisite / authority |
+| Order / action | Outcome and brief work | Assignments | Check and expected result | Prerequisite / authority |
 | --- | --- | --- | --- | --- |
-| 1 / R1 | Review goal, constraints, roles, and starting position; confirm or correct the record. | H reviews/decides; C explains and records corrections; W hosts records. | H confirms one-pass scope and role boundaries; C verifies consistency after corrections. | Records available; human review pending. No approved pass plan or execution action. |
+| 1 / A1 | Learn isolation by inspecting project and system Python/pip paths | H learns/confirms; C teaches/inspects/checks; E runs authorized inspection | V1: locations verified; H explains project interpreter selection | Plan r02 agreed; execution approval pending; no recreation or installation |
+| 2 / A2–A5 | Continue the agreed runtime lessons, one action at a time | H approves/learns/accepts; C teaches/prepares/checks/records; E hosts runtime | Separate technical and learning checks in [plan](../passes/pass-002/plan.md) | Previous action checked and learner-confirmed; each execution approval pending |
 
-Starting position: no independently verified implementation, runtime baseline, or learner-confirmed operation.
-Selected EC2 environment and model remain unverified; this local workspace is the only established working environment.
-Execution-environment existence/access and existing code remain questions for later agreed work.
-This review does not itself authorize provisioning, downloads, code implementation, inference, or advancing a learning box.
-
-Reference available: passes/project_flow.md maps 27 small steps, roles, outcomes, and review gates. Creating this roadmap does not confirm the goal review or authorize execution.
+Verified prerequisite: .venv Python 3.12.3 and pip 24.0. Package availability inside .venv remains unchecked.
+Stop after each learning action. No model download, model loading, or inference is in this pass.
