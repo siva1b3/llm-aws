@@ -2,16 +2,11 @@
 
 Updated: 2026-10-16 (Asia/Calcutta).
 
-- **Position:** blocked. Pass-001 is open following an attempted environment creation.
-- **Environment:** learner previously confirmed EC2. `python3 --version` returned Python 3.12.3.
-- **Actual effects:** code/.gitignore excludes .venv and Python bytecode. code/.venv exists partially; creation failed because ensurepip is unavailable. Git exclusion of its Python path was verified. A complete environment, pip, and isolation remain unverified.
-- **Authority:** learner authorized creation in code with Git exclusions and explicitly skipped repository-change inspection. No system package installation or recovery is authorized. The missing separate plan gate and pre-execution checkpoint are disclosed in the pass plan.
-- **Learning:** no verified baseline inference or confirmed internal operation. G1–G6 remain outstanding.
-- **Next action:** propose installing missing Python venv support and its separate check; obtain execution approval before installation. Do not retry creation blindly or overwrite unrelated files.
-- **Operations:** no ongoing operation from the completed creation command.
+- **Position:** waiting for approval. No active pass. Pass-001 is closed successfully; pass-002 is reserved and inactive.
+- **Environment:** learner-confirmed EC2 repository. code/.venv is complete and verified: Python 3.12.3, pip 24.0, isolated from system and user packages. Git ignores it and no environment files are tracked.
+- **Progress:** environment setup is complete. No verified model inference or learner-confirmed internal operation; G1–G6 remain outstanding. Project dependency readiness has not been checked.
+- **Authority:** latest request authorized checking the environment, updating records, and creating pass-002 placeholders. It does not authorize dependency installation or next-pass execution.
+- **Next action:** discuss and agree on the pass-002 CPU dependency setup plan in conversation, then obtain separate execution approval for its first action/check.
+- **Operations and limits:** no assistant-started operation remains running. apt previously reported deferred restarts for networkd-dispatcher and unattended-upgrades; no manual restarts were performed. Environment creation operator/command is not independently established; the final artifact passed verification.
 
-[Plan and failure checkpoint](../passes/pass-001/plan.md) · [Verification](../passes/pass-001/verification.md) · [Roadmap](../passes/planned_roadmap.md)
-
-## Latest checkpoint — installation attempt
-
-The learner authorized running the prepared installation/check scripts. Installation aborted at apt's confirmation prompt because no interactive input was available; exit 1. No packages were reported installed. The check script was not run. No operation remains running. Pass remains blocked; partial code/.venv remains unchanged. Next action: request approval to retry the installation interactively (three new packages and five related Python upgrades), then run the separate check on success. See pass verification for actual apt output summary.
+[Pass-001 closure and approvals](../passes/pass-001/plan.md) · [Verification](../passes/pass-001/verification.md) · [Evidence](../passes/pass-001/evidence.md) · [Roadmap](../passes/planned_roadmap.md)

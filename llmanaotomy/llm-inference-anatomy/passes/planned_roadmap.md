@@ -2,6 +2,10 @@
 
 Updated: 2026-10-16. Direction confirmed by the learner. This is the full workflow; individual pass plans contain only their immediate work. Execution approval remains separate.
 
+## Checkpoint — 2026-10-16
+
+Step 1 is complete: pass-001 closed after environment verification. Pass-002 is reserved for step 2; its plan and execution approval remain pending. See [current state](../status/current-state.md) for the live position.
+
 ## Starting point and destination
 
 **Starting point:** the learner confirms that the agent is running in this repository on EC2. Python, dependencies, and model assets remain unverified. No baseline inference or internal operation has been verified or learner-confirmed.
@@ -24,7 +28,7 @@ Updated: 2026-10-16. Direction confirmed by the learner. This is the full workfl
 
 ## How we move through it
 
-- Work in order. Each step may require several small actions or passes; only pass-001 is assigned now.
+- Work in order. Each step may require several small actions or passes; pass-001 is closed and pass-002 is reserved for step 2.
 - Agree on the immediate pass plan, then approve each action and its separate check. Report the result before the next action. Close the current pass before opening another.
 - During learning: observe → explain → inspect deeper if needed → verify → learner confirms. Code success alone never permits opening the next operation.
 - Discover the detailed operation sequence from the real model when step 6 is reached; this roadmap does not preteach its architecture.
