@@ -40,7 +40,6 @@ hash -r
 echo "[INFO] Installed versions:"
 git --version
 gh --version | head -n 1
-codex --version
 
 # 4. Authenticate GitHub using PAT
 echo "[INFO] Authenticating GitHub..."
@@ -87,4 +86,4 @@ echo "[INFO] Working directory: $(pwd)"
 # 7. Launch Codex
 echo "[INFO] Launching Codex..."
 
-exec codex
+codex --version
