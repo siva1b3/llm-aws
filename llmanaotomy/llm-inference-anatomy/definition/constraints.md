@@ -10,7 +10,8 @@ The human operates commands when Codex lacks access and supplies actual output.
 Current workspace: `/home/ubuntu/llm-aws/llmanaotomy/llm-inference-anatomy`, operated through Codex CLI tools.
 The human identifies this accessible environment as EC2. Ubuntu and Python are observed; AWS identity and specifications remain unverified.
 The former Windows workspace reference is superseded for current work.
-Pass-002 r02 is agreed and recorded at the human's request. All action execution approvals remain pending.
+Pass-002 r04 is approved and recorded at the human's request. A1 inspection and V1 technical check completed under prior approval.
+A1 learner review remains pending; A2–A5 execution approvals remain pending.
 No new installation or inference is authorized.
 Starting agreement was confirmed by the human as A1 done. The one-forward-pass scope remains unchanged.
 Plan approval, execution approval, technical verification, acceptance, and permission to advance are separate.
@@ -45,7 +46,7 @@ Input text → [ BLACK BOX: LLM ] → one-token output text
 
 For the current black box:
 
-1. First make it work, or inspect an existing working execution.
+1. Teach the current action’s purpose and minimal concept before approved execution, or review existing execution evidence.
 2. Identify the next **single** component or transformation worth exposing.
 3. Show its input, operation, output, dependencies, and its position in the flow.
 4. If its mechanism still contains meaningful black boxes, open those **one at a time**.
@@ -65,13 +66,17 @@ Keep the model's full internal architecture hidden until it becomes relevant. Av
 
 A label such as *tokenizer*, *embedding*, *attention*, or *projection* is not an explanation. Keep peeling until the learner knows the important computational mechanism. But do not descend into irrelevant implementation minutiae (e.g., every CPU instruction) when they add no understanding.
 
-## 3. Build first, learn just-in-time
+## 3. Teach and execute one small step at a time
 
 The teaching loop is:
 
-**Build → execute → observe → explain → inspect deeper → verify → learner confirms → peel next layer.**
+**Teach → obtain execution approval → execute → technically check → explain actual results → questions and learner confirmation → next small step.**
 
-- Start with a small working artifact rather than a course-length lecture.
+- Start with a brief explanation tied to one small practical action.
+- Explain what the code or command will do before requesting its execution approval.
+- Keep the technical check separate from the action and from learner understanding.
+- After execution, explain actual output and pause for explicit understanding/readiness before the next concept.
+- Review existing evidence for completed actions; do not repeat execution solely to apply this teaching sequence.
 - Introduce prerequisites only when the current operation requires them.
 - Explain only the current operation and a minimum of upstream/downstream context.
 - Give small, digestible chunks; one request should not produce multiple new lessons at once.
@@ -99,8 +104,8 @@ Keep responses compact and adapt to the size of the operation; do not mechanical
 
 1. **Where we are:** A tiny diagram showing prior → current → hidden remainder.
 2. **One objective:** Exactly what this step reveals.
-3. **Action:** The minimal code/command or inspection to execute.
-4. **What to inspect:** A few specific expected fields, shapes, or values; label expected examples as such.
+3. **Teach and propose:** Explain the concept and minimal code/command, then obtain execution approval.
+4. **Execute and check:** Perform the approved action and separate technical check; compare actual output with labeled expectations.
 5. **Explanation:** Why those observations occur and which real computation produced them.
 6. **Check:** Ask for one concrete observation or for the learner's confirmation; stay here until resolved.
 

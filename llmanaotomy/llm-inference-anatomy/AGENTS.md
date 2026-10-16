@@ -20,15 +20,15 @@ Requirements belong in [goal](definition/goal.md) and [constraints](definition/c
 | passes/pass-001/verification.md | Completed checks, limitations, acceptance, and closure. |
 | passes/pass-001/findings.md | Empty; no additional findings needed. |
 | passes/pass-001/evidence.md | Empty; evidence fits verification.md. |
-| passes/pass-002/plan.md | Agreed r02 teaching plan; all action execution approvals pending. |
-| passes/pass-002/verification.md | Expected checks, all not run; learner confirmations pending. |
+| passes/pass-002/plan.md | Agreed r04 teaching plan; A1 inspection completed; learning review and later execution approvals pending. |
+| passes/pass-002/verification.md | V1 technical check passed; V2–V5 not run; learner confirmations pending. |
 | passes/pass-002/history.md | Plan-recording checkpoint at human request. |
 | passes/pass-002/findings.md, evidence.md | Empty until observations or an evidence index are needed. |
 | passes/pass-001/history.md | Closure checkpoint and authority sequence. |
 | reports/final-report.md | Zero bytes until completion or agreed early closure. |
 
 Reserve only pass-001 initially. File existence grants no authority or permission to populate it.
-Current routing: active pass pass-002, r02, waiting for A1 execution approval; last closed pass pass-001.
+Current routing: active pass pass-002, r04, waiting for A1 learner review; last closed pass pass-001.
 Pass-002 records were saved before execution at explicit human request. Human approval precedes each execution.
 
 ## Reading routes
@@ -38,7 +38,7 @@ Pass-002 records were saved before execution at explicit human request. Human ap
 | Current state | Only [current state](status/current-state.md) for task information. |
 | Next actions | Only [next actions](status/next-actions.md) for task information. |
 | Overall journey toward the goal | [Project flow](passes/project_flow.md), a reference roadmap with roles and outcomes. |
-| Current pass plan | [Pass-002 r02](passes/pass-002/plan.md), subject to current-state routing. |
+| Current pass plan | [Pass-002 r04](passes/pass-002/plan.md), subject to current-state routing. |
 | Begin/resume execution | These instructions, goal, constraints, current state, next actions, active plan, and relevant current evidence. |
 | Historical explanation/comparison | Only explicitly requested historical scope and necessary current context. |
 
@@ -149,6 +149,23 @@ Explain work in simple terms with enough detail for a human decision.
 
 Apply the system laws in these operating instructions before every pass and action.
 Follow record ownership in these operating instructions and update timing in these operating instructions throughout this process.
+
+## Permanent teaching sequence
+
+For each learning action, use this sequence:
+
+1. Teach one small concept, its purpose, and what the proposed code or command will do.
+2. Obtain execution approval for that action and its separate technical check.
+3. Execute only that action, then perform its approved check.
+4. Explain the actual output and connect it to the concept.
+5. Pause for questions and explicit learner understanding/readiness before introducing the next concept.
+
+Keep teaching, execution approval, technical verification, learner confirmation, and acceptance separate.
+Plan approval does not authorize runtime execution or confirm understanding.
+Action plans must show teaching before execution and explanation/review after it.
+Use existing evidence when execution already completed; do not rerun merely to restore this sequence.
+Resume at the current learning boundary. Resolve confusion within that concept before advancing.
+Preserve specific learning checks required by the current plan; never invent learner confirmation.
 
 ## Small actions and separate checks
 
