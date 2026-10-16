@@ -1,5 +1,36 @@
 # Pass-001 — Check environment readiness
 
+## Current revision r02 — 2026-10-16 (Asia/Calcutta)
+
+This revision supersedes r01's starting assumptions and next action. The original revision and its approval are preserved below.
+
+- State: reserved and inactive. No remote project execution has started.
+- Authority: the human supplied the changed setup and explicitly requested an update to the state and pass-001 plan. This authorizes saving this route and checking the documentation; it does not authorize project execution.
+- Outcome: establish the minimum local facts needed to choose the next setup step, using Codex CLI directly on the supplied EC2. Infrastructure discovery stays small.
+- Scope: read-only readiness discovery supporting [G1–G6](../../definition/goal.md), without satisfying those learning criteria. [Constraints](../../definition/constraints.md) retain ownership of selected settings and teaching gates.
+- Inputs: the human reports a running Ubuntu EC2 (`t3.latge`, understood as `t3.large` pending verification), Codex CLI installed, and the Git repository containing `llm-inference-anatomy`. They report no project environment, project dependencies, or model assets. These are reported facts, not runtime evidence.
+- Target: the future Codex CLI session on that EC2. Exact instance identity, OS release, repository path, branch, existing changes, Python, packages, and capacity remain uninspected. This documentation session is in Windows and has not connected to EC2.
+
+| Action | Purpose and output | Inputs and dependency | Separate check and expected result | Status | Execution authority |
+| --- | --- | --- | --- | --- | --- |
+| A2 — Check the local starting point | Inspect local identity/OS, CPU, memory, disk, Python, relevant packages, repository path, branch, and existing changes through bounded read-only commands. Produce a short readiness summary. | Human opens Codex CLI in the EC2 repository. Explain exact target, commands, and limits before execution approval. The earlier A1 question is superseded by the human's supplied information; no execution of A1/V1 is claimed. | V2 — Separately compare observations with selected requirements. Report ready, missing, and unknown items and one recommended next action. Expected: enough evidence to propose the smallest setup step. | not started | pending |
+
+V2 is not run. Assistant owns the instructions, comparison, evidence, and checkpoint. The human supplies the EC2 session. No contributors are added. Retain exact commands, relevant output, environment context, and limitations after authorized execution.
+
+Design note: inspect existing local state, then compare it separately with requirements. No model operation is opened. Main risk: checking the wrong machine or checkout. Trigger: unclear target; consequence: misleading evidence; mitigation: establish local identity and repository first and stop on uncertainty. Owner: assistant.
+
+Limits: no provisioning, AWS configuration changes, environment creation, installation, model download, inference, commit, push, or release. Preserve existing files and configuration. Do not collect credentials. No paid resource creation, spending commitment, or instance lifecycle action is authorized. Future download/compute limits remain to be agreed when applicable.
+
+Stop after A2/V2 and report before the next action. If access fails, the target is unclear, or observations conflict with requirements, stop and propose the smallest recovery. No automatic retry or repair is approved.
+
+2026-10-16 approval record: the human reported the setup, said future work would happen directly in the AWS EC2 CLI, and asked to “update the state , plan-001”. This authorizes this documentation checkpoint. Remote execution approval remains pending. The other three pass records remain empty and the learning boundary is unchanged.
+
+Next action: from the future EC2 Codex CLI session, explain A2/V2 and request their execution approval. Save applicable approval and activate the pass before execution.
+
+## Preserved historical revision r01
+
+The following record retains the earlier plan and its approval. Its starting assumptions and next-action directions are superseded by r02 above.
+
 - Revision: r01.
 - Saved: 2026-10-15 (Asia/Calcutta), at the human's explicit session-handover request.
 - State: reserved and inactive. Execution is deferred until a later session.

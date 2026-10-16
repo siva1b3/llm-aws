@@ -1,5 +1,21 @@
 # Current state
 
+## Latest checkpoint — 2026-10-16 (Asia/Calcutta)
+
+This checkpoint supersedes the older starting-state and next-action statements below. The earlier checkpoint is retained as history.
+
+- Position: waiting for approval. Active pass: none. Pass-001 remains reserved and inactive.
+- Human-reported setup: a running Ubuntu EC2, described as `t3.latge` (understood as the selected `t3.large`, pending verification), with Codex CLI installed and the Git repository containing `llm-inference-anatomy` present.
+- The human reports no project environment, project dependency installations, or model assets. System packages and the exact Ubuntu release have not been inspected.
+- Future work will happen directly in Codex CLI on that EC2. No desktop app is required for this route. This current session is in the Windows checkout and does not establish EC2 access.
+- The human explicitly requested this state and pass-001 update. Documentation changes and their local review are authorized; remote inspection, installation, downloads, and inference are not authorized by this request.
+- Current plan: [pass-001 r02](../passes/pass-001/plan.md). Historical r01 and its approval remain preserved. The earlier question about whether EC2 exists is superseded by the supplied setup, not by verified access.
+- No project runtime actions have run in this session. The human reports the EC2 is running; its processes and resource state remain uninspected.
+- Learning boundary unchanged: the entire single-forward-pass model remains unopened. No internal operation has learner confirmation. All G1–G6 remain outstanding.
+- One next action: once Codex CLI is open in the EC2 repository, explain r02 A2/V2 and request approval for a small read-only check of the actual machine, software, and repository. Report readiness and stop before any setup changes.
+
+## Historical checkpoint — 2026-10-15
+
 - Updated: 2026-10-15 (Asia/Calcutta); session handover with pass-001 r01 approved and execution deferred. Previous preparation checkpoint: 2026-10-15 22:58 IST.
 - Goal: [Phase 1 criteria G1–G6](../definition/goal.md).
 - Position: waiting for approval.
