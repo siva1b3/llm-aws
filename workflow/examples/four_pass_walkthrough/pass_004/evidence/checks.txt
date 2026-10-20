@@ -1,0 +1,38 @@
+SYNTHETIC EXAMPLE — NOT EXECUTED. All output below is illustrative.
+Environment: imagined EC2, /home/ubuntu/task-tracker
+Artifact version: example-storage-v1
+Isolation: each case uses a fresh temporary working directory and a separate tasks.json.
+
+[AUTH] The simulated authorization covers storage/add/list and isolated failure checks.
+
+[step_03-AC-01] Missing data
+list with absent tasks.json -> No tasks; exit_status=0
+
+[step_03-AC-02] Add and list
+add "First task" -> Added task 1; exit_status=0
+add "Second task" -> Added task 2; exit_status=0
+list -> 1 | First task | incomplete; 2 | Second task | incomplete; exit_status=0
+
+[step_03-AC-03] Separate invocation
+Fresh Python process: list -> same two tasks and statuses; exit_status=0
+
+[step_03-AC-04] ID after restart
+Fresh Python process: add "Third task" -> Added task 3; exit_status=0
+list -> IDs [1, 2, 3]; all distinct; exit_status=0
+
+[step_03-AC-05] Malformed data and invalid records
+Fixture bytes: {broken
+list -> Error: malformed task data; exit_status=1; before_bytes == after_bytes: true
+Fixture: [{"id":1,"title":"A","completed":"no"}]
+add "B" -> Error: invalid task record; exit_status=1; before_bytes == after_bytes: true
+
+[step_03-AC-06] Controlled save failure
+Isolated standard-library unittest.mock test injects OSError at os.replace during save.
+add -> Error: unable to save task data; nonzero operation status
+Existing fixture retained: before_bytes == after_bytes: true
+Temporary-file cleanup check: no leftover temporary file
+
+[step_03-AI-01] Implementation review
+Standard-library imports only; validation occurs before saving.
+Writes use a temporary file in the same directory, then replacement.
+complete remains explicitly unimplemented; no completion claim is made.

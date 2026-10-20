@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "example",
+  "pass_id": "pass_001",
+  "action_id": "step_01",
+  "action_revision": 1,
+  "created_at": "2026-10-20T00:10:00Z",
+  "goal_ref": "protected/goal.md",
+  "previous_pass_id": null,
+  "objective": "Verify Python 3 and the project directory on EC2.",
+  "starting_state": {
+    "confirmed_facts": [
+      "Imagined EC2 is available; no application code exists."
+    ],
+    "assumptions": [
+      "All state statements describe the synthetic scenario only."
+    ],
+    "unknowns": []
+  },
+  "sources": [
+    {
+      "id": "goal",
+      "location": "protected/goal.md",
+      "version": "package-goal-v1"
+    },
+    {
+      "id": "scenario",
+      "location": "examples/four_pass_walkthrough/README.md",
+      "version": "example-v1"
+    }
+  ],
+  "parties": [
+    {
+      "id": "ai_assistant",
+      "name": "AI assistant",
+      "role": "Prepare minimal read-only checks for Python version, working directory, and directory writability; explain the results.",
+      "authority": [
+        "Inspect relevant resources and perform this action only within recorded authorization.",
+        "Record evidence and update progress; do not change protected requirements."
+      ],
+      "expected_outcomes": [
+        {
+          "id": "step_01-AI-01",
+          "condition": "Record the Python 3 version, EC2 working directory, and whether that directory is writable, without installing or changing system packages.",
+          "verification": "Review the action checks, resulting deliverables, and recorded evidence."
+        }
+      ]
+    },
+    {
+      "id": "human_owner",
+      "name": "Human owner",
+      "role": "Define or authorize the action scope and resolve decisions that exceed the assistant authority.",
+      "authority": [
+        "Approve or change project scope and protected instructions."
+      ],
+      "expected_outcomes": [
+        {
+          "id": "step_01-HUMAN-01",
+          "condition": "An actual human instruction authorizes this action scope.",
+          "verification": "Reference the recorded instruction and check that its scope covers this action."
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "ec2_server",
+      "description": "Imagined EC2 execution environment; not an actual connection.",
+      "location": "/home/ubuntu/task-tracker (synthetic)"
+    },
+    {
+      "id": "project_directory",
+      "description": "Imagined application directory.",
+      "location": "/home/ubuntu/task-tracker (synthetic)"
+    }
+  ],
+  "scope": {
+    "included": [
+      "Verify Python 3 and the project directory on EC2.",
+      "Required checks and in-scope fixes for this action."
+    ],
+    "excluded": [
+      "Unrelated changes.",
+      "System package changes without additional authorization.",
+      "Editing protected requirements as part of routine execution."
+    ]
+  },
+  "constraints": [
+    "Example only; do not execute these records.",
+    "Use standard-library application code and isolated test data."
+  ],
+  "authorization": {
+    "status": "granted",
+    "reference": "examples/four_pass_walkthrough/README.md#read-one-pass",
+    "basis": "Synthetic authorization for the walkthrough only; not a real user approval.",
+    "scope": [
+      "Example steps 01–03 and up to three in-scope passes per revision."
+    ]
+  },
+  "deliverables": [
+    {
+      "id": "step_01-D-01",
+      "description": "Record the Python 3 version, EC2 working directory, and whether that directory is writable, without installing or changing system packages.",
+      "location": "evidence/checks.txt",
+      "format": "Illustrative environment evidence"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "step_01-AC-01",
+      "condition": "Record the Python 3 version and exit status on EC2.",
+      "verification": "Record the Python 3 version and exit status on EC2."
+    },
+    {
+      "id": "step_01-AC-02",
+      "condition": "Record the chosen project directory and a writability check.",
+      "verification": "Record the chosen project directory and a writability check."
+    },
+    {
+      "id": "step_01-AC-03",
+      "condition": "If any prerequisite fails, stop and record the blocker.",
+      "verification": "If any prerequisite fails, stop and record the blocker."
+    }
+  ],
+  "execution_plan": [
+    {
+      "sequence": 1,
+      "party_id": "ai_assistant",
+      "operation": "Verify Python 3 and the project directory on EC2.",
+      "expected_result": "Record the Python 3 version, EC2 working directory, and whether that directory is writable, without installing or changing system packages."
+    },
+    {
+      "sequence": 2,
+      "party_id": "ai_assistant",
+      "operation": "Run the listed checks and record results.",
+      "expected_result": "Every required criterion has supporting evidence or an explicit not-checked result."
+    }
+  ],
+  "recovery": {
+    "max_passes_per_revision": 3,
+    "stop_condition": "Stop earlier after a repeated unchanged failure with no new evidence or corrective change.",
+    "missing_information": "Stop the affected work and report the missing information.",
+    "failure_handling": "Inspect partial effects; preserve the failure; use a new pass for a justified in-scope repair."
+  }
+}

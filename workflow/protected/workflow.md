@@ -1,111 +1,114 @@
 # Workflow
 
-## 1. Load Relevant Context
+## 1. Terms and Boundaries
 
-On startup, read `protected/laws.md` and `protected/file_structure.md`. For step planning, changes, execution, or retries, read the goal, this workflow, current state, action plan, and the relevant step history and implementation files. Reuse current contents already in context.
+- **Goal:** The overall required result and its acceptance criteria.
+- **Action / step:** One planned piece of work with a stable `step_XX` ID.
+- **Revision:** A version of an action's definition.
+- **Pass:** One bounded execution attempt at one action revision, identified by `pass_XXX`.
+- **Tool call:** An operation inside a pass. It is not automatically a separate action or pass.
 
-Read only the relevant state or plan for informational questions. Create required missing placeholders according to the file structure rules; an empty placeholder does not supply missing instructions.
+Use one action per pass. A pass may include several related operations and checks. A retry uses a new pass ID and retains the same action ID. Preserve the five planned steps unless the human authorizes a plan-structure change.
 
-## 2. Define the Steps
+## 2. Load and Plan
 
-Use `action_plan.json` for the current plan. Give every step a stable ID, description, status, dependencies, verification checks, history file path, and revision number.
+Follow the reading order in `AGENTS.md`. For execution, load the goal, this workflow, state, plan, contracts, relevant earlier passes, and relevant implementation files. Do not interpret example records as project history.
 
-Before any execution, define every participating party's specific role and verifiable expected outcome in JSON. No participating party may have a missing, empty, or undefined role or expected outcome. This applies to the original step and every revised version, retry, or separately introduced action.
+Every action in `action_plan.json` has a stable ID, revision, description, dependencies, parties, resources, scope, deliverables, acceptance criteria, relevant goal criteria, recovery limits, authorization reference, pass IDs, and latest-pass summary.
 
-The initial plan has five steps. Attempts do not become extra steps. If five steps no longer fit the goal, propose a plan change for human approval instead of silently adding, removing, or combining steps.
+Each party has a stable ID, name, role, authority, and expected outcomes. Each outcome has an ID, condition, and verification method. Every separate action must satisfy Law 2. Do not add the human as an executor when the AI can execute directly; if the human must run commands, revise the action's responsibilities before starting and check whether existing authorization covers that arrangement.
 
-## 3. Keep a Simple History for Each Step
+Plan edits and progress reporting do not require their own execution pass. They are bookkeeping, not evidence that application work occurred. Actual diagnostic commands, implementation changes, and checks must be covered by a recorded action and pass.
 
-Use `step_history/<step_id>.json`, outside the protected folder. Create the file before the step's first revision or execution; an unstarted step may have no history file yet. Its planned status remains available in the action plan.
+## 3. Revisions and Authorization
 
-Use this initial shape:
+The plan's `authorizations` array records actual human instructions: ID, source/reference, scope, and timestamp when known. The initial array is empty because this rewrite does not establish authorization to execute the task-tracker project.
 
-```json
-{
-  "step_id": "step_01",
-  "status": "proposed",
-  "revision": 1,
-  "changes": [],
-  "attempts": []
-}
-```
+Reference an existing authorization if it covers the next work. Ask only for uncovered work. A role wording change or a failed check does not automatically invalidate existing authority. New access, broader changes, or changed required outcomes may require additional authorization.
 
-- `status` is the step's current state.
-- `revision` identifies the current step definition.
-- `changes` retains definition changes, including changes made before any attempt.
-- `attempts` retains all execution attempts in order.
+Before changing an action definition, append the old and new definitions, reason, and UTC timestamp to `revision_history`, then increment the revision. A definition contains the description, dependencies, parties, resources, scope, deliverables, acceptance criteria, goal links, and recovery limits. Do not recursively embed runtime state or revision history in these snapshots. Status or latest-pass updates do not change the definition revision.
 
-For each change, append the timestamp, reason, previous step definition, and new step definition. These snapshots retain the roles, expected outcomes, and verification checks as well as the description. Increase the revision number.
+Changing protected files requires explicit authorization. Keep the prior document versions through version history or a version-control checkpoint. Never change criteria just to make a failed attempt pass.
 
-Before execution, append an attempt containing:
-- Attempt number and start time.
-- A snapshot of the exact step definition, including all participating parties and their expected outcomes.
-- The approval that covers this attempt.
-- What will be run or performed.
-- Status `running`, with results and finish time initially null.
+## 4. Prepare a Pass
 
-When execution ends, update that attempt with actual results, verification evidence, finish time, and status: `passed`, `failed`, or `interrupted`. Record each check's expected and actual result and whether it passed. Missing evidence is not a pass.
+Before creating a runnable pass:
 
-Use UTC ISO 8601 timestamps. Keep evidence concise; reference larger logs by path. Do not store credentials or secrets. Never erase previous failures or rewrite a completed attempt to make a later retry appear successful.
+1. Verify dependencies have passed and their evidence still applies.
+2. Confirm the required authorization, resources, and access exist.
+3. Check the attempt limit. The initial limit is three passes per action revision; repeated identical failures without progress must stop earlier. Do not bump a revision merely to reset this limit.
+4. Allocate the next unused real pass ID.
+5. Build `passes/<pass_id>/input.json` against the input schema.
 
-## 4. Approve and Execute
+The input snapshots the action definition and relevant starting state. Include source versions or hashes where available; use null for an unknown version, never an invented value. Unknown information that is necessary for safe or correct execution must be resolved before starting.
 
-Propose the next step or a small group of steps. Record the human's approval and the exact approved revision and scope. Approval to prepare these documents does not imply approval to run project commands.
+Record `previous_pass_id` for a retry and summarize its actual effects. Define the expected deliverables, output locations, party outcomes, acceptance criteria, and ordered operations. Set `record_kind` to `execution` for real work.
 
-Before starting:
-1. Confirm the required dependencies have passed.
-2. Confirm the step's party definitions and verification checks are complete.
-3. Confirm existing approval covers the work.
-4. Create or load its history file and record the new attempt.
-5. Mark the step `running` in both the plan and its history.
+Use UTC ISO 8601 timestamps. The schemas check structure. Also inspect meaning: unique IDs, correct references, coherent scope, actual authority, and feasible verification. If no JSON Schema validator is available, report that limitation and manually inspect the contract; never claim automated validation occurred.
 
-Execute only the approved scope. The AI writes code or instructions and uses direct EC2 access when available. Otherwise, the human runs the commands and supplies results. Do not claim that local workspace execution proves EC2 behavior.
+If preflight is blocked, mark the action blocked and record why. Do not create a fake started pass. A corrected, unstarted draft input can still be edited; freeze it on execution start.
 
-Do not request approval again for work already approved. If the scope, participating roles, or expected outcomes change, record the revised step and obtain approval for the changed work before executing it.
+## 5. Start and Execute
 
-## 5. Verify the Outcome
+Create a schema-valid `output.json` with status `running` before operations begin. Set its start time, finish time null, empty results/evidence, and the matching pass/action/revision identifiers. Mark the action running and append the pass ID to its `pass_ids`.
 
-Compare evidence with every participating party's expected outcome and every verification check.
+Execute the planned operations within scope. Tool selection and harmless implementation details may vary without changing the contract. If the objective, participating responsibility, permitted scope, or required outcomes materially change, finalize the current pass honestly and prepare a new revision/pass as appropriate.
 
-- Mark an attempt and step `passed` only when all required outcomes are verified.
-- Mark an attempt and step `failed` when evidence shows a required outcome was not achieved.
-- If execution stops or results are unavailable, record the attempt as `interrupted` and the step as `blocked`; describe the missing evidence or prerequisite.
-- A command exiting successfully does not by itself prove the step passed.
-- A partial success is not a completed step. Retain its evidence and record what remains.
+Record operations performed, real effects, command exit statuses where relevant, and evidence sources. Never store credentials or secrets in logs. Capture evidence from the actual execution environment and identify the delivered code/version to which it applies.
 
-The attempt history owns the detailed evidence. Keep the plan's status and latest-attempt summary consistent with it. If an update is interrupted, reconcile the plan from the recorded evidence before continuing.
+The AI uses direct EC2 access only if available and authorized. Otherwise the human runs commands under recorded responsibilities and supplies outputs. Clearly distinguish human-supplied evidence from direct observations. Local execution cannot prove EC2 behavior.
 
-## 6. Handle Changes, Failures, and Retries
+## 6. Verify and Finalize
 
-| Situation | Required handling |
+For every acceptance criterion, write exactly one verification entry with `passed`, `failed`, or `not_checked`, an actual result, and evidence references. Do the same for every participating party's expected outcome. These are related but separate obligations; check both.
+
+Evidence entries have stable IDs, locations, descriptions, and a source type. File evidence locations are relative to the pass folder. An `inline:` location refers to an observed result recorded directly in the evidence description. Synthetic evidence is permitted only in example records.
+
+| Pass status | Meaning |
 | --- | --- |
-| Change before execution | Record the old and new definitions in `changes`, increase the revision, and update the plan. There is no execution attempt yet. Renew approval if the changed scope, roles, or outcomes require it. |
-| Failure | Record the observed failure, evidence, and known cause; distinguish a confirmed cause from a guess. Inspect partial effects before deciding what to do next. |
-| Retry unchanged | Keep the same step ID and revision. Confirm that rerunning is safe and covered by existing approval, then append a new attempt. |
-| Modify and retry | Record the change and new revision; obtain approval where required, then append a new attempt with the revised definition. |
-| Missing prerequisite or unavailable access | Mark the step `blocked` and record what is needed. Do not invent results. |
-| Interrupted execution | Check the actual system state before rerunning; an interrupted command may have changed data. Preserve the interrupted attempt. |
-| Resume after a pause | Read the latest step history, inspect uncertain effects, and continue only the remaining approved work. |
-| Verification fails after execution | Record a failed attempt even if the command itself succeeded. |
-| Reopen a previously passed step | Preserve the old passing evidence, explain why it no longer establishes the current result, and record a new revision or attempt as appropriate. Reassess dependent steps. |
-| Cancel or replace a step | Record the human's decision and reason; retain the old step ID and history with status `cancelled`. A replacement receives a new ID. Cancellation does not count as completion. |
+| running | Operations or verification are still active; finish time is null |
+| passed | Every required outcome and criterion passed, evidence exists, deliverables are present, and no required unresolved work remains for this action |
+| failed | Evidence shows at least one required criterion or party outcome failed |
+| blocked | The pass cannot continue because a prerequisite, access, or required evidence is unavailable, without a demonstrated requirement failure |
+| interrupted | Execution stopped unexpectedly; effects or results may be uncertain |
 
-Do not loop indefinitely on an unchanged failure. After a repeated failure with no new evidence or corrective change, mark the step blocked and present the blocker and proposed next action.
+If a required check failed, keep status failed even when the next action is blocked. If results are incomplete with no demonstrated failure, use blocked or interrupted as appropriate. Partial success is recorded in results and effects; it is not a passed status.
 
-Each retry must still satisfy Law 2 through its recorded step snapshot. Any separate diagnostic or repair action outside the approved step's scope needs its own JSON party definitions and approval before execution.
+Before finalization, check:
 
-## 7. Update Progress
+1. Input/output IDs, action revision, and record kind match.
+2. Every input criterion and party outcome appears exactly once; no unknown or duplicate IDs exist.
+3. Every evidence reference resolves. Passed and failed results have evidence; not-checked entries explain why.
+4. All required deliverables exist when status is passed.
+5. Start/finish timestamps are ordered and the status matches the evidence.
+6. Results apply to the final artifact version being delivered.
 
-After each attempt or plan revision:
-1. Save the step history.
-2. Update the action plan's status, revision, approval where applicable, and latest-attempt summary.
-3. Update `current_state.md` with a short factual paragraph describing the present system state, important blocker, and next action.
+Schema validation does not enforce all cross-file relationships; these semantic checks are mandatory as well. Once finalized, preserve input, output, and evidence. A correction goes in `corrections/correction_NNN.json` with timestamp, target, reason, original statement, corrected statement, and supporting evidence. Do not rewrite a completed pass.
 
-Use these step statuses consistently: `proposed`, `ready`, `running`, `passed`, `failed`, `blocked`, and `cancelled`. `ready` means approval and prerequisites are satisfied. A failed step may become ready for an approved retry without losing its failure history.
+## 7. Recover, Retry, or Resume
 
-Recording proposals, changes, approvals, and results requires no separate execution approval. Protected-file editing remains governed by the laws and explicit human instructions.
+On failure, record observed symptoms, evidence, and confirmed or suspected cause. Inspect partial effects before deciding whether to keep, repair, or roll back changes. Any rollback must itself be within authorization.
 
-## 8. Finish
+- **Unchanged retry:** retain action ID and revision; create a new pass with a justified reason.
+- **Changed definition:** retain action ID; preserve the change, increment revision, and use a new pass.
+- **In-scope repair:** may be included in the retry's operations if its contract covers it.
+- **Separate out-of-scope repair:** define its parties and outcomes in JSON and obtain any missing authorization; do not silently expand the five-step plan.
+- **Repeated failure without progress:** mark the action blocked and report the proposed next decision.
+- **Interrupted pass:** inspect the actual system first. Reconcile the running record to interrupted when the prior execution has ended; use a new pass to resume remaining work.
+- **Reopened passed action:** preserve previous evidence, explain why it is no longer sufficient, and reassess dependent actions.
 
-Declare the goal achieved only when its completion criteria are verified. Passing all five steps is insufficient if the final system does not meet the goal. Preserve the complete attempt histories and update the current state with the verified result.
+Never blindly repeat an operation that may already have changed data. If a late result arrives after finalization, record it as a correction or evidence in a later pass rather than silently changing history.
 
+## 8. Update the Plan and Current State
+
+Save the pass result first. Then update the action's status, pass IDs, authorization reference, and latest-pass summary. Finally update `current_state.md` with a short factual paragraph: verified progress, relevant unknowns/blockers, and next action.
+
+Action statuses are `proposed`, `ready`, `running`, `passed`, `failed`, `blocked`, and `cancelled`. Ready means prerequisites and authorization are satisfied. An interrupted pass normally leaves its action blocked until effects are reconciled. A failed action may become ready for a justified retry without losing failed pass records. Cancelling an action requires the human's decision and never counts as completing it.
+
+If bookkeeping is interrupted, reconcile the plan and summary from pass records and actual state before continuing. The latest recorded pass is historical evidence, not proof that an external system has remained unchanged.
+
+## 9. Finish the Goal
+
+In step_05, verify every `GOAL-XX` criterion against the final code on EC2. The final action's criteria use these same IDs, providing an explicit completion checklist. Existing earlier evidence may be reused only when it remains applicable to the delivered version and environment.
+
+Deliver the application and usage instructions, identify supporting evidence, update the plan and current state, and stop. Do not declare completion from example passes, an unverified summary, or the number of steps marked passed.

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "example",
+  "pass_id": "pass_003",
+  "action_id": "step_02",
+  "action_revision": 1,
+  "status": "passed",
+  "started_at": "2026-10-20T00:30:00Z",
+  "finished_at": "2026-10-20T00:34:00Z",
+  "summary": "Synthetic successful attempt at step_02; no real execution occurred.",
+  "actual_actions": [
+    "Repair whitespace-only title validation and repeat all CLI checks within step_02.",
+    "Illustrated the required checks and mapped their outcomes to the evidence log."
+  ],
+  "deliverables": [
+    {
+      "id": "step_02-D-01",
+      "location": "/home/ubuntu/task-tracker/task_tracker.py (synthetic)",
+      "description": "Synthetic result for example-cli-v2; evidence supplied as a teaching example only."
+    }
+  ],
+  "verification": [
+    {
+      "criterion_id": "step_02-AC-01",
+      "result": "passed",
+      "actual": "Synthetic check step_02-AC-01 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_02-AC-02",
+      "result": "passed",
+      "actual": "Synthetic check step_02-AC-02 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_02-AC-03",
+      "result": "passed",
+      "actual": "Synthetic check step_02-AC-03 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_02-AC-04",
+      "result": "passed",
+      "actual": "Synthetic check step_02-AC-04 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    }
+  ],
+  "party_outcomes": [
+    {
+      "party_id": "ai_assistant",
+      "outcome_id": "step_02-AI-01",
+      "result": "passed",
+      "actual": "The illustrated checks and implementation observations support this action outcome within the scenario.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "party_id": "human_owner",
+      "outcome_id": "step_02-HUMAN-01",
+      "result": "passed",
+      "actual": "The synthetic authorization covers this action; this is not actual user approval.",
+      "evidence_refs": [
+        "checks"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "checks",
+      "location": "evidence/checks.txt",
+      "description": "Illustrative observations for example-cli-v2, including simulated authorization and labeled checks.",
+      "source": "synthetic"
+    }
+  ],
+  "state_changes": [
+    "Whitespace-only titles now rejected in the illustrated CLI.",
+    "All CLI checks rerun; no task data changed."
+  ],
+  "unresolved_items": [],
+  "next_action": "Prepare step_03 for storage/add/list."
+}

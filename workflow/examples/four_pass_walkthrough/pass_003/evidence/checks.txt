@@ -1,0 +1,31 @@
+SYNTHETIC EXAMPLE — NOT EXECUTED. All output below is illustrative.
+Environment: imagined EC2, /home/ubuntu/task-tracker
+Artifact version: example-cli-v2
+
+[AUTH] The same simulated authorization covers this in-scope repair and repeated checks.
+Before retry: task_tracker.py exists; no task data exists. Repeating parser checks is safe.
+Repair: strip whitespace before checking whether the title is empty.
+
+[step_02-AC-01] Help
+$ python3 task_tracker.py --help
+usage: task_tracker.py {add,list,complete} ...
+exit_status=0
+
+[step_02-AC-02] Whitespace title
+$ python3 task_tracker.py add "   "
+Error: task title must not be blank
+exit_status=2
+
+[step_02-AC-03] Invalid IDs
+complete abc -> Error: task ID must be a positive integer; exit_status=2
+complete 0 -> Error: task ID must be a positive integer; exit_status=2
+complete -1 -> Error: task ID must be a positive integer; exit_status=2
+
+[step_02-AC-04] Unknown command
+remove -> Error: invalid command 'remove'; exit_status=2
+
+[step_02-AI-01] Unfinished commands
+list -> Error: command not implemented yet; exit_status=2
+add "First task" -> Error: command not implemented yet; exit_status=2
+complete 1 -> Error: command not implemented yet; exit_status=2
+No task data was changed by these parser checks.

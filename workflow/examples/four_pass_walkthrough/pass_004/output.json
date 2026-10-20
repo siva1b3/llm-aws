@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "example",
+  "pass_id": "pass_004",
+  "action_id": "step_03",
+  "action_revision": 1,
+  "status": "passed",
+  "started_at": "2026-10-20T00:40:00Z",
+  "finished_at": "2026-10-20T00:44:00Z",
+  "summary": "Synthetic successful attempt at step_03; no real execution occurred.",
+  "actual_actions": [
+    "Implement JSON storage, adding tasks, and listing tasks.",
+    "Illustrated the required checks and mapped their outcomes to the evidence log."
+  ],
+  "deliverables": [
+    {
+      "id": "step_03-D-01",
+      "location": "/home/ubuntu/task-tracker/task_tracker.py (synthetic)",
+      "description": "Synthetic result for example-storage-v1; evidence supplied as a teaching example only."
+    }
+  ],
+  "verification": [
+    {
+      "criterion_id": "step_03-AC-01",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-01 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_03-AC-02",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-02 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_03-AC-03",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-03 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_03-AC-04",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-04 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_03-AC-05",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-05 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "criterion_id": "step_03-AC-06",
+      "result": "passed",
+      "actual": "Synthetic check step_03-AC-06 produced the expected result; see its labeled evidence section.",
+      "evidence_refs": [
+        "checks"
+      ]
+    }
+  ],
+  "party_outcomes": [
+    {
+      "party_id": "ai_assistant",
+      "outcome_id": "step_03-AI-01",
+      "result": "passed",
+      "actual": "The illustrated checks and implementation observations support this action outcome within the scenario.",
+      "evidence_refs": [
+        "checks"
+      ]
+    },
+    {
+      "party_id": "human_owner",
+      "outcome_id": "step_03-HUMAN-01",
+      "result": "passed",
+      "actual": "The synthetic authorization covers this action; this is not actual user approval.",
+      "evidence_refs": [
+        "checks"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "checks",
+      "location": "evidence/checks.txt",
+      "description": "Illustrative observations for example-storage-v1, including simulated authorization and labeled checks.",
+      "source": "synthetic"
+    }
+  ],
+  "state_changes": [
+    "Storage/add/list implemented in the scenario; isolated fixtures used.",
+    "Completion behavior remains unimplemented."
+  ],
+  "unresolved_items": [],
+  "next_action": "Seek or identify authorization for step_04; step_04 and step_05 remain pending."
+}

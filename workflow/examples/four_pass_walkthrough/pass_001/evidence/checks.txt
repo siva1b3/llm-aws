@@ -1,0 +1,22 @@
+SYNTHETIC EXAMPLE — NOT EXECUTED. All output below is illustrative.
+Environment: imagined EC2, /home/ubuntu/task-tracker
+Artifact version: example-env-v1
+
+[AUTH] The README's simulated instruction covers steps 01–03 and in-scope retries.
+
+[step_01-AC-01] Python version and exit status
+$ python3 --version
+Python 3.12.3
+exit_status=0
+
+[step_01-AC-02] Directory and writability
+$ pwd
+/home/ubuntu/task-tracker
+exit_status=0
+$ test -w /home/ubuntu/task-tracker
+exit_status=0
+No package installation or application changes were performed in this scenario.
+
+[step_01-AC-03] Prerequisite decision
+Python 3 runs and the directory is writable; no prerequisite failed.
+The stop-on-failure rule was reviewed; no failure branch was triggered.

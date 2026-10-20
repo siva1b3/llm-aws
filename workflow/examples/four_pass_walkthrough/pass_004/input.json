@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "example",
+  "pass_id": "pass_004",
+  "action_id": "step_03",
+  "action_revision": 1,
+  "created_at": "2026-10-20T00:40:00Z",
+  "goal_ref": "protected/goal.md",
+  "previous_pass_id": null,
+  "objective": "Implement JSON storage, adding tasks, and listing tasks.",
+  "starting_state": {
+    "confirmed_facts": [
+      "Example pass_003 passed CLI checks; storage and command handlers remain to be implemented."
+    ],
+    "assumptions": [
+      "All state statements describe the synthetic scenario only."
+    ],
+    "unknowns": []
+  },
+  "sources": [
+    {
+      "id": "goal",
+      "location": "protected/goal.md",
+      "version": "package-goal-v1"
+    },
+    {
+      "id": "scenario",
+      "location": "examples/four_pass_walkthrough/README.md",
+      "version": "example-v1"
+    }
+  ],
+  "parties": [
+    {
+      "id": "ai_assistant",
+      "name": "AI assistant",
+      "role": "Implement JSON loading and validation, unique IDs, safe saving, and add/list behavior.",
+      "authority": [
+        "Inspect relevant resources and perform this action only within recorded authorization.",
+        "Record evidence and update progress; do not change protected requirements."
+      ],
+      "expected_outcomes": [
+        {
+          "id": "step_03-AI-01",
+          "condition": "Tasks persist across invocations; malformed data is reported without reset or overwrite; failed saves leave existing data intact.",
+          "verification": "Review the action checks, resulting deliverables, and recorded evidence."
+        }
+      ]
+    },
+    {
+      "id": "human_owner",
+      "name": "Human owner",
+      "role": "Define or authorize the action scope and resolve decisions that exceed the assistant authority.",
+      "authority": [
+        "Approve or change project scope and protected instructions."
+      ],
+      "expected_outcomes": [
+        {
+          "id": "step_03-HUMAN-01",
+          "condition": "An actual human instruction authorizes this action scope.",
+          "verification": "Reference the recorded instruction and check that its scope covers this action."
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "ec2_server",
+      "description": "Imagined EC2 execution environment; not an actual connection.",
+      "location": "/home/ubuntu/task-tracker (synthetic)"
+    },
+    {
+      "id": "project_directory",
+      "description": "Imagined application directory.",
+      "location": "/home/ubuntu/task-tracker (synthetic)"
+    }
+  ],
+  "scope": {
+    "included": [
+      "Implement JSON storage, adding tasks, and listing tasks.",
+      "Required checks and in-scope fixes for this action."
+    ],
+    "excluded": [
+      "Unrelated changes.",
+      "System package changes without additional authorization.",
+      "Editing protected requirements as part of routine execution."
+    ]
+  },
+  "constraints": [
+    "Example only; do not execute these records.",
+    "Use standard-library application code and isolated test data."
+  ],
+  "authorization": {
+    "status": "granted",
+    "reference": "examples/four_pass_walkthrough/README.md#read-one-pass",
+    "basis": "Synthetic authorization for the walkthrough only; not a real user approval.",
+    "scope": [
+      "Example steps 01–03 and up to three in-scope passes per revision."
+    ]
+  },
+  "deliverables": [
+    {
+      "id": "step_03-D-01",
+      "description": "Tasks persist across invocations; malformed data is reported without reset or overwrite; failed saves leave existing data intact.",
+      "location": "/home/ubuntu/task-tracker/task_tracker.py (synthetic)",
+      "format": "Illustrative Python source and evidence"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "step_03-AC-01",
+      "condition": "A missing data file lists an empty collection.",
+      "verification": "A missing data file lists an empty collection."
+    },
+    {
+      "id": "step_03-AC-02",
+      "condition": "Add two tasks and list their IDs, titles, and incomplete status.",
+      "verification": "Add two tasks and list their IDs, titles, and incomplete status."
+    },
+    {
+      "id": "step_03-AC-03",
+      "condition": "Run the program again and verify both tasks remain.",
+      "verification": "Run the program again and verify both tasks remain."
+    },
+    {
+      "id": "step_03-AC-04",
+      "condition": "A further task receives a distinct ID after restart.",
+      "verification": "A further task receives a distinct ID after restart."
+    },
+    {
+      "id": "step_03-AC-05",
+      "condition": "Malformed JSON and invalid task records fail without overwriting the file.",
+      "verification": "Malformed JSON and invalid task records fail without overwriting the file."
+    },
+    {
+      "id": "step_03-AC-06",
+      "condition": "A simulated save failure preserves the previous data file.",
+      "verification": "A simulated save failure preserves the previous data file."
+    }
+  ],
+  "execution_plan": [
+    {
+      "sequence": 1,
+      "party_id": "ai_assistant",
+      "operation": "Implement JSON storage, adding tasks, and listing tasks.",
+      "expected_result": "Tasks persist across invocations; malformed data is reported without reset or overwrite; failed saves leave existing data intact."
+    },
+    {
+      "sequence": 2,
+      "party_id": "ai_assistant",
+      "operation": "Run the listed checks and record results.",
+      "expected_result": "Every required criterion has supporting evidence or an explicit not-checked result."
+    }
+  ],
+  "recovery": {
+    "max_passes_per_revision": 3,
+    "stop_condition": "Stop earlier after a repeated unchanged failure with no new evidence or corrective change.",
+    "missing_information": "Stop the affected work and report the missing information.",
+    "failure_handling": "Inspect partial effects; preserve the failure; use a new pass for a justified in-scope repair."
+  }
+}

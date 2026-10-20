@@ -1,0 +1,40 @@
+SYNTHETIC EXAMPLE — NOT EXECUTED. All output below is illustrative.
+Environment: imagined EC2, /home/ubuntu/task-tracker
+Artifact version: example-cli-v1
+
+[AUTH] The README's simulated instruction covers this CLI action and in-scope repairs.
+
+[step_02-AC-01] Help
+$ python3 task_tracker.py --help
+usage: task_tracker.py {add,list,complete} ...
+exit_status=0
+
+[step_02-AC-02] Whitespace title — FAILURE
+$ python3 task_tracker.py add "   "
+Error: command not implemented yet
+exit_status=2
+The parser accepted the blank title and reached the unfinished command handler.
+Expected: reject the title specifically as blank before dispatch.
+Code inspection: the title validator checks truthiness but does not strip whitespace.
+
+[step_02-AC-03] Invalid IDs
+$ python3 task_tracker.py complete abc
+Error: task ID must be a positive integer
+exit_status=2
+$ python3 task_tracker.py complete 0
+Error: task ID must be a positive integer
+exit_status=2
+$ python3 task_tracker.py complete -1
+Error: task ID must be a positive integer
+exit_status=2
+
+[step_02-AC-04] Unknown command
+$ python3 task_tracker.py remove
+Error: invalid command 'remove'
+exit_status=2
+
+[step_02-AI-01] Unfinished commands do not report success
+$ python3 task_tracker.py list
+Error: command not implemented yet
+exit_status=2
+Partial effects: task_tracker.py was created; no task data was created.
