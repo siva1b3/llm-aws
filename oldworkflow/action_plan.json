@@ -1,0 +1,167 @@
+{
+  "goal": "Python command-line task tracker",
+  "status": "proposed",
+  "planned_step_count": 5,
+  "actions": [
+    {
+      "id": "step_01",
+      "action": "Verify Python 3 and the project directory on EC2.",
+      "revision": 1,
+      "status": "proposed",
+      "depends_on": [],
+      "history_file": "step_history/step_01.json",
+      "parties": {
+        "ai_assistant": {
+          "role": "Prepare minimal read-only checks for Python version, working directory, and directory writability; explain the results.",
+          "expected_outcome": "Record the Python 3 version, EC2 working directory, and whether that directory is writable, without installing or changing system packages."
+        },
+        "human": {
+          "role": "Review this step and approve its scope or request changes; supply EC2 output if direct execution is unavailable.",
+          "expected_outcome": "Explicit approval of this step's revision, with actual execution output supplied when required."
+        },
+        "ec2_server": {
+          "role": "Run the approved environment checks and return their outputs.",
+          "expected_outcome": "Python 3 runs successfully on EC2 and the selected project directory is writable."
+        }
+      },
+      "verification_checks": [
+        "Record the Python 3 version and exit status on EC2.",
+        "Record the chosen project directory and a writability check.",
+        "If any prerequisite fails, stop and record the blocker."
+      ],
+      "approval": null,
+      "latest_attempt": null
+    },
+    {
+      "id": "step_02",
+      "action": "Create the command-line interface.",
+      "revision": 1,
+      "status": "proposed",
+      "depends_on": [
+        "step_01"
+      ],
+      "history_file": "step_history/step_02.json",
+      "parties": {
+        "ai_assistant": {
+          "role": "Implement a small standard-library Python entry point with add, list, and complete subcommands and argument validation.",
+          "expected_outcome": "The help text and command parsing work; blank titles and invalid integer IDs are rejected; unfinished commands do not falsely report success."
+        },
+        "human": {
+          "role": "Review this step and approve its scope or request changes; supply EC2 output if direct execution is unavailable.",
+          "expected_outcome": "Explicit approval of this step's revision, with actual execution output supplied when required."
+        },
+        "ec2_server": {
+          "role": "Run the command-line interface checks.",
+          "expected_outcome": "Help and parser checks produce the expected messages and exit statuses."
+        }
+      },
+      "verification_checks": [
+        "Help lists add, list, and complete.",
+        "A whitespace-only title is rejected.",
+        "A non-integer or nonpositive task ID is rejected.",
+        "Unknown commands fail clearly."
+      ],
+      "approval": null,
+      "latest_attempt": null
+    },
+    {
+      "id": "step_03",
+      "action": "Implement JSON storage, adding tasks, and listing tasks.",
+      "revision": 1,
+      "status": "proposed",
+      "depends_on": [
+        "step_02"
+      ],
+      "history_file": "step_history/step_03.json",
+      "parties": {
+        "ai_assistant": {
+          "role": "Implement JSON loading and validation, unique IDs, safe saving, and add/list behavior.",
+          "expected_outcome": "Tasks persist across invocations; malformed data is reported without reset or overwrite; failed saves leave existing data intact."
+        },
+        "human": {
+          "role": "Review this step and approve its scope or request changes; supply EC2 output if direct execution is unavailable.",
+          "expected_outcome": "Explicit approval of this step's revision, with actual execution output supplied when required."
+        },
+        "ec2_server": {
+          "role": "Run add, list, restart, malformed-data, and write-failure checks using isolated test data.",
+          "expected_outcome": "Storage checks produce observable results without damaging existing task data."
+        }
+      },
+      "verification_checks": [
+        "A missing data file lists an empty collection.",
+        "Add two tasks and list their IDs, titles, and incomplete status.",
+        "Run the program again and verify both tasks remain.",
+        "A further task receives a distinct ID after restart.",
+        "Malformed JSON and invalid task records fail without overwriting the file.",
+        "A simulated save failure preserves the previous data file."
+      ],
+      "approval": null,
+      "latest_attempt": null
+    },
+    {
+      "id": "step_04",
+      "action": "Implement marking tasks complete.",
+      "revision": 1,
+      "status": "proposed",
+      "depends_on": [
+        "step_03"
+      ],
+      "history_file": "step_history/step_04.json",
+      "parties": {
+        "ai_assistant": {
+          "role": "Implement complete TASK_ID and its error handling using the existing storage functions.",
+          "expected_outcome": "The selected task becomes complete and stays complete across invocations; other tasks remain unchanged; an unknown ID causes no data changes."
+        },
+        "human": {
+          "role": "Review this step and approve its scope or request changes; supply EC2 output if direct execution is unavailable.",
+          "expected_outcome": "Explicit approval of this step's revision, with actual execution output supplied when required."
+        },
+        "ec2_server": {
+          "role": "Run completion and unknown-ID checks.",
+          "expected_outcome": "Stored state and command results show the required completion behavior."
+        }
+      },
+      "verification_checks": [
+        "Complete one existing task and list tasks in a fresh invocation.",
+        "Confirm only the selected task changed.",
+        "Completing the same task again creates no duplicate and leaves it complete.",
+        "An unknown ID fails clearly and leaves stored data unchanged."
+      ],
+      "approval": null,
+      "latest_attempt": null
+    },
+    {
+      "id": "step_05",
+      "action": "Verify the complete tracker on EC2 and document usage.",
+      "revision": 1,
+      "status": "proposed",
+      "depends_on": [
+        "step_04"
+      ],
+      "history_file": "step_history/step_05.json",
+      "parties": {
+        "ai_assistant": {
+          "role": "Prepare concise usage instructions and execute or guide a final end-to-end check against the goal.",
+          "expected_outcome": "Record EC2 evidence for all goal criteria and provide commands for normal use and the data-file location."
+        },
+        "human": {
+          "role": "Review this step and approve its scope or request changes; supply EC2 output if direct execution is unavailable.",
+          "expected_outcome": "Explicit approval of this step's revision, with actual execution output supplied when required."
+        },
+        "ec2_server": {
+          "role": "Run the final end-to-end and error checks on EC2 with isolated test data.",
+          "expected_outcome": "The final application passes the goal criteria on EC2 and its verification evidence is available."
+        }
+      },
+      "verification_checks": [
+        "Add two tasks, list them, complete one, and verify persistence in separate invocations.",
+        "Verify blank-title, invalid-ID, unknown-ID, malformed-data, and filesystem-error behavior.",
+        "Confirm failed operations preserve existing data.",
+        "Confirm standard-library-only execution and record the exact commands, outputs, and data path."
+      ],
+      "approval": null,
+      "latest_attempt": null
+    }
+  ]
+}
+
