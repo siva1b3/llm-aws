@@ -4,7 +4,10 @@ services:
   terraform:
     image: hashicorp/terraform:1.15.9
     working_dir: /workspace
-    env_file:
-      - .env
+    environment:
+      AWS_ACCESS_KEY_ID: ${SIVA_AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${SIVA_AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${SIVA_AWS_DEFAULT_REGION}
+      AWS_SESSION_TOKEN: ${SIVA_AWS_SESSION_TOKEN:-}
     volumes:
       - .:/workspace
