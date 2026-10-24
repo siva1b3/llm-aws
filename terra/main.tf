@@ -10,7 +10,7 @@ terraform {
 
 provider "aws" {
   # Use the US East (N. Virginia) region by default.
-  region              = "us-east-1"
+  region = "us-east-1"
   # Reject credentials for any AWS account outside this list.
   allowed_account_ids = ["900065085340"]
 }

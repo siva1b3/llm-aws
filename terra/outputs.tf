@@ -1,3 +1,15 @@
+output "machines" {
+  description = "Created instances and their connection addresses."
+  value = {
+    for name, instance in aws_instance.machine : name => {
+      id         = instance.id
+      public_ip  = instance.public_ip
+      private_ip = instance.private_ip
+      is_spot    = var.machines[name].is_spot
+    }
+  }
+}
+
 output "aws_account_id" {
   value = data.aws_caller_identity.current.account_id
 }
