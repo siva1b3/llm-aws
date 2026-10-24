@@ -1,0 +1,8 @@
+# Optionally copy to terraform.tfvars to override the per-machine defaults.
+
+machines = {
+  test_001 = {
+    is_true = true
+    is_spot = true
+  }
+}
