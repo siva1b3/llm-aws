@@ -1,0 +1,28 @@
+---
+- name: Configure EC2 Ubuntu servers
+  hosts: ec2
+  become: true
+
+  tasks:
+    - name: Update APT cache
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name:
+          - git
+          - curl
+          - htop
+        state: present
+
+    - name: Create application directory
+      ansible.builtin.file:
+        path: /opt/myapp
+        state: directory
+        mode: '0755'
+
+    - name: Check disk space
+      ansible.builtin.command:
+        cmd: df -h
+      changed_when: false

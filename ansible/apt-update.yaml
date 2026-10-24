@@ -1,0 +1,9 @@
+---
+- name: Experiment with apt update
+  hosts: ec2
+  become: true
+
+  tasks:
+    - name: Execute apt update
+      ansible.builtin.apt:
+        update_cache: true

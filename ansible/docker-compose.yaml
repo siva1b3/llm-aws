@@ -2,11 +2,29 @@ name: learn_ansible
 
 services:
   ansible:
-    image: ghcr.io/ansible-community/community-ee-minimal:latest
-    entrypoint: [ "tail", "-f", "/dev/null" ]
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: learn-ansible:local
+    container_name: learn-ansible
+
+    user: "0:0"
     working_dir: /workspace
+
     stdin_open: true
     tty: true
+
+    environment:
+      HOME: /root
+      ANSIBLE_HOME: /root/.ansible
+      ANSIBLE_LOCAL_TEMP: /tmp/.ansible/tmp
+
     volumes:
       - .:/workspace
       - ./keys:/keys:ro
+      - ansible_known_hosts:/root/.ssh/known-hosts
+
+volumes:
+  ansible_known_hosts:
+    name: ansible_known_hosts
