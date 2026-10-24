@@ -3,6 +3,7 @@ name: learn_terraform
 services:
   terraform:
     image: hashicorp/terraform:1.15.9
+    entrypoint: ["tail", "-f", "/dev/null"]
     working_dir: /workspace
     environment:
       AWS_ACCESS_KEY_ID: ${SIVA_AWS_ACCESS_KEY_ID}
