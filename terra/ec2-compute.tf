@@ -1,5 +1,10 @@
 locals {
-  enabled_machines = { for name, machine in var.machines : name => machine if machine.is_true }
+  # Resolve omitted disk sizes before creating enabled machines.
+  enabled_machines = {
+    for name, machine in var.machines : name => merge(machine, {
+      root_volume_size = coalesce(machine.root_volume_size, local.ec2_defaults.root_volume.volume_size)
+    }) if machine.is_true
+  }
 }
 
 data "aws_subnet" "selected" {
@@ -25,14 +30,18 @@ resource "aws_instance" "machine" {
   root_block_device {
     encrypted             = local.ec2_defaults.root_volume.encrypted
     delete_on_termination = local.ec2_defaults.root_volume.delete_on_termination
-    volume_size           = local.ec2_defaults.root_volume.volume_size
+    volume_size           = each.value.root_volume_size
     volume_type           = local.ec2_defaults.root_volume.volume_type
     iops                  = local.ec2_defaults.root_volume.iops
     throughput            = local.ec2_defaults.root_volume.throughput
   }
 
-  credit_specification {
-    cpu_credits = local.ec2_defaults.cpu_credits
+  # CPU credits apply only to burstable T-family instances, not GPU instances.
+  dynamic "credit_specification" {
+    for_each = contains(["t2", "t3", "t3a", "t4g"], split(".", each.value.instance_type)[0]) ? [true] : []
+    content {
+      cpu_credits = local.ec2_defaults.cpu_credits
+    }
   }
 
   # Omit this block for On-Demand machines.

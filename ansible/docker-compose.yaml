@@ -1,0 +1,12 @@
+name: learn_ansible
+
+services:
+  ansible:
+    image: ghcr.io/ansible-community/community-ee-minimal:latest
+    entrypoint: [ "tail", "-f", "/dev/null" ]
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspace
+      - ./keys:/keys:ro
