@@ -1,0 +1,43 @@
+---
+- name: Create a Python virtual environment and install packages
+  hosts: ec2
+  become: false
+
+  vars:
+    project_dir: /home/ubuntu/siva
+    venv_dir: "{{ project_dir }}/venv"
+    python_packages:
+      - pandas
+      - numpy
+
+  tasks:
+    - name: Install Python and virtual environment support
+      become: true
+      ansible.builtin.apt:
+        name:
+          - python3
+          - python3-venv
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Create the siva folder
+      ansible.builtin.file:
+        path: "{{ project_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create the virtual environment
+      ansible.builtin.command:
+        cmd: "python3 -m venv {{ venv_dir | quote }}"
+        creates: "{{ venv_dir }}/bin/activate"
+
+    - name: Activate the virtual environment and install packages
+      ansible.builtin.shell: |
+        set -e
+        source {{ (venv_dir ~ '/bin/activate') | quote }}
+        python -m pip install {{ python_packages | map('quote') | join(' ') }}
+      args:
+        executable: /bin/bash
+      register: pip_install
+      changed_when: "'Successfully installed' in pip_install.stdout"
