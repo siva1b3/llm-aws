@@ -1,0 +1,38 @@
+---
+- name: "[VERIFY | VER001] Check installed tools and Docker service"
+  become: false
+  ansible.builtin.command:
+    argv: "{{ item.argv }}"
+  loop:
+    - {label: Git, argv: [git, --version]}
+    - {label: Python, argv: [python3, --version]}
+    - {label: Docker, argv: [docker, --version]}
+    - {label: Docker Compose, argv: [docker, compose, version]}
+    - {label: Docker Buildx, argv: [docker, buildx, version]}
+    - {label: Docker service, argv: [systemctl, is-active, docker]}
+  loop_control:
+    label: "{{ item.label }}"
+  register: dev_verification
+  changed_when: false
+  when: not ansible_check_mode
+
+- name: "[VERIFY | VER002] Show verification output"
+  ansible.builtin.debug:
+    msg: "{{ item.item.label }}: {{ item.stdout }}"
+  loop: "{{ dev_verification.results }}"
+  loop_control:
+    label: "{{ item.item.label }}"
+  when: not ansible_check_mode
+
+- name: "[VERIFY | VER003] Show completion instructions"
+  ansible.builtin.debug:
+    msg:
+      - Setup completed successfully.
+      - Log out and log back in to activate Docker group membership.
+      - 'Then test with: docker run hello-world'
+  when: not ansible_check_mode
+
+- name: "[VERIFY | VER004] Explain dry-run limitations"
+  ansible.builtin.debug:
+    msg: Check mode skips Git LFS initialization, Docker package installation, and verification. A normal run is required to validate the complete setup.
+  when: ansible_check_mode

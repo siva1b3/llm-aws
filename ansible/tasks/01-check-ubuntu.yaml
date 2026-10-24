@@ -1,0 +1,23 @@
+---
+- name: "[PRECHECK | PRE001] Require Ubuntu"
+  ansible.builtin.assert:
+    that:
+      - ansible_facts['distribution'] == 'Ubuntu'
+    fail_msg: This playbook supports Ubuntu only.
+
+- name: "[PRECHECK | PRE002] Identify the regular SSH login user"
+  become: false
+  ansible.builtin.command: id -un
+  register: dev_login_user
+  changed_when: false
+  check_mode: false
+
+- name: "[PRECHECK | PRE003] Require a regular login user with sudo access"
+  ansible.builtin.assert:
+    that:
+      - dev_login_user.stdout != 'root'
+    fail_msg: Connect as a regular user with sudo access, such as ubuntu.
+
+- name: "[PRECHECK | PRE004] Show setup target"
+  ansible.builtin.debug:
+    msg: "Setting up Ubuntu {{ ansible_facts['distribution_version'] }} for {{ dev_login_user.stdout }}."

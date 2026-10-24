@@ -1,0 +1,21 @@
+---
+- name: "[UBUNTU-SETUP | SET001] Set up Ubuntu development environment"
+  hosts: ec2
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: "[PRECHECK | PRE000] Check Ubuntu requirements"
+      ansible.builtin.import_tasks: tasks/01-check-ubuntu.yaml
+
+    - name: "[DEV-TOOLS | DEV000] Install development tools"
+      ansible.builtin.import_tasks: tasks/02-install-dev-tools.yaml
+
+    - name: "[DOCKER-INSTALL | DKI000] Install Docker when needed"
+      ansible.builtin.import_tasks: tasks/03-install-docker.yaml
+
+    - name: "[DOCKER-CONFIG | DKC000] Configure Docker"
+      ansible.builtin.import_tasks: tasks/04-configure-docker.yaml
+
+    - name: "[VERIFY | VER000] Verify installations"
+      ansible.builtin.import_tasks: tasks/05-verify.yaml

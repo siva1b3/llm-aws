@@ -1,5 +1,8 @@
 
 
+ansible -i inventory.ini ec2 -m ping
+
+
 ansible -i inventory.ini ec2 -a "sudo apt update"
 
 

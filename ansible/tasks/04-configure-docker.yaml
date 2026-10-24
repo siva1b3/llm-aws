@@ -1,0 +1,21 @@
+---
+- name: "[DOCKER-CONFIG | DKC001] Configure installed Docker"
+  when: not ansible_check_mode or dev_docker_command.rc == 0
+  block:
+    - name: "[DOCKER-CONFIG | DKC002] Enable and start Docker service"
+      ansible.builtin.systemd_service:
+        name: docker
+        enabled: true
+        state: started
+
+    - name: "[DOCKER-CONFIG | DKC003] Ensure Docker group exists"
+      ansible.builtin.group:
+        name: docker
+        state: present
+
+    # Docker group membership grants root-equivalent privileges.
+    - name: "[DOCKER-CONFIG | DKC004] Add the trusted login user to the Docker group"
+      ansible.builtin.user:
+        name: "{{ dev_login_user.stdout }}"
+        groups: docker
+        append: true

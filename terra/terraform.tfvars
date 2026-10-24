@@ -15,6 +15,13 @@ machines = {
     root_volume_size = 24
   }
 
+  "dev-server-3" = {
+    is_true          = false
+    is_spot          = true
+    instance_type    = "t3a.large"
+    root_volume_size = 24
+  }
+
   # Overrides instance type and root disk size; other settings remain shared.
   "gpu-worker-1" = {
     is_true          = false

@@ -1,0 +1,89 @@
+---
+- name: "[DOCKER-INSTALL | DKI001] Check whether Docker is already available"
+  become: false
+  ansible.builtin.shell: command -v docker
+  register: dev_docker_command
+  changed_when: false
+  # Shells can report a missing executable as either 1 or 127.
+  failed_when: dev_docker_command.rc not in [0, 1, 127]
+  check_mode: false
+
+- name: "[DOCKER-INSTALL | DKI002] Explain existing Docker installation"
+  ansible.builtin.debug:
+    msg: Docker already exists; skipping repository setup and Docker package installation.
+  when: dev_docker_command.rc == 0
+
+- name: "[DOCKER-INSTALL | DKI003] Install Docker from the official repository"
+  when: dev_docker_command.rc != 0
+  block:
+    - name: "[DOCKER-INSTALL | DKI004] Collect installed package information"
+      ansible.builtin.package_facts:
+        manager: apt
+
+    - name: "[DOCKER-INSTALL | DKI005] Stop if conflicting container packages are installed"
+      ansible.builtin.assert:
+        that:
+          - item not in ansible_facts['packages']
+        fail_msg: "Conflicting package {{ item }} is installed. Review the existing installation first."
+      loop:
+        - docker.io
+        - docker-compose
+        - docker-compose-v2
+        - podman-docker
+        - containerd
+        - runc
+
+    - name: "[DOCKER-INSTALL | DKI006] Read Debian package architecture"
+      ansible.builtin.command: dpkg --print-architecture
+      register: dev_docker_arch
+      changed_when: false
+      check_mode: false
+
+    - name: "[DOCKER-INSTALL | DKI007] Read Ubuntu repository codename"
+      ansible.builtin.shell: |
+        . /etc/os-release
+        printf '%s' "${UBUNTU_CODENAME:-$VERSION_CODENAME}"
+      register: dev_ubuntu_codename
+      changed_when: false
+      check_mode: false
+
+    - name: "[DOCKER-INSTALL | DKI008] Require a repository codename"
+      ansible.builtin.assert:
+        that:
+          - dev_ubuntu_codename.stdout | length > 0
+
+    - name: "[DOCKER-INSTALL | DKI009] Create APT keyring directory"
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: "[DOCKER-INSTALL | DKI010] Download Docker repository signing key"
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: '0644'
+
+    - name: "[DOCKER-INSTALL | DKI011] Configure Docker APT repository"
+      ansible.builtin.copy:
+        dest: /etc/apt/sources.list.d/docker.sources
+        mode: '0644'
+        content: |
+          Types: deb
+          URIs: https://download.docker.com/linux/ubuntu
+          Suites: {{ dev_ubuntu_codename.stdout }}
+          Components: stable
+          Architectures: {{ dev_docker_arch.stdout }}
+          Signed-By: /etc/apt/keyrings/docker.asc
+
+    - name: "[DOCKER-INSTALL | DKI012] Update APT and install Docker packages"
+      ansible.builtin.apt:
+        update_cache: true
+        state: present
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+      when: not ansible_check_mode
