@@ -1,7 +1,30 @@
 # Optionally copy to terraform.tfvars to override the per-machine defaults.
+# Presets override is_true; is_spot still controls the purchase option.
+# is_spot is optional: omit it to use the default in machine_catalog.tf.
+system_state = "custom"
 
 machines = {
-  test_001 = {
+  gpu_test_001 = {
+    is_true = true
+    is_spot = false
+  }
+  gpu_test_002 = {
+    is_true = true
+    is_spot = false
+  }
+  gpu_test_003 = {
+    is_true = true
+    is_spot = true
+  }
+  test_002 = {
+    is_true = true
+    is_spot = true
+  }
+  test_003 = {
+    is_true = true
+    is_spot = true
+  }
+  test_004 = {
     is_true = true
     is_spot = true
   }

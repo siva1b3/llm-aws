@@ -1,44 +1,48 @@
-locals {
-  enabled_machines = { for name, machine in var.machines : name => machine if machine.is_true }
-}
-
 data "aws_subnet" "selected" {
   count = length(local.enabled_machines) > 0 ? 1 : 0
-  id    = "subnet-c63cabe7" # us-east-1a, vpc-72db7f0f
+  id    = local.shared_settings.subnet_id
 }
 
 resource "aws_instance" "machine" {
   for_each = local.enabled_machines
 
-  ami                         = "ami-02a9cdd4e98bc3c78"
-  instance_type               = "t3a.large"
-  key_name                    = "main"
-  subnet_id                   = data.aws_subnet.selected[0].id
-  vpc_security_group_ids      = ["sg-0849de47513ee506e"]
-  associate_public_ip_address = true
-  ebs_optimized               = true
-  monitoring                  = false
-  disable_api_termination     = false
-  disable_api_stop            = false
+  ami                                  = local.shared_settings.ami
+  instance_type                        = local.machine_specs[each.key].instance_type
+  key_name                             = local.shared_settings.key_name
+  subnet_id                            = data.aws_subnet.selected[0].id
+  vpc_security_group_ids               = local.shared_settings.security_group_ids
+  associate_public_ip_address          = true
+  ebs_optimized                        = true
+  monitoring                           = false
+  disable_api_termination              = false
+  disable_api_stop                     = false
+  instance_initiated_shutdown_behavior = "stop"
 
   # The root device and its source snapshot are inherited from the AMI.
   root_block_device {
     encrypted             = false
     delete_on_termination = true
-    volume_size           = 24
+    volume_size           = local.machine_specs[each.key].volume_size
     volume_type           = "gp3"
     iops                  = 3000
     throughput            = 125
   }
 
-  credit_specification {
-    cpu_credits = "standard"
+  dynamic "credit_specification" {
+    for_each = local.machine_specs[each.key].burstable ? [true] : []
+    content {
+      cpu_credits = "standard"
+    }
   }
 
   dynamic "instance_market_options" {
     for_each = each.value.is_spot ? [true] : []
     content {
       market_type = "spot"
+      spot_options {
+        spot_instance_type             = "persistent"
+        instance_interruption_behavior = "stop"
+      }
     }
   }
 
@@ -58,20 +62,14 @@ resource "aws_instance" "machine" {
 
   lifecycle {
     precondition {
-      condition     = data.aws_subnet.selected[0].vpc_id == "vpc-72db7f0f"
+      condition     = data.aws_subnet.selected[0].vpc_id == local.shared_settings.vpc_id
       error_message = "The subnet must belong to vpc-72db7f0f, the VPC of security group sg-0849de47513ee506e."
     }
   }
 }
 
-output "machines" {
-  description = "Created instances and their connection addresses."
-  value = {
-    for name, instance in aws_instance.machine : name => {
-      id         = instance.id
-      public_ip  = instance.public_ip
-      private_ip = instance.private_ip
-      is_spot    = var.machines[name].is_spot
-    }
-  }
+resource "aws_ec2_instance_state" "machine" {
+  for_each    = local.enabled_machines
+  instance_id = aws_instance.machine[each.key].id
+  state       = local.desired_states[each.key]
 }
