@@ -10,3 +10,5 @@
 **/.aws/
 **/.venv/*
 terra/siva_tf_plan
+ansible/inventory.ini
+terra/terraform.tfvars
