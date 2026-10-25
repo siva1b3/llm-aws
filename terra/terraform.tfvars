@@ -35,7 +35,7 @@ machines = {
 buckets = {
   "dev-storage-1" = {
     name       = "terra-dev-storage-900065085340-1"
-    is_true    = true
+    is_true    = false
     versioning = false
   }
 }
