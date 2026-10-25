@@ -4,18 +4,25 @@ machines = {
     is_true          = false
     is_spot          = true
     instance_type    = "t3a.small"
-    root_volume_size = 24
+    root_volume_size = 16
   }
 
   # Same instance type and root disk size as dev-server-1.
   "dev-server-2" = {
     is_true          = false
     is_spot          = true
-    instance_type    = "t3a.large"
+    instance_type    = "t3a.small"
     root_volume_size = 24
   }
 
   "dev-server-3" = {
+    is_true          = false
+    is_spot          = true
+    instance_type    = "t3a.small"
+    root_volume_size = 24
+  }
+
+  "dev-server-4" = {
     is_true          = false
     is_spot          = true
     instance_type    = "t3a.large"
