@@ -10,6 +10,18 @@ output "machines" {
   }
 }
 
+output "buckets" {
+  description = "Created S3 buckets and their details."
+  value = {
+    for name, bucket in aws_s3_bucket.bucket : name => {
+      name       = bucket.bucket
+      arn        = bucket.arn
+      region     = bucket.region
+      versioning = var.buckets[name].versioning
+    }
+  }
+}
+
 output "aws_account_id" {
   value = data.aws_caller_identity.current.account_id
 }

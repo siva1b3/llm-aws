@@ -3,7 +3,7 @@ machines = {
   "dev-server-1" = {
     is_true          = false
     is_spot          = true
-    instance_type    = "t3a.large"
+    instance_type    = "t3a.small"
     root_volume_size = 24
   }
 
@@ -28,5 +28,14 @@ machines = {
     is_spot          = true
     instance_type    = "g4dn.xlarge"
     root_volume_size = 128
+  }
+}
+
+# Each map key identifies a bucket; name is the globally unique S3 bucket name.
+buckets = {
+  "dev-storage-1" = {
+    name       = "terra-dev-storage-900065085340-1"
+    is_true    = true
+    versioning = false
   }
 }
