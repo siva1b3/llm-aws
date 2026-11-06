@@ -1,0 +1,9 @@
+name: siva-ansible
+
+services:
+  ansible:
+    image: ghcr.io/ansible-community/community-ee-minimal@sha256:41c6c5eeb9915fec5a97de241b2f91a269234942eaa0d78ac5bcead95a0d91b1
+    command: [ "ansible", "--version" ]
+    volumes:
+      - ./inventory.ini:/runner/inventory.ini:ro
+      - ./keys:/keys:ro
